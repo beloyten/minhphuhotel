@@ -7,7 +7,7 @@
         </a>
         <div class="login-form-inner">
           <h2>Xin chào!</h2>
-          <h6>Chào mừng bạn đến với <h7>Minh Phú Diamond Place</h7></h6>
+          <h6>Chào mừng bạn đến với <span>Minh Phú Diamond Place</span></h6>
           <div class="field">
             <input
               id="username"

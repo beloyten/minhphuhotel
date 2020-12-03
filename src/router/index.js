@@ -6,7 +6,6 @@ import DashboardLayout from '@/views/layout/DashboardLayout'
 import AuthLayout from '@/views/layout/AuthLayout'
 
 // Pages
-import LoginComponent from '@/views/auth/login'
 import OverviewComponent from '@/views/overview/overview'
 import AccountComponent from '@/views/account/Account'
 import ContractByUserComponent from '@/views/account/ContractByUser'
@@ -40,7 +39,7 @@ const routes = [
       {
         name: 'Login',
         path: '/login',
-        component: LoginComponent
+        component: () => import("@/views/admin/auth/Login.vue")
       }
     ]
   },
@@ -255,15 +254,6 @@ Router.prototype.push = function push (location) {
   return originalPush.call(this, location)
     .catch(() => console.log('Routing is not changed'))
 }
-const DEFAULT_TITLE = 'Some Default Title';
-Router.afterEach((to, from) => {
-    // Use next tick to handle router history correctly
-    // see: https://github.com/vuejs/vue-router/issues/914#issuecomment-384477609
-    Vue.nextTick(() => {
-        document.title = to.meta.title || DEFAULT_TITLE;
-    });
-});
-
 export default new Router({
   mode: 'history',
   scrollBehavior () {
