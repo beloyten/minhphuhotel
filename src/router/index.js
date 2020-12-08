@@ -34,12 +34,13 @@ const routes = [
     path: '/login',
     component: AuthLayout,
     hidden: true,
-    meta: { requiresAuth: false },
+    meta: { title: 'Login', requiresAuth: false },
     children: [
       {
         name: 'Login',
         path: '/login',
-        component: () => import("@/views/admin/auth/Login.vue")
+        component: () => import("@/views/admin/auth/Login.vue"),
+        meta: { title: 'Login'}
       }
     ]
   },
@@ -47,7 +48,7 @@ const routes = [
     path: '/',
     component: AuthLayout,
     hidden: true,
-    meta: { requiresAuth: false },
+    meta: { title: 'LandingPage', requiresAuth: false },
     children: [
       {
         name: 'LandingPage',

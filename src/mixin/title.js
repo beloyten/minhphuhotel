@@ -1,7 +1,7 @@
 export default {
   data () {
     return {
-      title: 'Best Life'
+      title: 'MinhPhu'
     }
   },
   computed: {
