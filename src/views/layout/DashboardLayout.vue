@@ -66,7 +66,7 @@ export default {
     },
   },
   created () {
-    this.$store.dispatch('getUserInfo')
+    // this.$store.dispatch('getUserInfo')
   },
   methods: {
     isUserHasRole (router) {

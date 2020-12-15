@@ -39,8 +39,7 @@ const routes = [
       {
         name: 'Login',
         path: '/login',
-        component: () => import("@/views/admin/auth/Login.vue"),
-        meta: { title: 'Login'}
+        component: () => import("@/views/admin/auth/Login.vue")
       }
     ]
   },
@@ -53,7 +52,33 @@ const routes = [
       {
         name: 'LandingPage',
         path: '/',
-        component: () => import("@/views/landingPage/LandingPage.vue")
+        component: () => import("@/views/guest/landingPage/LandingPage.vue")
+      }
+    ]
+  },
+  {
+    path: '/contact',
+    component: AuthLayout,
+    hidden: true,
+    meta: { title: 'Contact', requiresAuth: false },
+    children: [
+      {
+        name: 'Contact',
+        path: '/contact',
+        component: () => import("@/views/guest/contact/Contact.vue")
+      }
+    ]
+  },
+  {
+    path: '/post-detail',
+    component: AuthLayout,
+    hidden: true,
+    meta: { title: 'PostDetail', requiresAuth: false },
+    children: [
+      {
+        name: 'PostDetail',
+        path: '/post-detail',
+        component: () => import("@/views/guest/detailPost/DetailPost.vue")
       }
     ]
   },

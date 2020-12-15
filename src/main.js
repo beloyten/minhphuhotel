@@ -38,7 +38,9 @@ import {
   Image,
   DatePicker,
   Select,
-  Option
+  Option,
+  Carousel,
+  CarouselItem
 } from 'element-ui'
 
 Vue.use(VueQr)
@@ -53,6 +55,8 @@ Vue.use(Image)
 Vue.use(DatePicker)
 Vue.use(Select)
 Vue.use(Option)
+Vue.use(Carousel)
+Vue.use(CarouselItem)
 Vue.use(VeeValidate)
 Vue.use( CKEditor )
 Vue.prototype.$confirm = MessageBox.confirm

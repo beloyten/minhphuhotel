@@ -11,7 +11,7 @@ const RouterInterceptor = {
         // If token is empty, redirect to login page
         if (!token) {
           next({
-            name: 'LandingPage',
+            name: 'Login',
             query: { nextUrl: to.fullPath }
           })
         } else { // Next if token exist
