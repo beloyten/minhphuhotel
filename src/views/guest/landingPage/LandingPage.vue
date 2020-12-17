@@ -160,8 +160,8 @@ export default {
         var styleContent1 = document.createElement('style');
         styleContent1.innerHTML = `
         .content-1 {
-                -webkit-animation: zoomIn 1s; /* Chrome, Safari, Opera */
-                animation: zoomIn 1s;
+                -webkit-animation: displayImgContent 1s; /* Chrome, Safari, Opera */
+                animation: displayImgContent 1s;
                 opacity: 1!important;
         }
         `;
@@ -213,8 +213,49 @@ export default {
                 animation: displayButton 1s;
         }
         `;
+        var styleServiceTitle = document.createElement('style');
+        styleServiceTitle.innerHTML = `
+        .service-title {
+                opacity: 1!important;
+                -webkit-animation: displayService 1s; /* Chrome, Safari, Opera */
+                animation: displayService 1s;
+        }
+        `;
+        var styleServiceItem = document.createElement('style');
+        styleServiceItem.innerHTML = `
+        .service-list-item {
+                opacity: 1!important;
+                -webkit-animation: displayServiceItem 1s; /* Chrome, Safari, Opera */
+                animation: displayServiceItem 1s;
+        }
+        `;
+        var styleFooter = document.createElement('style');
+        styleFooter.innerHTML = `
+        .footer-animation {
+                -webkit-animation: displayFooter 1s; /* Chrome, Safari, Opera */
+                animation: displayFooter 1s;
+                opacity: 1!important;
+        }
+        `;
+        var styleFormBooking = document.createElement('style');
+        styleFormBooking.innerHTML = `
+        .form-booking {
+                -webkit-animation: displayForm 1s; /* Chrome, Safari, Opera */
+                animation: displayForm 1s;
+                opacity: 1!important;
+        }
+        `;
         window.onscroll = function(e) {
-            if(document.documentElement.scrollTop > 2700) {
+            console.log(document.documentElement.scrollTop);
+            if(document.documentElement.scrollTop > 4500) {
+                document.head.appendChild(styleFooter);
+            } else if(document.documentElement.scrollTop > 4300) {
+                document.head.appendChild(styleFormBooking);
+            } else if(document.documentElement.scrollTop > 3400) {
+                document.head.appendChild(styleServiceItem);
+            } else if(document.documentElement.scrollTop > 3200) {
+                document.head.appendChild(styleServiceTitle);
+            } else if(document.documentElement.scrollTop > 2700) {
                 document.head.appendChild(styleButton3);
             } else if(document.documentElement.scrollTop > 2200) {
                 document.head.appendChild(stylePostImg3);

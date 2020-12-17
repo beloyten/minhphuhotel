@@ -3,7 +3,7 @@
     background-color: #fdfbf7;
     .detail-post-content {
         margin-top: 5em;
-        height: 120em;
+        min-height: 120em;
         width: 100%;
         .post-img {
             height: 54em;
@@ -15,12 +15,14 @@
             background-repeat: no-repeat;
             background-position: bottom right;
             background-size: 55em 55em;
-            height: 60em;
+            min-height: 60em;
             display: flex;
             flex-direction: column;
             justify-content: center;
             .post-title {
                 margin-left: 20%;
+                height: 5em;
+                padding-top: 2em;
                 span {
                     font-size: 5.5em;
                     color: #ab6c2d;
@@ -28,15 +30,19 @@
             }
             .post-bread {
                 margin-left: 20%;
-                margin-top: 5em;
+                margin-top: 3em;
+                height: 4em;
+                padding-top: 2em;
                 span {
                     font-size: 3em;
                     color: black;
                 }
             }
             .post-content-text {
+                min-height: 25em;
+                padding-top: 2em;
                 margin-left: 20%;
-                margin-top: 5em;
+                margin-top: 2em;
                 width: 60%;
                 span {
                     font-size: 1.5em;
