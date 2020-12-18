@@ -112,6 +112,9 @@
                         width: 70%;
                         margin-top: 5em;
                         text-align: center;
+                        p {
+                            font-family: OpenSans;
+                        }
                     }
                     .view-more1 {
                         opacity: 0;
@@ -202,6 +205,10 @@
                         &:first-child {
                             margin-top: 3em;
                         }
+                        &:hover {
+                            color: #efce16;
+                            cursor: pointer;
+                        }
                     }
                 }
             }
@@ -228,15 +235,15 @@
     .form-booking {
         opacity: 0;
         width: 100%;
-        height: 13em;
+        height: 20em;
         background-color:white;
         display: flex;
         justify-content: center;
         margin-top: -4em;
         padding-top: 2em;
-        z-index: 9999;
+        z-index: 1000;
         .form-booking-detail {
-            z-index: 9999;
+            z-index: 1000;
             display: flex;
             width: 60%;
             .booking-field {
@@ -281,6 +288,49 @@
             }
         }
     }
+    .gallery {
+        width: 100%;
+        height: 56em;
+        background-color: white;
+        .gallery-title {
+            color: black;
+            height: 1.5em;
+            margin-left: 8.7em;
+            font-size: 3em;
+            font-weight: bold;
+        }
+        .gallery-short-content {
+            color: #85562b;
+            height: 2em;
+            font-size: 1.5em; 
+            margin-left: 17.5em;
+        }
+        .line-media {
+            margin-top: 1.5em;
+            display: flex;
+            height: 20em;
+            justify-content: center;
+            align-items: center;
+            .line-img {
+                height: 20em;
+                margin-right: 1.5em;
+                overflow: hidden;
+                opacity: 0;
+                img {
+                    height: 20em;
+                    transition: transform .4s ease-in-out;
+                    transition-delay: 0.2s;
+                }
+                
+                &:hover img {
+                    cursor: pointer;
+                    opacity: 0.8;
+                    filter: url(#gold-sunset) brightness(100%) contrast(80%);
+                    transform: scale(1.3);
+                }
+            }
+        }
+    }
 }
 .heading-landing-page {
     background-color: white;
@@ -316,6 +366,7 @@
             margin-left: 3em;
             font-size: 1.5em;
             text-transform: uppercase;
+            font-family: Glacial;
             &:hover {
                 color: #efce16;
                 cursor: pointer;
@@ -376,6 +427,7 @@
         h3 {
             font-size: 1em;
             margin-top: 0.5em;
+            font-family: OpenSans;
         }
         .icon-contact {
             display: flex;
@@ -450,21 +502,48 @@
     }
     100% {
         padding-left: 0;
-        -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 50% 0);
+        -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 100% 0);
         clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 100% 0);
     }
 }
 
 /* Standard syntax */
 @keyframes displayImg {
-    0% { 
+    0% {
         padding-left: 8em;
         -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 20% 0);
         clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 20% 0);
     }
     100% {
         padding-left: 0;
+        -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 100% 0);
+        clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 100% 0);
+    }
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes displayImgGallery {
+    0% {
+        padding-left: 8em;
+        -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 40% 100%, 40% 0);
+        clip-path: polygon(0 0, 0 100%, 100% 100%, 40% 100%, 40% 0);
+    }
+    100% {
+        padding-left: 0;
         -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 50% 0);
+        clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 100% 0);
+    }
+}
+
+/* Standard syntax */
+@keyframes displayImgGallery {
+    0% {
+        padding-left: 8em;
+        -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 40% 100%, 40% 0);
+        clip-path: polygon(0 0, 0 100%, 100% 100%, 40% 100%, 40% 0);
+    }
+    100% {
+        padding-left: 0;
+        -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 100% 0);
         clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 100% 0);
     }
 }
@@ -481,10 +560,10 @@
 /* Standard syntax */
 @keyframes displayButton {
     0% { 
-        padding-top: 0;
+        margin-top: 0;
     }
     100% {
-        padding-top: 2.5em;
+        margin-top: 2.5em;
     }
 }
 /* Chrome, Safari, Opera */
@@ -559,5 +638,27 @@
     }
     100% {
         padding-top: 2em;
+    }
+}
+@-webkit-keyframes zoomIn {
+    0% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
+    100% {
+        transform: scale(0.8);
+        -webkit-transform: scale(0.8);
+    }
+}
+
+/* Standard syntax */
+@keyframes zoomIn {
+    0% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
+    100% {
+        transform: scale(0.8);
+        -webkit-transform: scale(0.8);
     }
 }

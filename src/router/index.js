@@ -38,7 +38,7 @@ const routes = [
     children: [
       {
         name: 'Login',
-        path: '/login',
+        path: '',
         component: () => import("@/views/admin/auth/Login.vue")
       }
     ]
@@ -51,7 +51,7 @@ const routes = [
     children: [
       {
         name: 'LandingPage',
-        path: '/',
+        path: '',
         component: () => import("@/views/guest/landingPage/LandingPage.vue")
       }
     ]
@@ -64,7 +64,7 @@ const routes = [
     children: [
       {
         name: 'Contact',
-        path: '/contact',
+        path: '',
         component: () => import("@/views/guest/contact/Contact.vue")
       }
     ]
@@ -77,180 +77,22 @@ const routes = [
     children: [
       {
         name: 'PostDetail',
-        path: '/post-detail',
+        path: '',
         component: () => import("@/views/guest/detailPost/DetailPost.vue")
       }
     ]
   },
+  
   {
-    path: '/home',
-    component: DashboardLayout,
-    redirect: { name: 'Overview' },
-    meta: {title: 'Trang chủ', roles: ['System Admin'], requiresAuth: true },
+    path: '/list-room',
+    component: AuthLayout,
+    hidden: true,
+    meta: { title: 'ListRoom', requiresAuth: false },
     children: [
       {
-        path: '/trangchu',
-        name: 'Overview',
-        component: OverviewComponent,
-        meta: { title: 'Trang chủ'}
-      }
-    ]
-  },
-  {
-    path: '/account',
-    component: DashboardLayout,
-    redirect: { name: 'Account' },
-    meta: { title: 'Tài khoản', requiresAuth: true, roles: ['System Admin'] },
-    children: [
-      {
-        hidden: true,
+        name: 'ListRoom',
         path: '',
-        name: 'Account',
-        component: AccountComponent,
-        meta: { title: 'Tài khoản'}
-      },
-      {
-        hidden: true,
-        path: ':user/contract',
-        name: 'ContractByUser',
-        component: ContractByUserComponent,
-        meta: { title: 'Tài khoản'},
-      }
-    ]
-  },
-  {
-    path: '/report',
-    component: DashboardLayout,
-    redirect: { name: 'Contract' },
-    meta: { title: 'Báo cáo', requiresAuth: true, roles: ['System Admin'] },
-    children: [
-      {
-        path: 'contract',
-        name: 'Contract',
-        component: ContractComponent,
-        meta: { title: 'HĐ Bảo hiểm'}
-      },
-      {
-        path: 'provisional',
-        name: 'ProvisionalCommission',
-        component: ProvisionalCommissionComponent,
-        meta: { title: 'Hoa Hồng Tạm tính'}
-      },
-      {
-        path: 'report-partner',
-        name: 'Report Partner',
-        component: ReportComponent,
-        meta: { title: 'Báo cáo đối tác'}
-      },
-      {
-        path: 'appellation',
-        name: 'Appellation',
-        component: AppellationComponent,
-        meta: { title: 'Danh hiệu'}
-      },
-      {
-        path: 'ledger',
-        name: 'Ledger',
-        component: LedgerComponent,
-        meta: { title: 'Sổ cái'}
-      }
-    ]
-  },
-  {
-    path: '/manage',
-    component: DashboardLayout,
-    redirect: { name: 'Exchange' },
-    meta: { title: 'Quản lý', requiresAuth: true },
-    children: [
-      {
-        path: 'exchange',
-        name: 'Exchange',
-        component: ExchangeManageComponent,
-        meta: { title: 'Giao dịch'}
-      },
-      {
-        path: 'contract',
-        name: 'ContractManage',
-        component: ContractManageComponent,
-        meta: { title: 'Hợp đồng'}
-      },
-      {
-        path: 'news',
-        name: 'NewsManage',
-        component: NewsManageComponent,
-        meta: { title: 'Tin tức'}
-      }
-    ]
-  },
-  {
-    path: '/non-life',
-    component: DashboardLayout,
-    redirect: { name: 'NonLifeContract' },
-    meta: { title: 'Phi Nhân Thọ', requiresAuth: true, roles: ['System Admin'] },
-    children: [
-      {
-        path: 'contract',
-        name: 'NonLifeContract',
-        component: NonLifeContractComponent,
-        meta: { title: 'HĐ Phi nhân thọ'}
-      },
-      {
-        path: 'report',
-        name: 'ReportNonLife',
-        component: ReportNonLifeComponent,
-        meta: { title: 'Báo Cáo thường'}
-      },
-      {
-        path: 'product',
-        name: 'ProducttNonLife',
-        component: ProductNonLifeComponent,
-        meta: { title: 'SP phi nhân thọ'}
-      }
-    ]
-  },
-  {
-    path: '/course',
-    component: DashboardLayout,
-    redirect: { name: 'ListCourse' },
-    meta: { title: 'Khóa học', requiresAuth: true, roles: ['System Admin'] },
-    children: [
-      {
-        path: 'list',
-        name: 'ListCourse',
-        component: ListCourseComponent,
-        meta: { title: 'Danh sách'}
-      },
-      {
-        path: 'create',
-        name: 'CreateCourse',
-        component: CreateCourseComponent,
-        meta: { title: 'Tạo Mới'}
-      },
-      {
-        path: 'list-class',
-        name: 'ListClass',
-        component: ListClassComponent,
-        meta: { title: 'Danh sách lớp'}
-      }
-    ]
-  },
-  {
-    path: '/best-home',
-    component: DashboardLayout,
-    redirect: { name: 'CreateBestHome' },
-    meta: { title: 'Besthome', requiresAuth: true, roles: ['System Admin'] },
-    children: [
-      {
-        path: 'create',
-        name: 'CreateBestHome',
-        component: CreateBestHomeComponent,
-        meta: { title: 'Tạo Besthome'}
-      },
-      {
-        path: 'contract',
-        name: 'COntractBestHome',
-        component: ContractBestHomeComponent,
-        meta: { title: 'HĐ BEsthome'}
+        component: () => import("@/views/guest/room/ListRoom.vue")
       }
     ]
   },

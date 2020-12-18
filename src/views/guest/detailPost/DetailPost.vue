@@ -44,6 +44,9 @@ export default {
         return {
             image: "../images/background-homepage1.jpg"
         }
+    },
+    mounted() {
+        
     }
 }
 </script>

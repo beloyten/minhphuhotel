@@ -90,8 +90,8 @@
                 <div class="service-title">DANH SÁCH DỊCH VỤ</div>
                 <div class="service-list-item">
                     <ul>
-                        <li>Khách sạn</li>
-                        <li>Hội nghị</li>
+                        <li @click="toListRoom()">Khách sạn</li>
+                        <li @click="toDetail()">Hội nghị</li>
                     </ul>
                     <ul>
                         <li>Spa & xông hơi</li>
@@ -132,6 +132,53 @@
                 </div>
             </div>
         </div>
+        <div class="gallery">
+            <div class="gallery-title">
+                <span>Minh Phu Gallery</span>
+            </div>
+            <div class="gallery-short-content">
+                <span>Photos & Videos</span>
+            </div>
+            <div class="gallery-media">
+                <div class="line-media">
+                    <div class="line-img">
+                        <img src="images/post-img.jpg" alt=""/>
+                    </div>
+                    <div class="line-img">
+                        <img src="images/post-img.jpg" alt=""/>
+                    </div>
+                    <div class="line-img">
+                        <img src="images/post-img.jpg" alt=""/>
+                    </div>
+                </div>
+                <div class="line-media">
+                    <div class="line-img">
+                        <img src="images/post-img.jpg" alt=""/>
+                    </div>
+                    <div class="line-img">
+                        <img src="images/post-img.jpg" alt=""/>
+                    </div>
+                    <div class="line-img">
+                        <img src="images/post-img.jpg" alt=""/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <svg class="defs-only">
+            <filter id="gold-sunset" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feColorMatrix type="matrix" values=".33 .33 .40 0 0
+                .33 .20 .40 .25 0
+                .20 .33 .33 .15 0
+                0 0 0.8 0.8 0" in="SourceGraphic" result="colormatrix"/>
+                <feComponentTransfer in="colormatrix" result="componentTransfer">
+                <feFuncR type="table" tableValues="0.27 0.86 1"/>
+                <feFuncG type="table" tableValues="0.01 0.31 0.95"/>
+                <feFuncB type="table" tableValues="0.02 0.02 0.02"/>
+                <feFuncA type="table" tableValues="0 1"/>
+                </feComponentTransfer>
+                <feBlend mode="normal" in="componentTransfer" in2="SourceGraphic" result="blend"/>
+            </filter>
+        </svg>
     </div>
     <Footer/>
 </div>
@@ -153,10 +200,105 @@ export default {
     methods: {
         viewMore() {
             this.$router.push("/post-detail")
+        },
+        toDetail() {
+            this.$router.push("/post-detail")
+        },
+        toListRoom() {
+            this.$router.push("/list-room")
         }
     },
     mounted() {
         document.documentElement.scrollTop = 0
+        console.log(document.documentElement.scrollTop)
+        var styleContent1None = document.createElement('style');
+        styleContent1None.innerHTML = `
+        .content-1 {
+                -webkit-animation: none; /* Chrome, Safari, Opera */
+                animation: none;
+                opacity: 0!important;
+        }
+        `;
+         var stylePostImg1None = document.createElement('style');
+        stylePostImg1None.innerHTML = `
+        .post-image1 {
+                -webkit-animation: none; /* Chrome, Safari, Opera */
+                animation: none;
+                opacity: 0!important;
+        }
+        `;
+        var stylePostImg2None = document.createElement('style');
+        stylePostImg2None.innerHTML = `
+        .post-image2 {
+               -webkit-animation: none; /* Chrome, Safari, Opera */
+                animation: none;
+                opacity: 0!important;
+        }
+        `;
+        var stylePostImg3None = document.createElement('style');
+        stylePostImg3None.innerHTML = `
+        .post-image3 {
+                -webkit-animation: none; /* Chrome, Safari, Opera */
+                animation: none;
+                opacity: 0!important;
+        }
+        `;
+        var styleButton1None = document.createElement('style');
+        styleButton1None.innerHTML = `
+        .view-more1 {
+                -webkit-animation: none; /* Chrome, Safari, Opera */
+                animation: none;
+                opacity: 0!important;
+        }
+        `;
+        var styleButton2None = document.createElement('style');
+        styleButton2None.innerHTML = `
+        .view-more2 {
+                -webkit-animation: none; /* Chrome, Safari, Opera */
+                animation: none;
+                opacity: 0!important;
+        }
+        `;
+        var styleButton3None = document.createElement('style');
+        styleButton3None.innerHTML = `
+        .view-more3 {
+                -webkit-animation: none; /* Chrome, Safari, Opera */
+                animation: none;
+                opacity: 0!important;
+        }
+        `;
+        var styleServiceTitleNone = document.createElement('style');
+        styleServiceTitleNone.innerHTML = `
+        .service-title {
+                -webkit-animation: none; /* Chrome, Safari, Opera */
+                animation: none;
+                opacity: 0!important;
+        }
+        `;
+        var styleServiceItemNone = document.createElement('style');
+        styleServiceItemNone.innerHTML = `
+        .service-list-item {
+                -webkit-animation: none; /* Chrome, Safari, Opera */
+                animation: none;
+                opacity: 0!important;
+        }
+        `;
+        var styleFooterNone = document.createElement('style');
+        styleFooterNone.innerHTML = `
+        .footer-animation {
+                -webkit-animation: none; /* Chrome, Safari, Opera */
+                animation: none;
+                opacity: 0!important;
+        }
+        `;
+        var styleFormBookingNone = document.createElement('style');
+        styleFormBookingNone.innerHTML = `
+        .form-booking {
+               -webkit-animation: none; /* Chrome, Safari, Opera */
+                animation: none;
+                opacity: 0!important;
+        }
+        `;
         var styleContent1 = document.createElement('style');
         styleContent1.innerHTML = `
         .content-1 {
@@ -168,25 +310,25 @@ export default {
         var stylePostImg1 = document.createElement('style');
         stylePostImg1.innerHTML = `
         .post-image1 {
-                opacity: 1!important;
                 -webkit-animation: displayImg 1s; /* Chrome, Safari, Opera */
                 animation: displayImg 1s;
+                opacity: 1!important;
         }
         `;
         var stylePostImg2 = document.createElement('style');
         stylePostImg2.innerHTML = `
         .post-image2 {
-                opacity: 1!important;
                 -webkit-animation: displayImg 1s; /* Chrome, Safari, Opera */
                 animation: displayImg 1s;
+                opacity: 1!important;
         }
         `;
         var stylePostImg3 = document.createElement('style');
         stylePostImg3.innerHTML = `
         .post-image3 {
-                opacity: 1!important;
                 -webkit-animation: displayImg 1s; /* Chrome, Safari, Opera */
                 animation: displayImg 1s;
+                opacity: 1!important;
         }
         `;
         var styleButton1 = document.createElement('style');
@@ -245,10 +387,31 @@ export default {
                 opacity: 1!important;
         }
         `;
+        var styleImgGallery = document.createElement('style');
+        styleImgGallery.innerHTML = `
+        .line-img {
+                -webkit-animation: displayImgGallery 1s; /* Chrome, Safari, Opera */
+                animation: displayImgGallery 1s;
+                opacity: 1!important;
+        }
+        `;
+        document.head.appendChild(styleContent1None);
+        document.head.appendChild(stylePostImg1None);
+        document.head.appendChild(stylePostImg2None);
+        document.head.appendChild(stylePostImg3None);
+        document.head.appendChild(styleButton1None);
+        document.head.appendChild(styleButton2None);
+        document.head.appendChild(styleButton3None);
+        document.head.appendChild(styleServiceTitleNone);
+        document.head.appendChild(styleServiceItemNone);
+        document.head.appendChild(styleFooterNone);
+        document.head.appendChild(styleFormBookingNone);
         window.onscroll = function(e) {
             console.log(document.documentElement.scrollTop);
-            if(document.documentElement.scrollTop > 4500) {
+            if(document.documentElement.scrollTop > 5500) {
                 document.head.appendChild(styleFooter);
+            } else if(document.documentElement.scrollTop > 4700) {
+                document.head.appendChild(styleImgGallery);
             } else if(document.documentElement.scrollTop > 4300) {
                 document.head.appendChild(styleFormBooking);
             } else if(document.documentElement.scrollTop > 3400) {
