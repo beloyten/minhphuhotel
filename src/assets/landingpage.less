@@ -125,6 +125,9 @@
                         padding: 5px;
                         width: 8em;
                         font-size: 1.4em;
+                        &:hover {
+                            font-weight: bold;
+                        }
                     }
                     .view-more2 {
                         opacity: 0;
@@ -135,6 +138,9 @@
                         padding: 5px;
                         width: 8em;
                         font-size: 1.4em;
+                        &:hover {
+                            font-weight: bold;
+                        }
                     }
                     .view-more3 {
                         opacity: 0;
@@ -145,6 +151,9 @@
                         padding: 5px;
                         width: 8em;
                         font-size: 1.4em;
+                        &:hover {
+                            font-weight: bold;
+                        }
                     }
                 }
                 .post-image1 {
@@ -263,6 +272,7 @@
                         width: 80%;
                         margin-right: 5em;
                         color: black;
+                        font-family: OpenSans;
                     }
                     label {
                         font-size: 1.5em;
@@ -370,6 +380,7 @@
             &:hover {
                 color: #efce16;
                 cursor: pointer;
+                font-weight: bold;
             }
         }
     }
@@ -496,11 +507,18 @@
 /* Chrome, Safari, Opera */
 @-webkit-keyframes displayImg {
     0% {
+        opacity: 0;
         padding-left: 8em;
-        -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 20% 0);
-        clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 20% 0);
+        -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 50% 0);
+        clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 50% 0);
+    }
+    2% {
+        padding-left: 8em;
+        -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 40% 0);
+        clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 40% 0);
     }
     100% {
+        opacity: 1;
         padding-left: 0;
         -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 100% 0);
         clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 100% 0);
@@ -510,11 +528,18 @@
 /* Standard syntax */
 @keyframes displayImg {
     0% {
+        opacity: 0;
         padding-left: 8em;
-        -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 20% 0);
-        clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 20% 0);
+        -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 50% 0);
+        clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 50% 0);
+    }
+    2% {
+        padding-left: 8em;
+        -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 40% 0);
+        clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 40% 0);
     }
     100% {
+        opacity: 1;
         padding-left: 0;
         -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 100% 0);
         clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 100% 0);
