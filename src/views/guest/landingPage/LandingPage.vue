@@ -20,14 +20,14 @@
             </el-carousel-item>
         </el-carousel>
         <div class="content">
-            <div class="content-1">
-                <div class="text-content text-left">Sang trọng</div>
+            <div class="content-title">
+                Chào mừng đến với Khách sạn Minh Phú
             </div>
-            <div class="content-1">
-                <div class="text-content">Chu đáo</div>
-            </div>
-            <div class="content-1">
-                <div class="text-content">Cao cấp</div>
+            <div class="content-space">____________________________________________________</div>
+            <div class="content-short">
+                Hãy tìm kiếm niềm vui và tận hưởng những dịch vụ tuyệt vời từ Khách sạn lớn nhất Nghệ An. Hãy tìm kiếm niềm vui và tận hưởng những dịch vụ tuyệt vời từ Khách sạn lớn nhất Nghệ An.
+                Hãy tìm kiếm niềm vui và tận hưởng những dịch vụ tuyệt vời từ Khách sạn lớn nhất Nghệ An. Hãy tìm kiếm niềm vui và tận hưởng những dịch vụ tuyệt vời từ Khách sạn lớn nhất Nghệ An.
+                Hãy tìm kiếm niềm vui và tận hưởng những dịch vụ tuyệt vời từ Khách sạn lớn nhất Nghệ An. Hãy tìm kiếm niềm vui và tận hưởng những dịch vụ tuyệt vời từ Khách sạn lớn nhất Nghệ An.
             </div>
         </div>
         <div class="post">
@@ -104,9 +104,26 @@
                 </div>
             </div>
         </div>
-        <div class="event">
-            <div class="event-text">banner cho event</div>
-        </div>
+        <el-carousel indicator-position="none" interval="5000" height="52em">
+            <el-carousel-item>
+                <div class="event">
+                    <div class="event-text">banner cho event</div>
+                    <router-link to="post-detail">Xem thêm</router-link>
+                </div>
+            </el-carousel-item>
+            <el-carousel-item>
+                <div class="event">
+                    <div class="event-text">banner cho event</div>
+                    <router-link to="post-detail">Xem thêm</router-link>
+                </div>
+            </el-carousel-item>
+            <el-carousel-item>
+                <div class="event">
+                    <div class="event-text">banner cho event</div>
+                    <router-link to="post-detail">Xem thêm</router-link>
+                </div>
+            </el-carousel-item>
+        </el-carousel>
         <div class="form-booking">
             <div class="form-booking-detail">
                 <div class="booking-field">
@@ -126,6 +143,15 @@
                             <option>Karaoke</option>
                         </select>
                     </div>
+                    <div class="field">
+                        <label for="datetime">Ngày đặt</label>
+                        <el-date-picker
+                            id="datetime"
+                            v-model="dateBooking"
+                            type="datetime"
+                            placeholder="Select date and time">
+                        </el-date-picker>
+                    </div>
                 </div>
                 <div class="submit-booking">
                     Submit
@@ -142,33 +168,39 @@
             <div class="gallery-media">
                 <div class="line-media">
                     <div class="line-img">
-                        <img src="images/post-img.jpg" alt=""/>
+                        <img src="images/background-login.jpg" alt=""/>
+                        <img class="img-logo" src="images/logo-white.png" alt=""/>
                     </div>
                     <div class="line-img">
-                        <img src="images/post-img.jpg" alt=""/>
+                        <img src="images/room.jpg" alt=""/>
+                        <img class="img-logo" src="images/logo-white.png" alt=""/>
                     </div>
                     <div class="line-img">
-                        <img src="images/post-img.jpg" alt=""/>
+                        <img src="images/background-homepage1.jpg" alt=""/>
+                        <img class="img-logo" src="images/logo-white.png" alt=""/>
                     </div>
                 </div>
                 <div class="line-media">
                     <div class="line-img">
-                        <img src="images/post-img.jpg" alt=""/>
+                        <img src="images/background-homepage2.jpg" alt=""/>
+                        <img class="img-logo" src="images/logo-white.png" alt=""/>
                     </div>
                     <div class="line-img">
-                        <img src="images/post-img.jpg" alt=""/>
+                        <img src="images/background-homepage3.jpg" alt=""/>
+                        <img class="img-logo" src="images/logo-white.png" alt=""/>
                     </div>
                     <div class="line-img">
-                        <img src="images/post-img.jpg" alt=""/>
+                        <img src="images/background-login.jpg" alt=""/>
+                        <img class="img-logo" src="images/logo-white.png" alt=""/>
                     </div>
                 </div>
             </div>
         </div>
         <svg class="defs-only">
             <filter id="gold-sunset" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feColorMatrix type="matrix" values=".33 .33 .40 0 0
-                .33 .20 .40 .25 0
-                .20 .33 .33 .15 0
+                <feColorMatrix type="matrix" values=".33 .33 .33 0 0
+                .33 .20 .20 .20 0
+                .33 .33 .33 0 0
                 0 0 0.8 0.8 0" in="SourceGraphic" result="colormatrix"/>
                 <feComponentTransfer in="colormatrix" result="componentTransfer">
                 <feFuncR type="table" tableValues="0.27 0.86 1"/>
@@ -194,6 +226,7 @@ export default {
     },
     data () {
         return {
+            dateBooking: ''
         }
     },
     computed: {},
@@ -211,9 +244,17 @@ export default {
     mounted() {
         document.documentElement.scrollTop = 0
         console.log(document.documentElement.scrollTop)
-        var styleContent1None = document.createElement('style');
-        styleContent1None.innerHTML = `
-        .content-1 {
+        var styleContentTitleNone = document.createElement('style');
+        styleContentTitleNone.innerHTML = `
+        .content-title {
+                -webkit-animation: none; /* Chrome, Safari, Opera */
+                animation: none;
+                opacity: 0!important;
+        }
+        `;
+        var styleContentBottomNone = document.createElement('style');
+        styleContentBottomNone.innerHTML = `
+        .content-short {
                 -webkit-animation: none; /* Chrome, Safari, Opera */
                 animation: none;
                 opacity: 0!important;
@@ -299,11 +340,19 @@ export default {
                 opacity: 0!important;
         }
         `;
-        var styleContent1 = document.createElement('style');
-        styleContent1.innerHTML = `
-        .content-1 {
-                -webkit-animation: displayImgContent 1s; /* Chrome, Safari, Opera */
-                animation: displayImgContent 1s;
+        var styleContentTitle = document.createElement('style');
+        styleContentTitle.innerHTML = `
+        .content-title {
+                -webkit-animation: displayTitleBottom 1s; /* Chrome, Safari, Opera */
+                animation: displayTitleBottom 1s;
+                opacity: 1!important;
+        }
+        `;
+        var styleContentBottom = document.createElement('style');
+        styleContentBottom.innerHTML = `
+        .content-short {
+                -webkit-animation: displayTitleBottom 1s; /* Chrome, Safari, Opera */
+                animation: displayTitleBottom 1s;
                 opacity: 1!important;
         }
         `;
@@ -395,7 +444,8 @@ export default {
                 opacity: 1!important;
         }
         `;
-        document.head.appendChild(styleContent1None);
+        document.head.appendChild(styleContentTitleNone);
+        document.head.appendChild(styleContentBottomNone);
         document.head.appendChild(stylePostImg1None);
         document.head.appendChild(stylePostImg2None);
         document.head.appendChild(stylePostImg3None);
@@ -408,30 +458,32 @@ export default {
         document.head.appendChild(styleFormBookingNone);
         window.onscroll = function(e) {
             console.log(document.documentElement.scrollTop);
-            if(document.documentElement.scrollTop > 5500) {
+            if(document.documentElement.scrollTop > 5150) {
                 document.head.appendChild(styleFooter);
-            } else if(document.documentElement.scrollTop > 4700) {
+            } else if(document.documentElement.scrollTop > 4400) {
                 document.head.appendChild(styleImgGallery);
-            } else if(document.documentElement.scrollTop > 4300) {
+            } else if(document.documentElement.scrollTop > 3800) {
                 document.head.appendChild(styleFormBooking);
-            } else if(document.documentElement.scrollTop > 3400) {
+            } else if(document.documentElement.scrollTop > 2950) {
                 document.head.appendChild(styleServiceItem);
-            } else if(document.documentElement.scrollTop > 3200) {
-                document.head.appendChild(styleServiceTitle);
             } else if(document.documentElement.scrollTop > 2700) {
+                document.head.appendChild(styleServiceTitle);
+            } else if(document.documentElement.scrollTop > 2100) {
                 document.head.appendChild(styleButton3);
-            } else if(document.documentElement.scrollTop > 2200) {
+            } else if(document.documentElement.scrollTop > 1900) {
                 document.head.appendChild(stylePostImg3);
-            } else if(document.documentElement.scrollTop >2100) {
+            } else if(document.documentElement.scrollTop >1600) {
                 document.head.appendChild(styleButton2);
-            } else if(document.documentElement.scrollTop > 1600) {
+            } else if(document.documentElement.scrollTop > 1400) {
                 document.head.appendChild(stylePostImg2);
-            } else if(document.documentElement.scrollTop > 1500) {
+            } else if(document.documentElement.scrollTop > 1100) {
                 document.head.appendChild(styleButton1);
-            } else if(document.documentElement.scrollTop > 1000) {
+            } else if(document.documentElement.scrollTop > 900) {
                 document.head.appendChild(stylePostImg1);
             } else if(document.documentElement.scrollTop > 400) {
-                document.head.appendChild(styleContent1);
+                document.head.appendChild(styleContentBottom);
+            } else if(document.documentElement.scrollTop > 250) {
+                document.head.appendChild(styleContentTitle);
             }
             // var header = document.getElementById("header");
             // var logo = document.getElementById("logo");

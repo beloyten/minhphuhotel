@@ -1,25 +1,45 @@
 <template>
-    <div class="room">
+    <div class="detail-post">
         <Header/>
-        <div class="list-room">
-            <div class="list-room-title">Minh Phú Hotel</div>
-            <div class="room-body">
-                <div class="room-item" v-for="item in 6" :key='item'>
-                    <div class="room-img">
-                        <img src="images/room.jpg">
-                    </div>
-                    <div class="room-detail">
-                        <div class="room-detail-title">
-                            Phòng khách sạn
-                        </div>
-                        <div class="room-detail-content">
-                            Phòng to lắm nên các bạn ở thoải mái, phòng to lắm nên các bạn ở thoải mái, phòng to lắm nên các bạn ở thoải mái, phòng to lắm nên các bạn ở thoải mái, phòng to lắm nên các bạn ở thoải mái.
-                        </div>
-                        <div class="room-detail-button">
-                            <button>Xem thêm</button>
-                        </div>
-                    </div>
+        <div class="detail-post-content">
+            <div class="post-img" :style="{ backgroundImage: 'url(' + image + ')' }">  
+            </div>
+            <div class="post-content">
+                <div class="post-title">
+                    <span>Khách sạn chuẩn 4 sao</span>
                 </div>
+                <div class="post-bread">
+                    <span>Cảm hứng từ thiết kế Italy</span>
+                </div>
+                <div class="post-content-text">
+                    <span>Set in Hong Kong, less than 1 km from Hong Kong Convention and 
+                        set in Hong Kong, less than 1 km from Hong Kong Convention and 
+                        set in Hong Kong, less than 1 km from Hong Kong Convention and 
+                        set in Hong Kong, less than 1 km from Hong Kong Convention and 
+                        set in Hong Kong, less than 1 km from Hong Kong Convention and
+                        set in Hong Kong, less than 1 km from Hong Kong Convention and
+                        set in Hong Kong, less than 1 km from Hong Kong Convention and
+                        set in Hong Kong, less than 1 km from Hong Kong Convention and
+                        set in Hong Kong, less than 1 km from Hong Kong Convention and  
+                        set in Hong Kong, less than 1 km from Hong Kong Convention and  
+                        set in Hong Kong, less than 1 km from Hong Kong Convention and  
+                        set in Hong Kong, less than 1 km from Hong Kong Convention and . 
+                    </span>
+                </div>
+            </div>
+            <div class="post-img">
+                <el-carousel :interval="4000" type="card" height="40em">
+                    <el-carousel-item v-for="item in listRoom" :key="item">
+                        <div class="item">
+                            <div class="item__content"><router-link to="/post-detail">{{item.text}}</router-link></div>
+                            <img
+                                class="item__image"
+                                :src="item.imgUrl"
+                                alt=""
+                            />
+                        </div>
+                    </el-carousel-item>
+                </el-carousel>
             </div>
         </div>
         <Footer/>
@@ -34,6 +54,31 @@ export default {
         Header,
         Footer
     },
-    
+    data() {
+        return {
+            image: "../images/background-homepage1.jpg",
+            listRoom: [
+                {
+                    text: "Phòng VIP",
+                    imgUrl: "images/background-login.jpg"
+                },
+                {
+                    text: "Phòng siêu VIP",
+                    imgUrl: "images/background-homepage1.jpg"
+                },
+                {
+                    text: "Phòng oke",
+                    imgUrl: "images/background-homepage2.jpg"
+                },
+                {
+                    text: "Phòng khá oke",
+                    imgUrl: "images/background-homepage3.jpg"
+                }
+            ]
+        }
+    },
+    mounted() {
+        
+    }
 }
 </script>
