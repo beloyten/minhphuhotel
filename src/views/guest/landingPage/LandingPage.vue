@@ -45,12 +45,12 @@
                         <button class="view-more1" @click="viewMore()">Xem thêm</button>
                     </div>
                     <div class="post-image1">
-                        <img src="images/post-img.jpg" alt=""/>
+                        <img src="images/hotel.jpg" alt=""/>
                     </div>
                 </div>
                 <div class="post-content-detail">
                     <div class="post-image2">
-                        <img src="images/post-img.jpg" alt=""/>
+                        <img src="images/wedding.jpg" alt=""/>
                     </div>
                     <div class="post-text">
                         <p class="pre-title">HỆ THỐNG ÂM THANH ÁNH SÁNG CHUẨN QUỐC TẾ</p>

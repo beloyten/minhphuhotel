@@ -29,9 +29,14 @@
             </div>
             <div class="post-img">
                 <el-carousel :interval="4000" type="card" height="40em">
-                    <el-carousel-item v-for="item in listRoom" :key="item">
+                    <el-carousel-item v-for="item in listRoom" :key="item.roomName">
                         <div class="item">
-                            <div class="item__content"><router-link to="/post-detail">{{item.text}}</router-link></div>
+                            <div class="item__content">
+                                <div class="room-title">{{item.roomName}}</div>
+                                <div class="room-status">{{item.status == 0? 'Hết phòng': 'Còn phòng'}}</div>
+                                <div class="room-price">{{item.price+' VND'}}</div>
+                                <router-link to="/post-detail">Xem thêm</router-link>
+                            </div>
                             <img
                                 class="item__image"
                                 :src="item.imgUrl"
@@ -59,19 +64,27 @@ export default {
             image: "../images/background-homepage1.jpg",
             listRoom: [
                 {
-                    text: "Phòng VIP",
+                    roomName: "Phòng VIP",
+                    status: 0,
+                    price: '500.000',
                     imgUrl: "images/background-login.jpg"
                 },
                 {
-                    text: "Phòng siêu VIP",
+                    roomName: "Phòng siêu VIP",
+                    status: 1,
+                    price: '1.000.000',
                     imgUrl: "images/background-homepage1.jpg"
                 },
                 {
-                    text: "Phòng oke",
+                    roomName: "Phòng oke",
+                    status: 0,
+                    price: '1.500.000',
                     imgUrl: "images/background-homepage2.jpg"
                 },
                 {
-                    text: "Phòng khá oke",
+                    roomName: "Phòng khá oke",
+                    status: 1,
+                    price: '2.000.000',
                     imgUrl: "images/background-homepage3.jpg"
                 }
             ]
