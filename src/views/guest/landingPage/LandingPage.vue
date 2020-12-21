@@ -104,7 +104,7 @@
                 </div>
             </div>
         </div>
-        <el-carousel indicator-position="none" interval="5000" height="52em">
+        <el-carousel indicator-position="none" :interval="5000" height="52em">
             <el-carousel-item>
                 <div class="event">
                     <div class="event-text">banner cho event</div>
@@ -141,6 +141,8 @@
                             <option>Khách sạn</option>
                             <option>Spa</option>
                             <option>Karaoke</option>
+                            <option>Tiệc cưới</option>
+                            <option>Hội nghị</option>
                         </select>
                     </div>
                     <div class="field">
@@ -457,7 +459,6 @@ export default {
         document.head.appendChild(styleFooterNone);
         document.head.appendChild(styleFormBookingNone);
         window.onscroll = function(e) {
-            console.log(document.documentElement.scrollTop);
             if(document.documentElement.scrollTop > 5150) {
                 document.head.appendChild(styleFooter);
             } else if(document.documentElement.scrollTop > 4400) {
@@ -506,6 +507,7 @@ export default {
             //     textBooking.style.display = "inline"
             // }
         }
+
     }
 }
 </script>
