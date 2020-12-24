@@ -1,30 +1,46 @@
 <template>
 <div class="landing-page">
-    <Header/>
+    <div class="heading-landing-page" id="header">
+        <div class="logo" id="logo" @click="scrollToTop()">
+            <img src="images/logo.jpg" alt="">
+        </div>
+        <div class="heading-item" id="headingItem">
+            <router-link to="/">Trang chủ</router-link>
+            <router-link to="/post-detail">Dịch vụ</router-link>
+            <router-link to="/contact">Liên hệ</router-link>
+        </div>
+        <div class="booking" id="booking" @click="toBooking()">
+            <img src="images/icons/booking.svg" alt="">
+            <a id="textBooking">Đặt lịch</a>
+        </div>
+    </div>
     <div class="body-landing-page">
-        <el-carousel indicator-position="outside">
+        <el-carousel indicator-position="outside" class="landing-page-carousel">
             <el-carousel-item>
                 <div class="item-1">
+                    <img src="images/background-homepage1.jpg" alt="">
                     <div class="item__content">Minh Phú Diamond Palace</div>
                 </div>
             </el-carousel-item>
             <el-carousel-item>
                 <div class="item-2">
+                    <img src="images/background-homepage2.jpg" alt="">
                     <div class="item__content">Minh Phú Diamond Palace</div>
                 </div>
             </el-carousel-item>
             <el-carousel-item>
                 <div class="item-3">
+                    <img src="images/background-homepage3.jpg" alt="">
                     <div class="item__content">Minh Phú Diamond Palace</div>
                 </div>
             </el-carousel-item>
         </el-carousel>
         <div class="content">
-            <div class="content-title">
+            <div class="content-title" id="contentTitle">
                 Chào mừng đến với Khách sạn Minh Phú
             </div>
             <div class="content-space">____________________________________________________</div>
-            <div class="content-short">
+            <div class="content-short" id="contentShort">
                 Hãy tìm kiếm niềm vui và tận hưởng những dịch vụ tuyệt vời từ Khách sạn lớn nhất Nghệ An. Hãy tìm kiếm niềm vui và tận hưởng những dịch vụ tuyệt vời từ Khách sạn lớn nhất Nghệ An.
                 Hãy tìm kiếm niềm vui và tận hưởng những dịch vụ tuyệt vời từ Khách sạn lớn nhất Nghệ An. Hãy tìm kiếm niềm vui và tận hưởng những dịch vụ tuyệt vời từ Khách sạn lớn nhất Nghệ An.
                 Hãy tìm kiếm niềm vui và tận hưởng những dịch vụ tuyệt vời từ Khách sạn lớn nhất Nghệ An. Hãy tìm kiếm niềm vui và tận hưởng những dịch vụ tuyệt vời từ Khách sạn lớn nhất Nghệ An.
@@ -42,14 +58,14 @@
                                 thiết kế sang trọng, không gian cổ điển lấy cảm hứng từ kiến trúc Italy.
                             </p>
                         </div>
-                        <button class="view-more1" @click="viewMore()">Xem thêm</button>
+                        <button class="view-more1" id="viewMore1" @click="viewMore()">Xem thêm</button>
                     </div>
-                    <div class="post-image1">
+                    <div class="post-image1" id="postImage1">
                         <img src="images/hotel.jpg" alt=""/>
                     </div>
                 </div>
                 <div class="post-content-detail-reverse">
-                    <div class="post-image2">
+                    <div class="post-image2" id="postImage2">
                         <img src="images/wedding.jpg" alt=""/>
                     </div>
                     <div class="post-text">
@@ -65,7 +81,7 @@
                             <p>Chúng tôi tin rằng bạn sẽ có những khoảnh khắc thực sự tuyệt vời.
                             </p>
                         </div>
-                        <button class="view-more2" @click="viewMore()">Xem thêm</button>
+                        <button class="view-more2" id="viewMore2" @click="viewMore()">Xem thêm</button>
                     </div>
                 </div>
                 <div class="post-content-detail">
@@ -77,9 +93,9 @@
                                 lý tưởng cho chị em phụ nữ sau những ngày làm việc mệt mỏi.
                             </p>
                         </div>
-                        <button class="view-more3" @click="viewMore()">Xem thêm</button>
+                        <button class="view-more3" id="viewMore3" @click="viewMore()">Xem thêm</button>
                     </div>
-                    <div class="post-image3">
+                    <div class="post-image3" id="postImage3">
                         <img src="images/post-img.jpg" alt=""/>
                     </div>
                 </div>
@@ -87,8 +103,8 @@
         </div>
         <div class="service-list">
             <div class="service-list-content">
-                <div class="service-title">DANH SÁCH DỊCH VỤ</div>
-                <div class="service-list-item">
+                <div class="service-title" id="serviceTitle">DANH SÁCH DỊCH VỤ</div>
+                <div class="service-list-item" id="serviceListItem">
                     <ul>
                         <li @click="toListRoom()">Khách sạn</li>
                         <li @click="toDetail()">Hội nghị</li>
@@ -124,7 +140,7 @@
                 </div>
             </el-carousel-item>
         </el-carousel>
-        <div class="form-booking">
+        <div class="form-booking" id="formBooking">
             <div class="form-booking-detail">
                 <div class="booking-field">
                     <div class="field">
@@ -161,39 +177,47 @@
             </div>
         </div>
         <div class="gallery">
-            <div class="gallery-title">
+            <div class="gallery-title" id="galleryTitle">
                 <span>Minh Phu Gallery</span>
             </div>
             <div class="gallery-short-content">
                 <span>Photos & Videos</span>
             </div>
             <div class="gallery-media">
-                <div class="line-media">
-                    <div class="line-img">
-                        <img src="images/background-login.jpg" alt=""/>
-                        <img class="img-logo" src="images/logo-white.png" alt=""/>
+                <div class="line-one1">
+                    <div class="line-media1">
+                        <div class="line-img1" id="lineImg1">
+                            <img src="images/background-login.jpg" alt=""/>
+                            <img class="img-logo" src="images/logo-white.png" alt=""/>
+                        </div>
+                        <div class="line-img2" id="lineImg2">
+                            <img src="images/room.jpg" alt=""/>
+                            <img class="img-logo" src="images/logo-white.png" alt=""/>
+                        </div>
                     </div>
-                    <div class="line-img">
-                        <img src="images/room.jpg" alt=""/>
-                        <img class="img-logo" src="images/logo-white.png" alt=""/>
-                    </div>
-                    <div class="line-img">
-                        <img src="images/background-homepage1.jpg" alt=""/>
-                        <img class="img-logo" src="images/logo-white.png" alt=""/>
+                    <div class="line-media-one1">
+                        <div class="line-img3" id="lineImg3">
+                            <img src="images/background-homepage1.jpg" alt=""/>
+                            <img class="img-logo" src="images/logo-white.png" alt=""/>
+                        </div>
                     </div>
                 </div>
-                <div class="line-media">
-                    <div class="line-img">
-                        <img src="images/background-homepage2.jpg" alt=""/>
-                        <img class="img-logo" src="images/logo-white.png" alt=""/>
+                <div class="line-one1">
+                    <div class="line-media2">
+                        <div class="line-img4" id="lineImg4">
+                            <img src="images/background-homepage2.jpg" alt=""/>
+                            <img class="img-logo" src="images/logo-white.png" alt=""/>
+                        </div>
                     </div>
-                    <div class="line-img">
-                        <img src="images/background-homepage3.jpg" alt=""/>
-                        <img class="img-logo" src="images/logo-white.png" alt=""/>
-                    </div>
-                    <div class="line-img">
-                        <img src="images/background-login.jpg" alt=""/>
-                        <img class="img-logo" src="images/logo-white.png" alt=""/>
+                    <div class="line-media-one2">
+                        <div class="line-img5" id="lineImg5">
+                            <img src="images/background-homepage3.jpg" alt=""/>
+                            <img class="img-logo" src="images/logo-white.png" alt=""/>
+                        </div>
+                        <div class="line-img6" id="lineImg6">
+                            <img src="images/background-login.jpg" alt=""/>
+                            <img class="img-logo" src="images/logo-white.png" alt=""/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -214,7 +238,46 @@
             </filter>
         </svg>
     </div>
-    <Footer/>
+    <div class="footer-hotel">
+        <div class="footer-animation" id="footerAnimation">
+            <div class="footer-logo" @click="scrollToTop()">
+                <img src="images/logo-white.png" alt="">
+            </div>
+            <div class="footer-content">
+                <h2>Contact Us</h2>
+                <div class="line"></div>
+                <h3>Tell: (84-24) 3823 8115</h3>
+                <h3>Mail: Minhphu@gmail.com</h3>
+                <div class="icon-contact">
+                    <div class="icon icon-fb">
+                        <img src="images/icons/fb.png" alt="">
+                    </div>
+                    <div class="icon icon-instagram">
+                        <img src="images/icons/instagram.png" alt="">
+                    </div>
+                    <div class="icon icon-youtube">
+                        <img src="images/icons/youtube.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-content">
+                <h2>Service</h2>
+                <div class="line line-small"></div>
+                <h3>Sport Center</h3>
+                <h3>Tennist & Squash</h3>
+                <h3>Tennist & Squash</h3>
+            </div>
+            <div class="footer-content">
+                <h2>Address</h2>
+                <div class="line line-small"></div>
+                <h3>76 Yen Phu (small road)</h3>
+                <h3>Tay Ho - Ha Noi</h3>
+                <div class="back-to-top" @click="scrollToTop()">
+                    <img src="images/icons/back-to-top.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </template>
 <script>
@@ -241,11 +304,30 @@ export default {
         },
         toListRoom() {
             this.$router.push("/list-room")
+        },
+        toHomepage() {
+            this.$router.push("/")
+        },
+        toBooking() {
+            var ele = document.getElementById('formBooking');
+            var top = 0;
+            var left = 0;
+        
+            while(ele.tagName != "BODY") {
+                top += ele.offsetTop;
+                left += ele.offsetLeft;
+                ele = ele.offsetParent;
+            }
+            window.scrollTo(left, top-250)
+        },
+        scrollToTop() {
+            window.scrollTo(0,0)
         }
     },
     mounted() {
         document.documentElement.scrollTop = 0
-        console.log(document.documentElement.scrollTop)
+        console.log(window.innerHeight)
+        console.log(window.outerHeight)
         var styleContentTitleNone = document.createElement('style');
         styleContentTitleNone.innerHTML = `
         .content-title {
@@ -267,7 +349,6 @@ export default {
         .post-image1 {
                 -webkit-animation: none; /* Chrome, Safari, Opera */
                 animation: none;
-                opacity: 0!important;
         }
         `;
         var stylePostImg2None = document.createElement('style');
@@ -275,7 +356,6 @@ export default {
         .post-image2 {
                -webkit-animation: none; /* Chrome, Safari, Opera */
                 animation: none;
-                opacity: 0!important;
         }
         `;
         var stylePostImg3None = document.createElement('style');
@@ -283,7 +363,6 @@ export default {
         .post-image3 {
                 -webkit-animation: none; /* Chrome, Safari, Opera */
                 animation: none;
-                opacity: 0!important;
         }
         `;
         var styleButton1None = document.createElement('style');
@@ -361,25 +440,22 @@ export default {
         var stylePostImg1 = document.createElement('style');
         stylePostImg1.innerHTML = `
         .post-image1 {
-                -webkit-animation: displayImg 1s; /* Chrome, Safari, Opera */
-                animation: displayImg 1s;
-                opacity: 1!important;
+                -webkit-animation: displayImg 1s linear forwards; /* Chrome, Safari, Opera */
+                animation: displayImg 0.4s linear forwards;
         }
         `;
         var stylePostImg2 = document.createElement('style');
         stylePostImg2.innerHTML = `
         .post-image2 {
-                -webkit-animation: displayImg 1s; /* Chrome, Safari, Opera */
-                animation: displayImg 1s;
-                opacity: 1!important;
+                -webkit-animation: displayImg 0.4s linear forwards; /* Chrome, Safari, Opera */
+                animation: displayImg 0.4s linear forwards;
         }
         `;
         var stylePostImg3 = document.createElement('style');
         stylePostImg3.innerHTML = `
         .post-image3 {
-                -webkit-animation: displayImg 1s; /* Chrome, Safari, Opera */
-                animation: displayImg 1s;
-                opacity: 1!important;
+                -webkit-animation: displayImg 0.4s linear forwards; /* Chrome, Safari, Opera */
+                animation: displayImg 0.4s linear forwards;
         }
         `;
         var styleButton1 = document.createElement('style');
@@ -438,11 +514,63 @@ export default {
                 opacity: 1!important;
         }
         `;
-        var styleImgGallery = document.createElement('style');
-        styleImgGallery.innerHTML = `
-        .line-img {
+        var styleImgGallery1 = document.createElement('style');
+        styleImgGallery1.innerHTML = `
+        .line-img1 {
                 -webkit-animation: displayImgGallery 1s; /* Chrome, Safari, Opera */
                 animation: displayImgGallery 1s;
+                opacity: 1!important;
+        }
+        `;
+        var styleImgGallery2 = document.createElement('style');
+        styleImgGallery2.innerHTML = `
+        .line-img2 {
+                -webkit-animation: displayImgGallery 1s; /* Chrome, Safari, Opera */
+                animation: displayImgGallery 1s;
+                opacity: 1!important;
+        }
+        `;
+        var styleImgGallery3 = document.createElement('style');
+        styleImgGallery3.innerHTML = `
+        .line-img3 {
+                -webkit-animation: displayImgGallery 1s; /* Chrome, Safari, Opera */
+                animation: displayImgGallery 1s;
+                opacity: 1!important;
+        }
+        `;
+        var styleImgGallery4 = document.createElement('style');
+        styleImgGallery4.innerHTML = `
+        .line-img4 {
+                -webkit-animation: displayImgGallery 1s; /* Chrome, Safari, Opera */
+                animation: displayImgGallery 1s;
+                opacity: 1!important;
+        }
+        `;
+        var styleImgGallery5 = document.createElement('style');
+        styleImgGallery5.innerHTML = `
+        .line-img5 {
+                -webkit-animation: displayImgGallery 1s; /* Chrome, Safari, Opera */
+                animation: displayImgGallery 1s;
+                opacity: 1!important;
+        }
+        `;
+        var styleImgGallery6 = document.createElement('style');
+        styleImgGallery6.innerHTML = `
+        .line-img6 {
+                -webkit-animation: displayImgGallery 1s; /* Chrome, Safari, Opera */
+                animation: displayImgGallery 1s;
+                opacity: 1!important;
+        }
+        `;
+        var styleItemContentHide = document.createElement('style');
+        styleItemContentHide.innerHTML = `
+        .item__content {
+                opacity: 0!important;
+        }
+        `;
+        var styleItemContentDisplay = document.createElement('style');
+        styleItemContentDisplay.innerHTML = `
+        .item__content {
                 opacity: 1!important;
         }
         `;
@@ -458,33 +586,62 @@ export default {
         document.head.appendChild(styleServiceItemNone);
         document.head.appendChild(styleFooterNone);
         document.head.appendChild(styleFormBookingNone);
+        var contentTitle = document.getElementById("contentTitle").scrollHeight;
+        var contentShort = document.getElementById("contentShort").scrollHeight;
+        var viewMore1 = document.getElementById("viewMore1").scrollHeight;
+        var viewMore2 = document.getElementById("viewMore2").scrollHeight;
+        var viewMore3 = document.getElementById("viewMore3").scrollHeight;
+        var postImage1 = document.getElementById("postImage1").scrollHeight;
+        var postImage3 = document.getElementById("postImage3").scrollHeight;
+        var postImage2 = document.getElementById("postImage2").scrollHeight;
+        var serviceTitle = document.getElementById("serviceTitle").scrollHeight;
+        var serviceListItem = document.getElementById("serviceListItem").scrollHeight;
+        var formBooking = document.getElementById("formBooking").scrollHeight;
+        var galleryTitle = document.getElementById("galleryTitle").scrollHeight;
+        var lineImg1 = document.getElementById("lineImg1").scrollHeight;
+        var lineImg2 = document.getElementById("lineImg2").scrollHeight;
+        var lineImg3 = document.getElementById("lineImg3").scrollHeight;
+        var lineImg4 = document.getElementById("lineImg4").scrollHeight;
+        var lineImg5 = document.getElementById("lineImg5").scrollHeight;
+        var lineImg6 = document.getElementById("lineImg6").scrollHeight;
+        var footerAnimation = document.getElementById("footerAnimation").scrollHeight;
+        console.log(footerAnimation)
         window.onscroll = function(e) {
-            if(document.documentElement.scrollTop > 5150) {
+            if(document.documentElement.scrollTop > footerAnimation + 4898) {
                 document.head.appendChild(styleFooter);
-            } else if(document.documentElement.scrollTop > 4400) {
-                document.head.appendChild(styleImgGallery);
-            } else if(document.documentElement.scrollTop > 3800) {
+            } else if(document.documentElement.scrollTop > lineImg1 + 4120) {
+                document.head.appendChild(styleImgGallery1);
+                document.head.appendChild(styleImgGallery2);
+                document.head.appendChild(styleImgGallery3);
+                document.head.appendChild(styleImgGallery4);
+                document.head.appendChild(styleImgGallery5);
+                document.head.appendChild(styleImgGallery6);
+            } else if(document.documentElement.scrollTop > formBooking + 3520) {
                 document.head.appendChild(styleFormBooking);
-            } else if(document.documentElement.scrollTop > 2950) {
+            } else if(document.documentElement.scrollTop > serviceListItem + 2670) {
                 document.head.appendChild(styleServiceItem);
-            } else if(document.documentElement.scrollTop > 2700) {
+            } else if(document.documentElement.scrollTop > serviceTitle + 2533) {
                 document.head.appendChild(styleServiceTitle);
-            } else if(document.documentElement.scrollTop > 2100) {
+            } else if(document.documentElement.scrollTop > viewMore3 + 2067) {
                 document.head.appendChild(styleButton3);
-            } else if(document.documentElement.scrollTop > 1900) {
+            } else if(document.documentElement.scrollTop > postImage3 + 1326) {
                 document.head.appendChild(stylePostImg3);
-            } else if(document.documentElement.scrollTop >1600) {
+            } else if(document.documentElement.scrollTop > viewMore2 + 1567) {
                 document.head.appendChild(styleButton2);
-            } else if(document.documentElement.scrollTop > 1400) {
+            } else if(document.documentElement.scrollTop > postImage2 + 826) {
                 document.head.appendChild(stylePostImg2);
-            } else if(document.documentElement.scrollTop > 1100) {
+            } else if(document.documentElement.scrollTop > viewMore1 + 1067) {
                 document.head.appendChild(styleButton1);
-            } else if(document.documentElement.scrollTop > 900) {
+            } else if(document.documentElement.scrollTop > postImage1 + 326) {
                 document.head.appendChild(stylePostImg1);
-            } else if(document.documentElement.scrollTop > 400) {
+            } else if(document.documentElement.scrollTop > contentShort + 279) {
                 document.head.appendChild(styleContentBottom);
-            } else if(document.documentElement.scrollTop > 250) {
+            } else if(document.documentElement.scrollTop > contentTitle + 145) {
                 document.head.appendChild(styleContentTitle);
+            } else if(document.documentElement.scrollTop > 200) {
+                document.head.appendChild(styleItemContentHide);
+            } else {
+                document.head.appendChild(styleItemContentDisplay);
             }
             // var header = document.getElementById("header");
             // var logo = document.getElementById("logo");
@@ -507,7 +664,10 @@ export default {
             //     textBooking.style.display = "inline"
             // }
         }
-
+        if(this.$store.getters.booking) {
+            this.toBooking()
+        }
+        this.$store.dispatch('setBooking', false)
     }
 }
 </script>

@@ -7,43 +7,25 @@
     .el-carousel__container {
         height: 65em;
     }
-    .item-1 {
-        position: relative;
-        height: 100%;
-        background: linear-gradient(#222020cc, rgba(57, 57, 57, 0.2)),
-            url("../assets/image/background-homepage1.jpg");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-    }
-    .item-2 {
-        position: relative;
-        height: 100%;
-        background: linear-gradient(#222020cc, rgba(57, 57, 57, 0.2)),
-            url("../assets/image/background-homepage2.jpg");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-    }
-    .item-3 {
-        position: relative;
-        height: 100%;
-        background: linear-gradient(#222020cc, rgba(57, 57, 57, 0.2)),
-            url("../assets/image/background-homepage3.jpg");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-    }
-    .item__content {
-        position: absolute;
-        bottom: 10em;
-        width: 100%;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        color: #fff;
-        left: 34%;
-        font-size: 3.5em;
+    .landing-page-carousel {
+        .item-1, .item-2, .item-3 {
+            position: relative;
+            height: 100%;
+            img {
+                filter: brightness(60%)
+            }
+            .item__content {
+                position: absolute;
+                bottom: 10em;
+                width: 100%;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: #fff;
+                left: 34%;
+                font-size: 3.5em;
+            }
+        }
     }
     .content {
         display: flex;
@@ -344,42 +326,47 @@
             font-size: 1.5em; 
             margin-left: 17.5em;
         }
-        .line-media {
+        .line-one1, .line-one2 {
             margin-top: 1.5em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .line-media1, .line-media2, .line-media-one1, .line-media-one2 {
             display: flex;
             height: 20em;
             justify-content: center;
             align-items: center;
-            .line-img {
+        }
+        .line-img1, .line-img2, .line-img3, .line-img4, .line-img5, .line-img6 {
+            height: 20em;
+            margin-right: 1.5em;
+            overflow: hidden;
+            opacity: 0;
+            img {
                 height: 20em;
-                margin-right: 1.5em;
-                overflow: hidden;
+                width: 27.7em;
+                transition: transform .4s ease-in-out;
+                transition-delay: 0.2s;
+            }
+            &:hover img {
+                cursor: pointer;
+                opacity: 0.6;
+                filter: url(#gold-sunset) brightness(100%) contrast(80%);
+                transform: scale(1.3);
+            }
+            &:hover .img-logo{
+                opacity: 1;
+                filter: brightness(200%) contrast(100%);
+                transform: none;
+            }
+            .img-logo {
+                height: 7em;
+                width: 7em;
+                margin-left: -8em;
+                margin-top: -12em;
+                transition: none;
                 opacity: 0;
-                img {
-                    height: 20em;
-                    width: 27.7em;
-                    transition: transform .4s ease-in-out;
-                    transition-delay: 0.2s;
-                }
-                &:hover img {
-                    cursor: pointer;
-                    opacity: 0.6;
-                    filter: url(#gold-sunset) brightness(100%) contrast(80%);
-                    transform: scale(1.3);
-                }
-                &:hover .img-logo{
-                    opacity: 1;
-                    filter: brightness(200%) contrast(100%);
-                    transform: none;
-                }
-                .img-logo {
-                    height: 7em;
-                    width: 7em;
-                    margin-left: -8em;
-                    margin-top: -12em;
-                    transition: none;
-                    opacity: 0;
-                }
             }
         }
     }
@@ -555,9 +542,16 @@
         clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 50% 0);
     }
     2% {
+        opacity: 0.1;
         padding-left: 8em;
         -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 40% 0);
         clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 40% 0);
+    }
+    98% {
+        opacity: 0.9;
+        padding-left: 0;
+        -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 105% 0);
+        clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 105% 0);
     }
     100% {
         opacity: 1;
@@ -576,9 +570,16 @@
         clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 50% 0);
     }
     2% {
+        opacity: 0.1;
         padding-left: 8em;
-        -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 40% 0);
-        clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 40% 0);
+        -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 45% 0);
+        clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 45% 0);
+    }
+    98% {
+        opacity: 0.9;
+        padding-left: 0;
+        -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 105% 0);
+        clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, 105% 0);
     }
     100% {
         opacity: 1;
@@ -758,6 +759,24 @@
 
 /* Standard syntax */
 @keyframes displayContentBottom {
+    0% {
+        padding-top: 0em
+    }
+    100% {
+        padding-top: 2em;
+    }
+}
+@-webkit-keyframes changeHeader {
+    0% {
+        padding-top: 0em
+    }
+    100% {
+        padding-top: 2em;
+    }
+}
+
+/* Standard syntax */
+@keyframes changeHeader {
     0% {
         padding-top: 0em
     }

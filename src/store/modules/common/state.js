@@ -14,6 +14,7 @@ const state = {
   pagination: {},
   dialogVisibleEditUser: false,
   dialogVisibleCreateNews: false,
+  booking: false
 }
 
 const getters = {
@@ -27,6 +28,7 @@ const getters = {
   isOpenMBHeader: state => state.isOpenMBHeader,
   dialogVisibleCreateNews: state => state.dialogVisibleCreateNews,
   dialogVisibleEditUser: state => state.dialogVisibleEditUser,
+  booking: state => state.booking
 }
 
 const mutations = {
@@ -61,6 +63,9 @@ const mutations = {
   },
   SET_DIALOG_CREATE_NEWS: (state) => {
     state.dialogVisibleCreateNews = !state.dialogVisibleCreateNews
+  },
+  SET_BOOKING: (state, data) => {
+    state.booking = data
   }
 }
 

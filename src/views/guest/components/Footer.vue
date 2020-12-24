@@ -48,7 +48,11 @@ export default {
     computed: {},
     methods: {
         toHomepage() {
-            this.$router.push("/")
+            if(this.$route.name === 'LandingPage') {
+                this.scrollToTop()
+            } else {
+                this.$router.push("/")
+            }
         },
         scrollToTop() {
             window.scrollTo(0,0)

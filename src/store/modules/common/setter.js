@@ -29,6 +29,9 @@ const actions = {
   },
   setDialogEditUser ({ commit }, data) {
     commit('SET_DIALOG_EDIT_USER', data)
+  },
+  setBooking ({ commit }, data) {
+    commit('SET_BOOKING', data)
   }
 }
 

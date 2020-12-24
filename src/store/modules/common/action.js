@@ -21,6 +21,9 @@ const actions = {
       var res = await ConfigService.uploadFile(data)
       resolve(res.data)
     })
+  },
+  setBooking(ctx, data) {
+    ctx.dispatch('setBooking', data)
   }
 }
 
