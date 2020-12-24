@@ -362,8 +362,11 @@ body {
   line-height: 1.4em;
   font-weight: 400;
   color: white;
-  background-color: white;
   font-family: var(--font_regular);
+  background-image: linear-gradient(to bottom, white 50%, black 50%);
+  -webkit-transition: background-position 1s;
+  -moz-transition: background-position 1s;
+  transition: background-position 1s;
 }
 header {
   background-color: var(--primary_color);
@@ -1725,4 +1728,10 @@ button[disabled]{
 }
 html {
   scroll-behavior: smooth;
+}
+@media screen and (max-width:64em) {
+  .line{
+    margin-left: 15em;
+    width: 60% !important;
+  }
 }

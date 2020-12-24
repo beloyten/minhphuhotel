@@ -5,17 +5,17 @@
         <el-carousel indicator-position="outside">
             <el-carousel-item>
                 <div class="item-1">
-                    <div class="item__content">Minh Phú Diamond Place</div>
+                    <div class="item__content">Minh Phú Diamond Palace</div>
                 </div>
             </el-carousel-item>
             <el-carousel-item>
                 <div class="item-2">
-                    <div class="item__content">Minh Phú Diamond Place</div>
+                    <div class="item__content">Minh Phú Diamond Palace</div>
                 </div>
             </el-carousel-item>
             <el-carousel-item>
                 <div class="item-3">
-                    <div class="item__content">Minh Phú Diamond Place</div>
+                    <div class="item__content">Minh Phú Diamond Palace</div>
                 </div>
             </el-carousel-item>
         </el-carousel>
@@ -48,7 +48,7 @@
                         <img src="images/hotel.jpg" alt=""/>
                     </div>
                 </div>
-                <div class="post-content-detail">
+                <div class="post-content-detail-reverse">
                     <div class="post-image2">
                         <img src="images/wedding.jpg" alt=""/>
                     </div>
