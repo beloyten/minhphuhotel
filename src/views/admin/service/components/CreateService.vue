@@ -60,13 +60,6 @@ export default {
             this.openDialog = false
             this.$emit('update:openDialog', false)
         },
-        handleRemove(file, fileList) {
-            console.log(file, fileList);
-        },
-        handlePictureCardPreview(file) {
-            this.dialogImageUrl = file.url;
-            this.dialogVisible = true;
-        },
         uploadImageSuccess(formData, index, fileList) {
             this.imgList = fileList;
         },
@@ -82,9 +75,10 @@ export default {
         },
         updateService() {
             this.loading = true
+            console.log(this.imgList)
             let listImage = this.imgList.map(item => {
-                let obj = []
-                obj.push(item.path)
+                let obj = {}
+                obj.img = item.path
                 return obj
             })
             this.$store.dispatch('updateService', {
@@ -104,34 +98,35 @@ export default {
             setTimeout(() => {
                 this.loading = false
             }, 300)
-        },
-        getFile(file, fileList) {
-            let vm = this
-            this.getBase64(file.raw).then(res => {
-                vm.imgList.push(res)
-            });
-        },
-        getBase64(file) {
-            return new Promise(function(resolve, reject) {
-            let reader = new FileReader();
-            let imgResult = "";
-            reader.readAsDataURL(file);
-            reader.onload = function() {
-                imgResult = reader.result;
-            };
-            reader.onerror = function(error) {
-                reject(error);
-            };
-            reader.onloadend = function() {
-                resolve(imgResult);
-            };
-            });
         }
     },
-    created() {
-        console.log(this.edit)
+    async created() {
         if(this.edit) {
-            this.serviceDetail = this.service
+            let imgResponse = []
+            await this.$store.dispatch('getOnePost', this.service.id).then(rs => {
+                if(rs.status === 'success') {
+                    this.serviceDetail = rs.data.post
+                    imgResponse = rs.data.list
+                }
+            })
+            console.log(imgResponse)
+            let listImage = imgResponse.map((item,index) => {
+                let obj = {}
+                if(index === 1) {
+                    obj.default = 1
+                    obj.hightlight = 1
+                    obj.name = ''
+                    obj.path = item.img
+                } else {
+                    obj.default = 0
+                    obj.hightlight = 0
+                    obj.name = ''
+                    obj.path = item.img
+                }
+                return obj
+            })
+            console.log(listImage)
+            this.imgList = listImage
         }
     }
 }
