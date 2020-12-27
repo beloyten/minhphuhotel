@@ -77,17 +77,6 @@ export default {
         },
         updateService() {
             this.loading = true
-<<<<<<< Updated upstream
-            console.log(this.imgList)
-            let listImage = this.imgList.map(item => {
-                let obj = {}
-                obj.img = item.path
-                return obj
-            })
-            this.$store.dispatch('updateService', {
-                list: listImage,
-                post: this.serviceDetail
-=======
             var details = this.serviceDetail
             this.$store.dispatch('updateService', {
                 list: [],
@@ -114,7 +103,6 @@ export default {
             this.$store.dispatch('createService', {
                 list: [],
                 post: details
->>>>>>> Stashed changes
             }).then(rs => {
                 if(rs.status === 'success') {
                     this.serviceDetail= {
