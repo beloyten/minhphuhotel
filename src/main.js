@@ -40,7 +40,15 @@ import {
   Select,
   Option,
   Carousel,
-  CarouselItem
+  CarouselItem,
+  Tabs,
+  TabPane,
+  Table,
+  TableColumn,
+  Form,
+  FormItem,
+  Input,
+  Upload
 } from 'element-ui'
 
 Vue.use(VueQr)
@@ -57,6 +65,14 @@ Vue.use(Select)
 Vue.use(Option)
 Vue.use(Carousel)
 Vue.use(CarouselItem)
+Vue.use(Tabs)
+Vue.use(TabPane)
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Input)
+Vue.use(Upload)
 Vue.use(VeeValidate)
 Vue.use( CKEditor )
 Vue.prototype.$confirm = MessageBox.confirm

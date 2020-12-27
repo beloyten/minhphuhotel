@@ -7,14 +7,8 @@
         </router-link>
       </div>
       <div class="main-menu">
-        <div class="item mr-40"><a href="javascript:;"><img src="/images/icons/headphones.svg" alt="Support"><span>Hỗ Trợ</span></a></div>
-        <div class="item mr-40"><a href="javascript:;"><img src="/images/icons/import.svg" alt="Download"><span>Tải công cụ hỗ trợ</span></a></div>
-        <div class="item"><a href="javascript:;"><img src="/images/icons/add.svg" alt="Add"></a></div>
-        <div class="item"><a href="javascript:;"><img src="/images/icons/notification.svg" alt="Notification"></a></div>
         <div class="item">
-          <a href="javascript:;"><img src="/images/icons/user.svg" alt="Profile"></a>
           <div class="sub-menu" v-if="user">
-            <div class="item emailUser"><a href="javascript:;">{{user.username}}</a></div>
             <div class="item"><a href="#" @click.prevent="doLogout">Logout</a></div>
           </div>
         </div>

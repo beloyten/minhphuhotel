@@ -5,6 +5,7 @@ const RouterInterceptor = {
     router.beforeEach(async (to, from, next) => {
       // Hide Popup
       // Check page is required authenticated
+      console.log(to)
       let routeRole = to.matched.find(record => record.meta.requiresAuth)
       if (to.matched.some(record => record.meta.requiresAuth)) {
         let token = LocalStorage.getToken()

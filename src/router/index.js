@@ -6,35 +6,16 @@ import DashboardLayout from '@/views/layout/DashboardLayout'
 import AuthLayout from '@/views/layout/AuthLayout'
 
 // Pages
-import OverviewComponent from '@/views/overview/overview'
-import AccountComponent from '@/views/account/Account'
-import ContractByUserComponent from '@/views/account/ContractByUser'
-import ContractComponent from '@/views/report/Contract'
-import ProvisionalCommissionComponent from '@/views/report/ProvisionalCommission'
-import AppellationComponent from '@/views/report/Appellation'
-import LedgerComponent from '@/views/report/Ledger'
-import ReportComponent from '@/views/report/ReportPartner'
-import ListCourseComponent from '@/views/course/ListCourse'
-import CreateCourseComponent from '@/views/course/CreateCourse'
-import ListClassComponent from '@/views/course/ListClass'
-import NonLifeContractComponent from '@/views/nonlife/NonLifeContract'
-import ReportNonLifeComponent from '@/views/nonlife/ReportNonLife'
-import ProductNonLifeComponent from '@/views/nonlife/ProductNonLife'
-import ExchangeManageComponent from '@/views/manage/Exchange'
-import NewsManageComponent from '@/views/manage/News'
-import ContractManageComponent from '@/views/manage/Contract'
 import NotfoundComponent from '@/views/404'
-import CreateBestHomeComponent from '@/views/besthome/CreateBestHome'
-import ContractBestHomeComponent from '@/views/besthome/ContractBestHome'
 
 Vue.use(Router)
 
 const routes = [
   {
-    path: '/login',
+    path: '/admin',
     component: AuthLayout,
     hidden: true,
-    meta: { title: 'Login', requiresAuth: false },
+    redirect: { title: 'Login', requiresAuth: false },
     children: [
       {
         name: 'Login',
@@ -70,20 +51,6 @@ const routes = [
     ]
   },
   {
-    path: '/post-detail',
-    component: AuthLayout,
-    hidden: true,
-    meta: { title: 'PostDetail', requiresAuth: false },
-    children: [
-      {
-        name: 'PostDetail',
-        path: '',
-        component: () => import("@/views/guest/detailPost/DetailPost.vue")
-      }
-    ]
-  },
-  
-  {
     path: '/list-room',
     component: AuthLayout,
     hidden: true,
@@ -93,6 +60,79 @@ const routes = [
         name: 'ListRoom',
         path: '',
         component: () => import("@/views/guest/room/ListRoom.vue")
+      }
+    ]
+  },
+  {
+    path: '/post-detail',
+    component: AuthLayout,
+    hidden: true,
+    meta: { title: 'Dịch vụ', requiresAuth: false },
+    children: [
+      {
+        name: 'Dịch vụ',
+        path: '',
+        component: () => import("@/views/guest/detailPost/DetailPost.vue")
+      }
+    ]
+  },
+  {
+    path: '/service',
+    component: DashboardLayout,
+    meta: { title: 'Service', requiresAuth: true },
+    children: [
+      {
+        name: 'Service',
+        path: '',
+        component: () => import("@/views/admin/service/Service.vue")
+      }
+    ]
+  },
+  {
+    path: '/event',
+    component: DashboardLayout,
+    meta: { title: 'Event', requiresAuth: true },
+    children: [
+      {
+        name: 'Event',
+        path: '',
+        component: () => import("@/views/admin/event/Event.vue")
+      }
+    ]
+  },
+  {
+    path: '/room',
+    component: DashboardLayout,
+    meta: { title: 'Room', requiresAuth: true },
+    children: [
+      {
+        name: 'Room',
+        path: '',
+        component: () => import("@/views/admin/room/Room.vue")
+      }
+    ]
+  },
+  {
+    path: '/banner',
+    component: DashboardLayout,
+    meta: { title: 'Banner', requiresAuth: true },
+    children: [
+      {
+        name: 'Banner',
+        path: '',
+        component: () => import("@/views/admin/banner/Banner.vue")
+      }
+    ]
+  },
+  {
+    path: '/email-config',
+    component: DashboardLayout,
+    meta: { title: 'Email', requiresAuth: true },
+    children: [
+      {
+        name: 'Email',
+        path: '',
+        component: () => import("@/views/admin/email/Email.vue")
       }
     ]
   },

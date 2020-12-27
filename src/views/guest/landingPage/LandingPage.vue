@@ -291,7 +291,8 @@ export default {
     },
     data () {
         return {
-            dateBooking: ''
+            dateBooking: '',
+            down: false
         }
     },
     computed: {},
@@ -309,6 +310,130 @@ export default {
             this.$router.push("/")
         },
         toBooking() {
+            var styleFormBooking = document.createElement('style');
+            styleFormBooking.innerHTML = `
+            .form-booking {
+                    -webkit-animation: displayForm 1s; /* Chrome, Safari, Opera */
+                    animation: displayForm 1s;
+                    opacity: 1!important;
+            }
+            `;
+            var stylePostImg2 = document.createElement('style');
+            stylePostImg2.innerHTML = `
+            .post-image2 {
+                    -webkit-animation: displayImg 1s linear forwards; /* Chrome, Safari, Opera */
+                    animation: displayImg 1s linear forwards;
+            }
+            `;
+            var stylePostImg3 = document.createElement('style');
+            stylePostImg3.innerHTML = `
+            .post-image3 {
+                    -webkit-animation: displayImg 1s linear forwards; /* Chrome, Safari, Opera */
+                    animation: displayImg 1s linear forwards;
+            }
+            `;
+            var styleButton1 = document.createElement('style');
+            styleButton1.innerHTML = `
+            .view-more1 {
+                    opacity: 1!important;
+                    -webkit-animation: displayButton 1s; /* Chrome, Safari, Opera */
+                    animation: displayButton 1s;
+            }
+            `;
+            var styleButton2 = document.createElement('style');
+            styleButton2.innerHTML = `
+            .view-more2 {
+                    opacity: 1!important;
+                    -webkit-animation: displayButton 1s; /* Chrome, Safari, Opera */
+                    animation: displayButton 1s;
+            }
+            `;
+            var styleButton3 = document.createElement('style');
+            styleButton3.innerHTML = `
+            .view-more3 {
+                    opacity: 1!important;
+                    -webkit-animation: displayButton 1s; /* Chrome, Safari, Opera */
+                    animation: displayButton 1s;
+            }
+            `;
+            var styleServiceTitle = document.createElement('style');
+            styleServiceTitle.innerHTML = `
+            .service-title {
+                    opacity: 1!important;
+                    -webkit-animation: displayService 1s; /* Chrome, Safari, Opera */
+                    animation: displayService 1s;
+            }
+            `;
+            var styleContentTitle = document.createElement('style');
+            styleContentTitle.innerHTML = `
+            .content-title {
+                    -webkit-animation: displayTitleBottom 1s; /* Chrome, Safari, Opera */
+                    animation: displayTitleBottom 1s;
+                    opacity: 1!important;
+            }
+            `;
+            var styleContentBottom = document.createElement('style');
+            styleContentBottom.innerHTML = `
+            .content-short {
+                    -webkit-animation: displayTitleBottom 1s; /* Chrome, Safari, Opera */
+                    animation: displayTitleBottom 1s;
+                    opacity: 1!important;
+            }
+            `;
+            var styleServiceItem = document.createElement('style');
+            styleServiceItem.innerHTML = `
+            .service-list-item {
+                    opacity: 1!important;
+                    -webkit-animation: displayServiceItem 1s; /* Chrome, Safari, Opera */
+                    animation: displayServiceItem 1s;
+            }
+            `;
+            var stylePostImg1 = document.createElement('style');
+            stylePostImg1.innerHTML = `
+            .post-image1 {
+                    -webkit-animation: displayImg 1s linear forwards; /* Chrome, Safari, Opera */
+                    animation: displayImg 1s linear forwards;
+            }
+            `;
+            var styleHeaderLogo = document.createElement('style');
+            styleHeaderLogo.innerHTML = `
+            .logo {
+                    -webkit-animation: changeHeaderLogo 0.2s linear forwards; /* Chrome, Safari, Opera */
+                    animation: changeHeaderLogo 0.2s linear forwards;
+            }
+            `;
+            var styleHeader = document.createElement('style');
+            styleHeader.innerHTML = `
+            .heading-landing-page {
+                    justify-content: flex-end;
+            }
+            `;
+            var styleHeaderItem = document.createElement('style');
+            styleHeaderItem.innerHTML = `
+            .heading-item {
+                    -webkit-animation: changeHeaderItem 0.2s linear forwards; /* Chrome, Safari, Opera */
+                    animation: changeHeaderItem 0.2s linear forwards;
+            }
+            `;
+            var styleHeaderBooking = document.createElement('style');
+            styleHeaderBooking.innerHTML = `
+            .booking {
+                    -webkit-animation: changeHeaderBooking 0.2s linear forwards; /* Chrome, Safari, Opera */
+                    animation: changeHeaderBooking 0.2s linear forwards;
+            }
+            `;
+            var styleHeaderBookingLabel = document.createElement('style');
+            styleHeaderBookingLabel.innerHTML = `
+            #textBooking {
+                    display: none !important;
+            }
+            `;
+            var styleItemContentHide = document.createElement('style');
+            styleItemContentHide.innerHTML = `
+            .item__content {
+                    opacity: 0!important;
+            }
+            `;
             var ele = document.getElementById('formBooking');
             var top = 0;
             var left = 0;
@@ -318,16 +443,112 @@ export default {
                 left += ele.offsetLeft;
                 ele = ele.offsetParent;
             }
-            window.scrollTo(left, top-250)
+            document.head.appendChild(stylePostImg1);
+            document.head.appendChild(styleHeaderLogo);
+            document.head.appendChild(styleHeaderItem);
+            document.head.appendChild(styleHeaderBooking);
+            document.head.appendChild(styleHeaderBookingLabel);
+            document.head.appendChild(styleHeader);
+            document.head.appendChild(styleFormBooking);
+            document.head.appendChild(styleServiceItem);
+            document.head.appendChild(styleServiceTitle);
+            document.head.appendChild(styleButton3);
+            document.head.appendChild(stylePostImg3);
+            document.head.appendChild(styleButton2);
+            document.head.appendChild(stylePostImg2);
+            document.head.appendChild(styleButton1);
+            document.head.appendChild(styleContentBottom);
+            document.head.appendChild(styleContentTitle);
+            document.head.appendChild(styleItemContentHide);
+            window.scrollTo(left, top-450)
         },
         scrollToTop() {
+            var styleHeaderLogoNone = document.createElement('style');
+            styleHeaderLogoNone.innerHTML = `
+            .logo {
+                    -webkit-animation: changeHeaderLogoReverse 0.2s linear forwards; /* Chrome, Safari, Opera */
+                    animation: changeHeaderLogoReverse 0.2s linear forwards;
+            }
+            `;
+            var styleHeaderItemNone = document.createElement('style');
+            styleHeaderItemNone.innerHTML = `
+            .heading-item {
+                    -webkit-animation: changeHeaderItemReverse 0.2s linear forwards; /* Chrome, Safari, Opera */
+                    animation: changeHeaderItemReverse 0.2s linear forwards;
+            }
+            `;
+            var styleHeaderBookingNone = document.createElement('style');
+            styleHeaderBookingNone.innerHTML = `
+            .booking {
+                    -webkit-animation: changeHeaderBookingReverse 0.2s linear forwards; /* Chrome, Safari, Opera */
+                    animation: changeHeaderBookingReverse 0.2s linear forwards;
+            }
+            `;
+            var styleHeaderBookingLabelNone = document.createElement('style');
+            styleHeaderBookingLabelNone.innerHTML = `
+            #textBooking {
+                    display: inline!important;
+            }
+            `;
+            var styleHeaderNone = document.createElement('style');
+            styleHeaderNone.innerHTML = `
+            .heading-landing-page {
+                    justify-content: none;
+            }
+            `;
+            var styleItemContentDisplay = document.createElement('style');
+            styleItemContentDisplay.innerHTML = `
+            .item__content {
+                    opacity: 1!important;
+            }
+            `;
             window.scrollTo(0,0)
+            if(document.documentElement.scrollTop !== 0 && !this.down) {
+                document.head.appendChild(styleHeaderLogoNone);
+                document.head.appendChild(styleHeaderItemNone);
+                document.head.appendChild(styleHeaderBookingNone);
+                document.head.appendChild(styleHeaderBookingLabelNone);
+                document.head.appendChild(styleHeaderNone);
+                document.head.appendChild(styleItemContentDisplay);
+                this.down = false;
+            }
         }
     },
     mounted() {
         document.documentElement.scrollTop = 0
-        console.log(window.innerHeight)
-        console.log(window.outerHeight)
+        var styleHeaderLogoNone = document.createElement('style');
+        styleHeaderLogoNone.innerHTML = `
+        .logo {
+                -webkit-animation: changeHeaderLogoReverse 0.2s linear forwards; /* Chrome, Safari, Opera */
+                animation: changeHeaderLogoReverse 0.2s linear forwards;
+        }
+        `;
+        var styleHeaderItemNone = document.createElement('style');
+        styleHeaderItemNone.innerHTML = `
+        .heading-item {
+                -webkit-animation: changeHeaderItemReverse 0.2s linear forwards; /* Chrome, Safari, Opera */
+                animation: changeHeaderItemReverse 0.2s linear forwards;
+        }
+        `;
+        var styleHeaderBookingNone = document.createElement('style');
+        styleHeaderBookingNone.innerHTML = `
+        .booking {
+                -webkit-animation: changeHeaderBookingReverse 0.2s linear forwards; /* Chrome, Safari, Opera */
+                animation: changeHeaderBookingReverse 0.2s linear forwards;
+        }
+        `;
+        var styleHeaderBookingLabelNone = document.createElement('style');
+        styleHeaderBookingLabelNone.innerHTML = `
+        #textBooking {
+                display: inline!important;
+        }
+        `;
+        var styleHeaderNone = document.createElement('style');
+        styleHeaderNone.innerHTML = `
+        .heading-landing-page {
+                justify-content: none;
+        }
+        `;
         var styleContentTitleNone = document.createElement('style');
         styleContentTitleNone.innerHTML = `
         .content-title {
@@ -441,21 +662,21 @@ export default {
         stylePostImg1.innerHTML = `
         .post-image1 {
                 -webkit-animation: displayImg 1s linear forwards; /* Chrome, Safari, Opera */
-                animation: displayImg 0.4s linear forwards;
+                animation: displayImg 1s linear forwards;
         }
         `;
         var stylePostImg2 = document.createElement('style');
         stylePostImg2.innerHTML = `
         .post-image2 {
-                -webkit-animation: displayImg 0.4s linear forwards; /* Chrome, Safari, Opera */
-                animation: displayImg 0.4s linear forwards;
+                -webkit-animation: displayImg 1s linear forwards; /* Chrome, Safari, Opera */
+                animation: displayImg 1s linear forwards;
         }
         `;
         var stylePostImg3 = document.createElement('style');
         stylePostImg3.innerHTML = `
         .post-image3 {
-                -webkit-animation: displayImg 0.4s linear forwards; /* Chrome, Safari, Opera */
-                animation: displayImg 0.4s linear forwards;
+                -webkit-animation: displayImg 1s linear forwards; /* Chrome, Safari, Opera */
+                animation: displayImg 1s linear forwards;
         }
         `;
         var styleButton1 = document.createElement('style');
@@ -562,6 +783,39 @@ export default {
                 opacity: 1!important;
         }
         `;
+        var styleHeaderLogo = document.createElement('style');
+        styleHeaderLogo.innerHTML = `
+        .logo {
+                -webkit-animation: changeHeaderLogo 0.2s linear forwards; /* Chrome, Safari, Opera */
+                animation: changeHeaderLogo 0.2s linear forwards;
+        }
+        `;
+        var styleHeader = document.createElement('style');
+        styleHeader.innerHTML = `
+        .heading-landing-page {
+                justify-content: flex-end;
+        }
+        `;
+        var styleHeaderItem = document.createElement('style');
+        styleHeaderItem.innerHTML = `
+        .heading-item {
+                -webkit-animation: changeHeaderItem 0.2s linear forwards; /* Chrome, Safari, Opera */
+                animation: changeHeaderItem 0.2s linear forwards;
+        }
+        `;
+        var styleHeaderBooking = document.createElement('style');
+        styleHeaderBooking.innerHTML = `
+        .booking {
+                -webkit-animation: changeHeaderBooking 0.2s linear forwards; /* Chrome, Safari, Opera */
+                animation: changeHeaderBooking 0.2s linear forwards;
+        }
+        `;
+        var styleHeaderBookingLabel = document.createElement('style');
+        styleHeaderBookingLabel.innerHTML = `
+        #textBooking {
+                display: none !important;
+        }
+        `;
         var styleItemContentHide = document.createElement('style');
         styleItemContentHide.innerHTML = `
         .item__content {
@@ -586,63 +840,89 @@ export default {
         document.head.appendChild(styleServiceItemNone);
         document.head.appendChild(styleFooterNone);
         document.head.appendChild(styleFormBookingNone);
-        var contentTitle = document.getElementById("contentTitle").scrollHeight;
-        var contentShort = document.getElementById("contentShort").scrollHeight;
-        var viewMore1 = document.getElementById("viewMore1").scrollHeight;
-        var viewMore2 = document.getElementById("viewMore2").scrollHeight;
-        var viewMore3 = document.getElementById("viewMore3").scrollHeight;
-        var postImage1 = document.getElementById("postImage1").scrollHeight;
-        var postImage3 = document.getElementById("postImage3").scrollHeight;
-        var postImage2 = document.getElementById("postImage2").scrollHeight;
-        var serviceTitle = document.getElementById("serviceTitle").scrollHeight;
-        var serviceListItem = document.getElementById("serviceListItem").scrollHeight;
-        var formBooking = document.getElementById("formBooking").scrollHeight;
-        var galleryTitle = document.getElementById("galleryTitle").scrollHeight;
-        var lineImg1 = document.getElementById("lineImg1").scrollHeight;
-        var lineImg2 = document.getElementById("lineImg2").scrollHeight;
-        var lineImg3 = document.getElementById("lineImg3").scrollHeight;
-        var lineImg4 = document.getElementById("lineImg4").scrollHeight;
-        var lineImg5 = document.getElementById("lineImg5").scrollHeight;
-        var lineImg6 = document.getElementById("lineImg6").scrollHeight;
-        var footerAnimation = document.getElementById("footerAnimation").scrollHeight;
-        console.log(footerAnimation)
-        window.onscroll = function(e) {
-            if(document.documentElement.scrollTop > footerAnimation + 4898) {
-                document.head.appendChild(styleFooter);
-            } else if(document.documentElement.scrollTop > lineImg1 + 4120) {
-                document.head.appendChild(styleImgGallery1);
-                document.head.appendChild(styleImgGallery2);
-                document.head.appendChild(styleImgGallery3);
-                document.head.appendChild(styleImgGallery4);
-                document.head.appendChild(styleImgGallery5);
-                document.head.appendChild(styleImgGallery6);
-            } else if(document.documentElement.scrollTop > formBooking + 3520) {
-                document.head.appendChild(styleFormBooking);
-            } else if(document.documentElement.scrollTop > serviceListItem + 2670) {
-                document.head.appendChild(styleServiceItem);
-            } else if(document.documentElement.scrollTop > serviceTitle + 2533) {
-                document.head.appendChild(styleServiceTitle);
-            } else if(document.documentElement.scrollTop > viewMore3 + 2067) {
-                document.head.appendChild(styleButton3);
-            } else if(document.documentElement.scrollTop > postImage3 + 1326) {
-                document.head.appendChild(stylePostImg3);
-            } else if(document.documentElement.scrollTop > viewMore2 + 1567) {
-                document.head.appendChild(styleButton2);
-            } else if(document.documentElement.scrollTop > postImage2 + 826) {
-                document.head.appendChild(stylePostImg2);
-            } else if(document.documentElement.scrollTop > viewMore1 + 1067) {
-                document.head.appendChild(styleButton1);
-            } else if(document.documentElement.scrollTop > postImage1 + 326) {
-                document.head.appendChild(stylePostImg1);
-            } else if(document.documentElement.scrollTop > contentShort + 279) {
-                document.head.appendChild(styleContentBottom);
-            } else if(document.documentElement.scrollTop > contentTitle + 145) {
-                document.head.appendChild(styleContentTitle);
-            } else if(document.documentElement.scrollTop > 200) {
-                document.head.appendChild(styleItemContentHide);
+        let vm = this
+        var scrollableElement = document.body; //document.getElementById('scrollableElement');
+        scrollableElement.addEventListener('wheel', checkScrollDirection);
+
+        function checkScrollDirection(event) {
+            if (checkScrollDirectionIsUp(event)) {
+                window.onscroll = function(event) {
+                    console.log('up',document.documentElement.scrollTop)
+                    if(document.documentElement.scrollTop <= 200) {
+                        document.head.appendChild(styleItemContentDisplay);
+                    }
+                    if(document.documentElement.scrollTop <= 900) {
+                        document.head.appendChild(styleHeaderLogoNone);
+                        document.head.appendChild(styleHeaderItemNone);
+                        document.head.appendChild(styleHeaderBookingNone);
+                        document.head.appendChild(styleHeaderBookingLabelNone);
+                        document.head.appendChild(styleHeaderNone);
+                    }
+                }
             } else {
-                document.head.appendChild(styleItemContentDisplay);
+                window.onscroll = function(event) {
+                    console.log('down',document.documentElement.scrollTop)
+                    if(document.documentElement.scrollTop > 5150) {
+                        document.head.appendChild(styleFooter);
+                    } else if(document.documentElement.scrollTop > 4400) {
+                        document.head.appendChild(styleImgGallery1);
+                        document.head.appendChild(styleImgGallery2);
+                        document.head.appendChild(styleImgGallery3);
+                        document.head.appendChild(styleImgGallery4);
+                        document.head.appendChild(styleImgGallery5);
+                        document.head.appendChild(styleImgGallery6);
+                    } else if(document.documentElement.scrollTop > 3800) {
+                        document.head.appendChild(styleFormBooking);
+                    } else if(document.documentElement.scrollTop > 2950) {
+                        document.head.appendChild(styleServiceItem);
+                    } else if(document.documentElement.scrollTop > 2700) {
+                        document.head.appendChild(styleServiceTitle);
+                    } else if(document.documentElement.scrollTop > 2100) {
+                        document.head.appendChild(styleButton3);
+                    } else if(document.documentElement.scrollTop > 1900) {
+                        document.head.appendChild(stylePostImg3);
+                    } else if(document.documentElement.scrollTop > 1600) {
+                        document.head.appendChild(styleButton2);
+                    } else if(document.documentElement.scrollTop > 1400) {
+                        document.head.appendChild(stylePostImg2);
+                    } else if(document.documentElement.scrollTop > 1100) {
+                        document.head.appendChild(styleButton1);
+                    } else if(document.documentElement.scrollTop > 900) {
+                        vm.down = true
+                        document.head.appendChild(stylePostImg1);
+                        document.head.appendChild(styleHeaderLogo);
+                        document.head.appendChild(styleHeaderItem);
+                        document.head.appendChild(styleHeaderBooking);
+                        document.head.appendChild(styleHeaderBookingLabel);
+                        document.head.appendChild(styleHeader);
+                    } else {
+                        if(vm.down) {
+                            document.head.appendChild(styleHeaderLogoNone);
+                            document.head.appendChild(styleHeaderItemNone);
+                            document.head.appendChild(styleHeaderBookingNone);
+                            document.head.appendChild(styleHeaderBookingLabelNone);
+                            document.head.appendChild(styleHeaderNone);
+                            document.head.appendChild(styleItemContentDisplay);
+                        }
+                        if(document.documentElement.scrollTop > 400) {
+                            document.head.appendChild(styleContentBottom);
+                        } else if(document.documentElement.scrollTop > 250) {
+                            document.head.appendChild(styleContentTitle);
+                        } else if(document.documentElement.scrollTop > 200) {
+                            document.head.appendChild(styleItemContentHide);
+                        }
+                    }
+                }
             }
+            
+        }
+
+        function checkScrollDirectionIsUp(event) {
+            if (event.wheelDelta) {
+                return event.wheelDelta > 0;
+            }
+            return event.deltaY < 0;
+        }
             // var header = document.getElementById("header");
             // var logo = document.getElementById("logo");
             // var headingItem = document.getElementById("headingItem");
@@ -663,7 +943,6 @@ export default {
             //     booking.style.width = "20%"
             //     textBooking.style.display = "inline"
             // }
-        }
         if(this.$store.getters.booking) {
             this.toBooking()
         }

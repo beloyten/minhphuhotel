@@ -29,7 +29,7 @@ time, mark, audio, video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  font-family: Glacial;
+  font-family: OpenSans;
 }
 
 /* make sure to set some focus styles for accessibility */
@@ -442,45 +442,43 @@ header {
 .mr-40 {
   margin-right: 40px;
 }
+.item-link {
+  font-family: OpenSans;
+}
 .left-menu {
   width: 300px;
-  color: #CCCCCC;
+  background-color: white;
   position: fixed;
   top: 0;
-  padding-left: 50px;
   left: 0;
   bottom: 0;
   z-index: 99;
   font-size: 16px;
-  padding-top: 60px;
-  padding-bottom: 60px;
   display: flex;
   flex-direction: column;
   line-height: 60px;
   overflow: auto;
-  background: url(/images/background-leftmenu.png) #091229 no-repeat bottom;
   letter-spacing: 3px;
   overflow-x: hidden;
-  img {
-    margin-right: 25px;
+  color: black;
+  padding-left: 4%;
+  .logo-admin {
+    height: 200px;
+    img {
+      height: 100px;
+    }
   }
   a {
     display: flex;
     align-items: center;
+    margin-left: -30px;
+    padding-left: 30px;
   }
   .active{
     color: #0CACDB;
     position: relative;
-    left: -30px;
-    &:before{
-      content: ' ';
-      width: 30px;
-      height: 3px;
-      background-color: #0CACDB;
-      position: relative;
-      left: -10px;
-      border-radius: 5px;
-    }
+    background-color: #E0EDF0;
+    border-radius: 30px 0 0 0;
   }
   .dd-button{
     text-transform: uppercase;
@@ -589,14 +587,15 @@ header {
   display: flex;
   flex-direction: column;
   position: relative;
-  background: #182039;
-  color: #ffffff;
+  background:#E0EDF0;
+  color: black;
   .main-header {
     margin-bottom: 50px;
     .title {
       text-transform: uppercase;
       font-size: 16px;
       letter-spacing: 10px;
+      font-family: OpenSans;
       &:before {
         content: '';
         display: inline-block;
@@ -1315,10 +1314,11 @@ input {
     color: black;
   }
   h6 {
-    font-size: 15px;
+    font-size: 13px;
     color: black;
     font-weight: 300;
     margin-bottom: 35px;
+    font-family: OpenSans;
     span {
       font-weight: bold;
     }
@@ -1540,6 +1540,15 @@ input {
     text-decoration: underline;
   }
 }
+.app-footer {
+  background-color: black;
+  z-index: 9999;
+  .mb-0 {
+    padding-left: 50%;
+    height: 55px;
+    padding-top: 15px;
+  }
+}
 .btn-double {
   width: 100% !important;
 }
@@ -1729,9 +1738,103 @@ button[disabled]{
 html {
   scroll-behavior: smooth;
 }
-@media screen and (max-width:64em) {
-  .line{
-    margin-left: 15em;
-    width: 60% !important;
+.admin-service {
+  .major-service {
+    font-family: OpenSans !important;
+    min-height: 700px;
+    background-color: white;
+    th {
+      &:first-child {
+        text-align: center;
+      }
+    }
+    tbody {
+      tr {
+        td {
+          &:first-child {
+            text-align:center;
+          }
+        }
+      }
+    }
   }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    .left {
+      display: flex;
+      .title {
+        font-family: OpenSans !important;
+        font-weight: bold;
+        font-size: 25px;
+        padding: 25px 0 25px 30px;
+      }
+      button {
+        color: black;
+        height: 40px;
+        width: 100px;
+        margin-top: 15px;
+        margin-left: 25px;
+        background-color: #E0EDF0;
+        border: none;
+        &:hover {
+          font-weight: bold;
+        }
+      }
+    }
+    .filter {
+      margin-right: 70px;
+      margin-top: 25px;
+      input {
+        height: 40px;
+        border: none;
+        border-bottom: 1px solid black;
+        color: black;
+        padding-left: 5px;
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409EFF;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
+.avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
+}
+textarea {
+  height: 200px;
+  width: 100%;
+  color: black;
+  padding: 10px;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  &:hover {
+    border: 1px solid #c0c4cc;
+  }
+  &:focus {
+    border: 1px solid #409EFF;
+    outline: 0;
+  }
+}
+.bottom-page {
+  width: 100%;
+  text-align: right;
 }

@@ -3,8 +3,8 @@
     <!-- <Header/> -->
     <main>
       <div class="left-menu">
-        <div class="item logoMenu">
-          <img src="/images/logo.svg" alt="">
+        <div class="logo-admin">
+          <img src="/images/logo.jpg" alt="">
         </div>
         <div class="item" v-for="(route, index) in filterredRoutes" :key="index">
           <label v-if="route.children.length > 1"  class="dropdown">
@@ -48,6 +48,7 @@ export default {
       return this.$router.options.routes
     },
     filterredRoutes () {
+      console.log(this.$route)
       let result = this.routes.filter(temp => {
         if (temp.children && temp.children.length && temp.children.length > 1) {
           temp.children = _.filter(temp.children, item => {
@@ -56,9 +57,7 @@ export default {
         }
         return !temp.hidden && UtilService.checkRole(this.user, temp)
       })
-      // result.map(temp => {
-      //   temp.children = temp.children.filter(link => this.isUserHasRole(link) && !link.hidden)
-      // })
+      console.log('a', result)
       return result
     },
     user () {

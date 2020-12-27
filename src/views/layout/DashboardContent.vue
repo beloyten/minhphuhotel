@@ -5,7 +5,6 @@
         <h2 class="title">{{title}}</h2>
       </div>
       <div class="flex-1 profile">
-        <div class="name">MY PROFILE</div>
         <img src="/images/icons/logout.svg" alt="">
       </div>
     </div>
@@ -21,8 +20,11 @@ export default {
   },
   computed: {
     title () {
-      return this.$route.meta.title
+      return this.$route.name
     }
+  },
+  created() {
+    console.log(this.$route)
   }
 }
 </script>>

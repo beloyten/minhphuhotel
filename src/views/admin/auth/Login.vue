@@ -78,19 +78,7 @@ export default {
   },
   methods: {
     async handleAfterLogin (result) {
-      let user = await this.$store.dispatch('getUserInfo')
-      let role = user.data.user.role.name
-      if (!result) return
-      else {
-        if (role === 'System Admin') {
-          console.log(1121)
-          this.$router.push({ name: 'Overview' })
-        } else if (role === 'Branch') {
-          this.$router.push({ name: 'Employee' })
-        } else if (role === 'Employee') {
-          this.$router.push({ path: '/investor' })
-        }
-      }
+      this.$router.push('/')
     },
     async submit () {
       this.loading = true

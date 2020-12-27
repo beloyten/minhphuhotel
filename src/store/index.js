@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import CommonModule from './modules/common/index'
 import AuthModule from './modules/auth/index'
 import UserModule from './modules/user/index'
+import ServiceModule from './modules/service/index'
 
 Vue.use(Vuex)
 
@@ -12,6 +13,7 @@ const store = new Vuex.Store({
     CommonModule,
     AuthModule,
     UserModule,
+    ServiceModule
   }
 })
 
