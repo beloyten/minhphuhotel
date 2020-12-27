@@ -1,6 +1,6 @@
 <template>
     <div :class='{loading: loading}'>
-        <el-dialog :title="edit ? 'Update Service': 'Create Service'" :visible="openDialog" @close="close()">
+        <el-dialog :title="edit ? 'Update Service': 'Create Service'" :visible="openDialogCreate" @close="close()">
             <el-form>
                 <el-form-item label="Upload ảnh" :label-width="formLabelWidth">
                     <vue-upload-multiple-image
@@ -53,14 +53,17 @@ export default {
         }
     },
     props: {
-        openDialog: false,
+        openDialogCreate: false,
         edit: false,
-        service: {}
+        service: {},
+        success: false
     },
     methods: {
-        close() {
+        async close() {
             this.openDialog = false
-            this.$emit('update:openDialog', false)
+            await this.$store.dispatch('getAllHomepageService')
+            await this.$store.dispatch('getAllMinorService')
+            this.$emit('update:openDialogCreate', false)
         },
         uploadImageSuccess(formData, index, fileList) {
             this.imgList = fileList;
@@ -98,6 +101,7 @@ export default {
                         brief: "",
                         shortDescription: ""
                     }
+                    this.$emit('update:success', true)
                     this.close();
                 }
             })
