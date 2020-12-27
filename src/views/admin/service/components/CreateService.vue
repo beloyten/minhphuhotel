@@ -3,15 +3,12 @@
         <el-dialog :title="edit ? 'Update Service': 'Create Service'" :visible="openDialog" @close="close()">
             <el-form>
                 <el-form-item label="Upload ảnh" :label-width="formLabelWidth">
-                    <el-upload
-                        class="avatar-uploader"
-                        action="https://jsonplaceholder.typicode.com/posts/"
-                        :show-file-list="false"
-                        :on-success="handleAvatarSuccess"
-                        :before-upload="beforeAvatarUpload">
-                        <img v-if="serviceDetail.coverImg" :src="serviceDetail.coverImg" class="avatar">
-                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                    </el-upload>
+                    <vue-upload-multiple-image
+                        @upload-success="uploadImageSuccess"
+                        @before-remove="beforeRemove"
+                        @edit-image="editImage"
+                        :data-images="imgList"
+                    ></vue-upload-multiple-image>
                 </el-form-item>
                 <el-form-item label="Title" :label-width="formLabelWidth">
                     <el-input v-model="serviceDetail.title" autocomplete="off"></el-input>
@@ -32,9 +29,14 @@
     </div>
 </template>
 <script>
+import VueUploadMultipleImage from 'vue-upload-multiple-image'
+
 export default {
+    components: {
+        VueUploadMultipleImage
+    },
     data () {
-        return {
+        return { 
             formLabelWidth: '170px',
             serviceDetail: {
                 coverImg: "",
@@ -42,7 +44,10 @@ export default {
                 brief: "",
                 shortDescription: ""
             },
-            loading: false
+            loading: false,
+            imgList: [],
+            dialogImageUrl: '',
+            dialogVisible: false
         }
     },
     props: {
@@ -55,27 +60,35 @@ export default {
             this.openDialog = false
             this.$emit('update:openDialog', false)
         },
-        handleAvatarSuccess(res, file) {
-            this.imageUrl = URL.createObjectURL(file.raw);
+        handleRemove(file, fileList) {
+            console.log(file, fileList);
         },
-        beforeAvatarUpload(file) {
-            const isJPG = file.type === 'image/jpeg';
-            const isLt2M = file.size / 1024 / 1024 < 2;
+        handlePictureCardPreview(file) {
+            this.dialogImageUrl = file.url;
+            this.dialogVisible = true;
+        },
+        uploadImageSuccess(formData, index, fileList) {
+            this.imgList = fileList;
+        },
+        editImage (formData, index, fileList) {
+            this.imgList = fileList;
+        },
+        beforeRemove (index, done, fileList) {
+            this.$confirm("Bạn muốn xóa ảnh này khỏi danh sách?").then(()=>{
+                done()
+            }).catch(() => {
 
-            if (!isJPG) {
-            this.$message.error('Avatar picture must be JPG format!');
-            }
-            if (!isLt2M) {
-            this.$message.error('Avatar picture size can not exceed 2MB!');
-            }
-            return isJPG && isLt2M;
-        },
-        uploadImage() {
+            })
         },
         updateService() {
             this.loading = true
+            let listImage = this.imgList.map(item => {
+                let obj = []
+                obj.push(item.path)
+                return obj
+            })
             this.$store.dispatch('updateService', {
-                list: [],
+                list: listImage,
                 post: this.serviceDetail
             }).then(rs => {
                 if(rs.status === 'success') {
@@ -91,6 +104,28 @@ export default {
             setTimeout(() => {
                 this.loading = false
             }, 300)
+        },
+        getFile(file, fileList) {
+            let vm = this
+            this.getBase64(file.raw).then(res => {
+                vm.imgList.push(res)
+            });
+        },
+        getBase64(file) {
+            return new Promise(function(resolve, reject) {
+            let reader = new FileReader();
+            let imgResult = "";
+            reader.readAsDataURL(file);
+            reader.onload = function() {
+                imgResult = reader.result;
+            };
+            reader.onerror = function(error) {
+                reject(error);
+            };
+            reader.onloadend = function() {
+                resolve(imgResult);
+            };
+            });
         }
     },
     created() {

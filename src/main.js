@@ -9,6 +9,7 @@ import store from './store'
 import VueClipboard from 'vue-clipboard2'
 import VueQr from 'vue-qr'
 import CKEditor from '@ckeditor/ckeditor5-vue'
+import VueLazyload from 'vue-lazyload'
 
 
 // language
@@ -73,6 +74,7 @@ Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Input)
 Vue.use(Upload)
+Vue.use(VueLazyload)
 Vue.use(VeeValidate)
 Vue.use( CKEditor )
 Vue.prototype.$confirm = MessageBox.confirm

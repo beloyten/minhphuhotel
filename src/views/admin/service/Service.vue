@@ -40,10 +40,11 @@
                                 <template slot-scope="scope">
                                     <el-button
                                     size="mini"
+                                    type="primary"
                                     @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
                                     <el-button
                                     size="mini"
-                                    @click="handleDetail(scope.$index, scope.row)">Detail</el-button>
+                                    @click="handleDetail(scope.$index, scope.row)">View</el-button>
                                 </template>
                             </el-table-column>
                     </el-table>
@@ -94,6 +95,7 @@
                                 <template slot-scope="scope">
                                     <el-button
                                     size="mini"
+                                    type="primary"
                                     @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
                                     <el-button
                                     size="mini"
