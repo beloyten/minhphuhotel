@@ -22,7 +22,7 @@
                             <el-table-column
                                 property="title"
                                 label="Title"
-                                width="120">
+                                width="200">
                             </el-table-column>
                             <el-table-column
                                 property="brief"
@@ -72,7 +72,7 @@
                             <el-table-column
                                 property="title"
                                 label="Title"
-                                width="120">
+                                width="200">
                             </el-table-column>
                             <el-table-column
                                 property="shortDes"

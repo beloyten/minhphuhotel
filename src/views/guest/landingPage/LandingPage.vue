@@ -50,53 +50,41 @@
             <div class="post-content">
                 <div class="post-content-detail">
                     <div class="post-text">
-                        <p class="pre-title">CẢM HỨNG THIẾT KẾ TỪ ITALY</p>
-                        <p class="title-post">Khách sạn chuẩn 4 sao</p>
+                        <p class="pre-title">{{listHomepageService[0] && listHomepageService[0].brief ? listHomepageService[0].brief : ''}}</p>
+                        <p class="title-post">{{listHomepageService[0] && listHomepageService[0].title ? listHomepageService[0].title : ''}}</p>
                         <div class="post-content-short">
-                            <p>Hơn 70 phòng khách sạn được đánh giá chuẩn 4 sao theo Tổ chức
-                                du lịch Thế giới (WTO), thiết kế sang trọng, không gian cổ điển lấy cảm hứng từ kiến trúc Italy,
-                                thiết kế sang trọng, không gian cổ điển lấy cảm hứng từ kiến trúc Italy.
-                            </p>
+                            <p>{{listHomepageService[0] && listHomepageService[0].shortDescription ? listHomepageService[0].shortDescription: ''}}</p>
                         </div>
                         <button class="view-more1" id="viewMore1" @click="viewMore()">Xem thêm</button>
                     </div>
                     <div class="post-image1" id="postImage1">
-                        <img src="images/hotel.jpg" alt=""/>
+                        <img :src="listHomepageService[0] && listHomepageService[0].coverImg ?listHomepageService[0].coverImg : ''" alt=""/>
                     </div>
                 </div>
                 <div class="post-content-detail-reverse">
                     <div class="post-image2" id="postImage2">
-                        <img src="images/wedding.jpg" alt=""/>
+                        <img :src="listHomepageService[0] && listHomepageService[1].coverImg ?listHomepageService[1].coverImg : ''" alt=""/>
                     </div>
                     <div class="post-text">
-                        <p class="pre-title">HỆ THỐNG ÂM THANH ÁNH SÁNG CHUẨN QUỐC TẾ</p>
-                        <p class="title-post">Nhà hàng & Tiệc cưới</p>
+                        <p class="pre-title">{{listHomepageService[1] && listHomepageService[1].brief ? listHomepageService[1].brief : ''}}</p>
+                        <p class="title-post">{{listHomepageService[1] && listHomepageService[1].title ? listHomepageService[1].title : ''}}</p>
                         <div class="post-content-short">
-                            <p>Trở thành nàng công chúa xinh đẹp sánh đôi cùng chàng
-                                hoàng tử của mình trong ngày cưới đã không chỉ có trong những câu chuyện cổ tích nữa.
-                            </p>
-                            <p>Cung điện Minh Phú sẽ biến giấc mơ của bạn trở thành hiện thực
-                                khi đến đây.
-                            </p>
-                            <p>Chúng tôi tin rằng bạn sẽ có những khoảnh khắc thực sự tuyệt vời.
-                            </p>
+                            <p>{{listHomepageService[1] && listHomepageService[1].shortDescription ? listHomepageService[1].shortDescription : ''}}</p>
                         </div>
                         <button class="view-more2" id="viewMore2" @click="viewMore()">Xem thêm</button>
                     </div>
                 </div>
                 <div class="post-content-detail">
                     <div class="post-text">
-                        <p class="pre-title">ĐIỂM ĐẾN LÝ TƯỞNG CHO CÁC CHỊ EM PHỤ NỮ</p>
-                        <p class="title-post">Spa & Xông hơi</p>
+                        <p class="pre-title">{{listHomepageService[2] && listHomepageService[2].brief ? listHomepageService[2].brief : ''}}</p>
+                        <p class="title-post">{{listHomepageService[2] && listHomepageService[2].title ? listHomepageService[2].title : ''}}</p>
                         <div class="post-content-short">
-                            <p>Hệ thống spa, xông hơi, làm đẹp chuyên nghiệp tại Minh Phú Spa. Điểm đến
-                                lý tưởng cho chị em phụ nữ sau những ngày làm việc mệt mỏi.
-                            </p>
+                            <p>{{listHomepageService[2] && listHomepageService[2].shortDescription ? listHomepageService[2].shortDescription : ''}}</p>
                         </div>
                         <button class="view-more3" id="viewMore3" @click="viewMore()">Xem thêm</button>
                     </div>
                     <div class="post-image3" id="postImage3">
-                        <img src="images/post-img.jpg" alt=""/>
+                        <img :src="listHomepageService[2] && listHomepageService[2].coverImg ?listHomepageService[2].coverImg : ''" alt=""/>
                     </div>
                 </div>
             </div>
@@ -295,7 +283,11 @@ export default {
             down: false
         }
     },
-    computed: {},
+    computed: {
+        listHomepageService() {
+            return this.$store.getters.listHomepageService
+        }
+    },
     methods: {
         viewMore() {
             this.$router.push("/post-detail")
@@ -653,8 +645,8 @@ export default {
         var styleContentBottom = document.createElement('style');
         styleContentBottom.innerHTML = `
         .content-short {
-                -webkit-animation: displayTitleBottom 1s; /* Chrome, Safari, Opera */
-                animation: displayTitleBottom 1s;
+                -webkit-animation: displayContentBottom 1s; /* Chrome, Safari, Opera */
+                animation: displayContentBottom 1s;
                 opacity: 1!important;
         }
         `;
@@ -914,7 +906,6 @@ export default {
                     }
                 }
             }
-            
         }
 
         function checkScrollDirectionIsUp(event) {
@@ -943,10 +934,14 @@ export default {
             //     booking.style.width = "20%"
             //     textBooking.style.display = "inline"
             // }
+    },
+    async created() {
         if(this.$store.getters.booking) {
             this.toBooking()
         }
         this.$store.dispatch('setBooking', false)
+        await this.$store.dispatch('getAllHomepageService')
+        console.log(this.listHomepageService)
     }
 }
 </script>
