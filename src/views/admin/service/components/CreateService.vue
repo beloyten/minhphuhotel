@@ -42,7 +42,9 @@ export default {
                 coverImg: "",
                 title: "",
                 brief: "",
-                shortDescription: ""
+                shortDescription: "",
+                description:"",
+                type:"",
             },
             loading: false,
             imgList: [],
@@ -75,6 +77,7 @@ export default {
         },
         updateService() {
             this.loading = true
+<<<<<<< Updated upstream
             console.log(this.imgList)
             let listImage = this.imgList.map(item => {
                 let obj = {}
@@ -84,6 +87,34 @@ export default {
             this.$store.dispatch('updateService', {
                 list: listImage,
                 post: this.serviceDetail
+=======
+            var details = this.serviceDetail
+            this.$store.dispatch('updateService', {
+                list: [],
+                post: details
+            }).then(rs => {
+                if(rs.status === 'success') {
+                    this.serviceDetail= {
+                        coverImg: "",
+                        title: "",
+                        brief: "",
+                        shortDescription: ""
+                    }
+                    this.close();
+                }
+            })
+            setTimeout(() => {
+                this.loading = false
+            }, 300)
+        },
+        createService() {
+            this.loading = true
+            var details = this.serviceDetail
+            details.type = "SERVICE"
+            this.$store.dispatch('createService', {
+                list: [],
+                post: details
+>>>>>>> Stashed changes
             }).then(rs => {
                 if(rs.status === 'success') {
                     this.serviceDetail= {

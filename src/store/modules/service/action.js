@@ -24,6 +24,27 @@ var actions = {
       var res = await API.getOnePost(data)
       resolve(res)
     })
+  },
+  getAllMinorService (ctx) {
+    return new Promise(async resolve => {
+        var res = await API.getAllMinorService()
+        if(res && res.data) {
+          ctx.dispatch('setListMinorService', res.data)
+        }
+        resolve(res)
+    })
+  },
+  createService (ctx, data) {
+    return new Promise(async resolve => {
+      var res = await API.createService(data)
+      resolve(res)
+    })
+  },
+  deleteService (ctx, data) {
+    return new Promise(async resolve => {
+      var res = await API.deleteService(data)
+      resolve(res)
+    })
   }
 }
 

@@ -24,7 +24,7 @@ export default {
             this.$emit('update:openDialog', false)
         },
        deleteService() {
-           const id = {id: this.service}
+           const id = this.service
             this.$store.dispatch('deleteService', id).then(rs => {
                 if(rs.status === 'success') {
                     this.close();

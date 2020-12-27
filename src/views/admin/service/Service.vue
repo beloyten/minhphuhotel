@@ -57,12 +57,12 @@
                             <div class="title">
                                 Normal Service
                             </div>
-                            <button @click="openDialog = true">Add new</button>
+                            <button @click="handleCreate()">Add new</button>
                         </div>
                     </div>
                     <el-table
                         ref="multipleTable"
-                        :data="tableData"
+                        :data="listMinorSerivce"
                         style="width: 100%"
                         @selection-change="handleSelectionChange">
                             <el-table-column
@@ -99,7 +99,7 @@
                                     @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
                                     <el-button
                                     size="mini"
-                                    @click="handleDelete(scope.$index, scope.row)">Detail</el-button>
+                                    @click="handleDetail(scope.$index, scope.row)">Detail</el-button>
                                     <el-button
                                     size="mini"
                                     type="danger"
@@ -111,14 +111,16 @@
             </el-tab-pane>
         </el-tabs>
         <CreateService v-if="openDialogCreate" :openDialog.sync="openDialogCreate" :edit.sync="edit" :service="service"/>
+        <DeleteService v-if="openDialogDelete" :openDialog.sync="openDialogDelete"  :service="id"/>
     </div>
 </template>
 <script>
 import CreateService from './components/CreateService';
-
+import DeleteService from './components/DeleteService';
 export default {
     components: {
-        CreateService
+        CreateService,
+        DeleteService
     },
     data() {
       return {
@@ -161,13 +163,19 @@ export default {
         multipleSelection: [],
         activeName: 'first',
         openDialogCreate: false,
+        openDialogDelete:false,
         service: {},
-        edit: false
+        id: null,
+        edit: false, 
+
       }
     },
     computed: {
         listHompageService() {
             return this.$store.getters.listHomepageService
+        },
+        listMinorSerivce() {
+            return this.$store.getters.listMinorService
         }
     },
     methods: {
@@ -191,13 +199,25 @@ export default {
         this.edit = true
         this.openDialogCreate = true
       },
+        handleCreate(index, row) {
+        this.service = ""
+        this.edit = false
+        this.openDialogCreate = true
+      },
       handleDetail(index, row) {
         this.$router.push({ name: 'Dịch vụ', params: {id: row.id}})
+      },
+        handleDelete(index, row) {
+        this.id = row.id
+        console.log("okk"+this.openDialogDelete)
+        this.openDialogDelete = true
+        console.log(this.openDialogDelete)
       }
     },
     async created() {
         await this.$store.dispatch('getAllHomepageService')
-        console.log(this.$store.getters.listHomepageService);
+          await this.$store.dispatch('getAllMinorService')
+        
     }
 }
 </script>
