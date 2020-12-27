@@ -48,7 +48,6 @@ export default {
       return this.$router.options.routes
     },
     filterredRoutes () {
-      console.log(this.$route)
       let result = this.routes.filter(temp => {
         if (temp.children && temp.children.length && temp.children.length > 1) {
           temp.children = _.filter(temp.children, item => {
@@ -57,7 +56,6 @@ export default {
         }
         return !temp.hidden && UtilService.checkRole(this.user, temp)
       })
-      console.log('a', result)
       return result
     },
     user () {

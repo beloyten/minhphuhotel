@@ -143,7 +143,6 @@ export default {
     },
     watch: {
         openDialogCreate(e) {
-            console.log(this.success)
             if(e && this.success) {
                 this.success = false
                 this.loading = true
@@ -194,7 +193,6 @@ export default {
             console.log(this.openDialogDelete)
         },
         async fetch() {
-            console.log(1)
             this.loading = true
             await this.$store.dispatch('getAllHomepageService')
             await this.$store.dispatch('getAllMinorService')

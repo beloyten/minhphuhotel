@@ -66,7 +66,6 @@ export default {
         } else {
             this.$router.push("/")
         }
-        console.log(this.post)
     }
 }
 </script>

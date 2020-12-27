@@ -44,7 +44,7 @@ export default {
                 brief: "",
                 shortDescription: "",
                 description:"",
-                type:"",
+                type:"SERVICE",
             },
             loading: false,
             imgList: [],
@@ -84,7 +84,6 @@ export default {
         },
         updateService() {
             this.loading = true
-            console.log(this.imgList)
             let listImage = this.imgList.map(item => {
                 let obj = {}
                 obj.img = item.path
@@ -101,6 +100,34 @@ export default {
                         brief: "",
                         shortDescription: ""
                     }
+                    this.imgList = []
+                    this.$emit('update:success', true)
+                    this.close();
+                }
+            })
+            setTimeout(() => {
+                this.loading = false
+            }, 300)
+        },
+        createService() {
+            this.loading = true
+            let listImage = this.imgList.map(item => {
+                let obj = {}
+                obj.img = item.path
+                return obj
+            })
+            this.$store.dispatch('createService', {
+                list: listImage,
+                post: this.serviceDetail
+            }).then(rs => {
+                if(rs.status === 'success') {
+                    this.serviceDetail= {
+                        coverImg: "",
+                        title: "",
+                        brief: "",
+                        shortDescription: ""
+                    }
+                    this.imgList = []
                     this.$emit('update:success', true)
                     this.close();
                 }
