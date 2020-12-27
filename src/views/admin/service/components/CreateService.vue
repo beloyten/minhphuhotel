@@ -74,7 +74,8 @@ export default {
         beforeRemove (index, done, fileList) {
             this.$confirm("Bạn muốn xóa ảnh này khỏi danh sách?",'Xác Thực', {
                     confirmButtonText: 'Xóa',
-                    cancelButtonText: 'Trở về'
+                    cancelButtonText: 'Trở về',
+                    type: 'warning'
                 }
             ).then(()=>{
                 done()

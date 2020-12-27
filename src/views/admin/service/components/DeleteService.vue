@@ -4,8 +4,10 @@
             title="Warning"
             :visible.sync="openDialogDelete"
             width="30%"
-            center>
-            <span>It should be noted that the content will not be aligned in center by default</span>
+            center
+            @close="close()"
+            >
+            <span>Bạn có muốn xóa dịch vụ {{this.service.title}} ?</span>
             <span slot="footer" class="dialog-footer">
                 <el-button @click=" close()" >Cancel</el-button>
                 <el-button type="danger" @click="deleteService()">Delete</el-button>
@@ -22,7 +24,7 @@ export default {
     },
     props: {
         openDialogDelete: false,
-        id: 0,
+        service: {},
         success: false
     },
     methods: {
@@ -35,7 +37,7 @@ export default {
     },
     deleteService() {
         this.loading = true
-        this.$store.dispatch('deleteService', {id: this.id}).then(rs => {
+        this.$store.dispatch('deleteService', {id: this.service.id}).then(rs => {
             if(rs.status === 'success') {
                 this.$emit('update:success', true)
                 this.close()

@@ -65,10 +65,6 @@
                         :data="listMinorSerivce"
                         style="width: 100%">
                             <el-table-column
-                                type="selection"
-                                width="75">
-                            </el-table-column>
-                            <el-table-column
                                 label="ID"
                                 width="75">
                                 <template slot-scope="scope">{{ scope.row.id }}</template>
@@ -98,7 +94,7 @@
                                     @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
                                     <el-button
                                     size="mini"
-                                    @click="handleDetail(scope.$index, scope.row)">Detail</el-button>
+                                    @click="handleDetail(scope.$index, scope.row)">View</el-button>
                                     <el-button
                                     size="mini"
                                     type="danger"
@@ -110,7 +106,7 @@
             </el-tab-pane>
         </el-tabs>
         <CreateService v-if="openDialogCreate" :openDialogCreate.sync="openDialogCreate" :edit.sync="edit" :service="service" :success.sync="success"/>
-        <DeleteService v-if="openDialogDelete" :openDialogDelete.sync="openDialogDelete" :id="id" :success.sync="success"/>
+        <DeleteService v-if="openDialogDelete" :openDialogDelete.sync="openDialogDelete" :service="service" :success.sync="success"/>
     </div>
 </template>
 <script>
@@ -127,7 +123,6 @@ export default {
         openDialogCreate: false,
         openDialogDelete:false,
         service: {},
-        id: null,
         edit: false,
         success: false,
         loading: false
@@ -187,7 +182,7 @@ export default {
             this.$router.push({ name: 'Dịch vụ', params: {id: row.id}})
         },
         handleDelete(index, row) {
-            this.id = row.id
+            this.service = row
             console.log("okk"+this.openDialogDelete)
             this.openDialogDelete = true
             console.log(this.openDialogDelete)
