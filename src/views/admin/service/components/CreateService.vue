@@ -1,6 +1,6 @@
 <template>
     <div :class='{loading: loading}'>
-        <el-dialog :title="edit ? 'Update Service': 'Create Service'" :visible="openDialog" @close="close()">
+        <el-dialog :title="edit ? 'Update Service': 'Create Service'" :visible="openDialogCreate" @close="close()">
             <el-form>
                 <el-form-item label="Upload ảnh" :label-width="formLabelWidth">
                     <vue-upload-multiple-image
@@ -53,14 +53,17 @@ export default {
         }
     },
     props: {
-        openDialog: false,
+        openDialogCreate: false,
         edit: false,
-        service: {}
+        service: {},
+        success: false
     },
     methods: {
-        close() {
+        async close() {
             this.openDialog = false
-            this.$emit('update:openDialog', false)
+            await this.$store.dispatch('getAllHomepageService')
+            await this.$store.dispatch('getAllMinorService')
+            this.$emit('update:openDialogCreate', false)
         },
         uploadImageSuccess(formData, index, fileList) {
             this.imgList = fileList;
@@ -69,7 +72,11 @@ export default {
             this.imgList = fileList;
         },
         beforeRemove (index, done, fileList) {
-            this.$confirm("Bạn muốn xóa ảnh này khỏi danh sách?").then(()=>{
+            this.$confirm("Bạn muốn xóa ảnh này khỏi danh sách?",'Xác Thực', {
+                    confirmButtonText: 'Xóa',
+                    cancelButtonText: 'Trở về'
+                }
+            ).then(()=>{
                 done()
             }).catch(() => {
 
@@ -77,6 +84,7 @@ export default {
         },
         updateService() {
             this.loading = true
+<<<<<<< HEAD
             var details = this.serviceDetail
             this.$store.dispatch('updateService', {
                 list: [],
@@ -103,6 +111,17 @@ export default {
             this.$store.dispatch('createService', {
                 list: [],
                 post: details
+=======
+            console.log(this.imgList)
+            let listImage = this.imgList.map(item => {
+                let obj = {}
+                obj.img = item.path
+                return obj
+            })
+            this.$store.dispatch('updateService', {
+                list: listImage,
+                post: this.serviceDetail
+>>>>>>> 28a0be22682ab09373cfd2a84b1324211a4a36af
             }).then(rs => {
                 if(rs.status === 'success') {
                     this.serviceDetail= {
@@ -111,6 +130,7 @@ export default {
                         brief: "",
                         shortDescription: ""
                     }
+                    this.$emit('update:success', true)
                     this.close();
                 }
             })

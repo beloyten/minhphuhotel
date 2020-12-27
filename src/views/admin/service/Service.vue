@@ -1,5 +1,5 @@
 <template>
-    <div class="admin-service">
+    <div class="admin-service" :class='{loading: loading}'>
         <el-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane label="Major" name="first">
                 <div class="major-service">
@@ -63,8 +63,7 @@
                     <el-table
                         ref="multipleTable"
                         :data="listMinorSerivce"
-                        style="width: 100%"
-                        @selection-change="handleSelectionChange">
+                        style="width: 100%">
                             <el-table-column
                                 type="selection"
                                 width="75">
@@ -110,8 +109,8 @@
                 </div>
             </el-tab-pane>
         </el-tabs>
-        <CreateService v-if="openDialogCreate" :openDialog.sync="openDialogCreate" :edit.sync="edit" :service="service"/>
-        <DeleteService v-if="openDialogDelete" :openDialog.sync="openDialogDelete"  :service="id"/>
+        <CreateService v-if="openDialogCreate" :openDialogCreate.sync="openDialogCreate" :edit.sync="edit" :service="service" :success.sync="success"/>
+        <DeleteService v-if="openDialogDelete" :openDialogDelete.sync="openDialogDelete" :id="id" :success.sync="success"/>
     </div>
 </template>
 <script>
@@ -124,50 +123,14 @@ export default {
     },
     data() {
       return {
-        tableData: [{
-          id: 1,
-          title: 'Bài đăng 1',
-          shortDes: 'No. 189, Grove St, Los Angeles',
-          content: 'No. 189, Grove St, Los Angeles'
-        }, {
-          id: 1,
-          title: 'Bài đăng 1',
-          shortDes: 'No. 189, Grove St, Los Angeles',
-          content: 'No. 189, Grove St, Los Angeles'
-        }, {
-          id: 1,
-          title: 'Bài đăng 1',
-          shortDes: 'No. 189, Grove St, Los Angeles',
-          content: 'No. 189, Grove St, Los Angeles'
-        }, {
-          id: 1,
-          title: 'Bài đăng 1',
-          shortDes: 'No. 189, Grove St, Los Angeles',
-          content: 'No. 189, Grove St, Los Angeles'
-        }, {
-          id: 1,
-          title: 'Bài đăng 1',
-          shortDes: 'No. 189, Grove St, Los Angeles',
-          content: 'No. 189, Grove St, Los Angeles'
-        }, {
-          id: 1,
-          title: 'Bài đăng 1',
-          shortDes: 'No. 189, Grove St, Los Angeles',
-          content: 'No. 189, Grove St, Los Angeles'
-        }, {
-          id: 1,
-          title: 'Bài đăng 1',
-          shortDes: 'No. 189, Grove St, Los Angeles',
-          content: 'No. 189, Grove St, Los Angeles'
-        }],
-        multipleSelection: [],
         activeName: 'first',
         openDialogCreate: false,
         openDialogDelete:false,
         service: {},
         id: null,
-        edit: false, 
-
+        edit: false,
+        success: false,
+        loading: false
       }
     },
     computed: {
@@ -178,46 +141,70 @@ export default {
             return this.$store.getters.listMinorService
         }
     },
-    methods: {
-      toggleSelection(rows) {
-        if (rows) {
-          rows.forEach(row => {
-            this.$refs.multipleTable.toggleRowSelection(row);
-          });   
-        } else {
-          this.$refs.multipleTable.clearSelection();
+    watch: {
+        openDialogCreate(e) {
+            console.log(this.success)
+            if(e && this.success) {
+                this.success = false
+                this.loading = true
+                this.fetch()
+            }
+        },
+        openDialogDelete(e) {
+            if(e && this.success) {
+                this.success = false
+                this.loading = true
+                this.fetch()
+            }
         }
-      },
-      handleSelectionChange(val) {
-        this.multipleSelection = val;
-      },
-      handleClick(tab, event) {
-        console.log(tab, event);
-      },
-      handleEdit(index, row) {
-        this.service = row
-        this.edit = true
-        this.openDialogCreate = true
-      },
+    },
+    methods: {
+        toggleSelection(rows) {
+            if (rows) {
+            rows.forEach(row => {
+                this.$refs.multipleTable.toggleRowSelection(row);
+            });   
+            } else {
+            this.$refs.multipleTable.clearSelection();
+            }
+        },
+        handleSelectionChange(val) {
+            this.multipleSelection = val;
+        },
+        handleClick(tab, event) {
+            console.log(tab, event);
+        },
+        handleEdit(index, row) {
+            this.service = row
+            this.edit = true
+            this.openDialogCreate = true
+        },
         handleCreate(index, row) {
-        this.service = ""
-        this.edit = false
-        this.openDialogCreate = true
-      },
-      handleDetail(index, row) {
-        this.$router.push({ name: 'Dịch vụ', params: {id: row.id}})
-      },
+            this.service = ""
+            this.edit = false
+            this.openDialogCreate = true
+        },
+        handleDetail(index, row) {
+            this.$router.push({ name: 'Dịch vụ', params: {id: row.id}})
+        },
         handleDelete(index, row) {
-        this.id = row.id
-        console.log("okk"+this.openDialogDelete)
-        this.openDialogDelete = true
-        console.log(this.openDialogDelete)
-      }
+            this.id = row.id
+            console.log("okk"+this.openDialogDelete)
+            this.openDialogDelete = true
+            console.log(this.openDialogDelete)
+        },
+        async fetch() {
+            console.log(1)
+            this.loading = true
+            await this.$store.dispatch('getAllHomepageService')
+            await this.$store.dispatch('getAllMinorService')
+            setTimeout(() => {
+                this.loading = false
+            }, 300)
+        }
     },
     async created() {
-        await this.$store.dispatch('getAllHomepageService')
-          await this.$store.dispatch('getAllMinorService')
-        
+        await this.fetch()
     }
 }
 </script>

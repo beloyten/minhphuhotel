@@ -27,7 +27,7 @@ export const Delete = (apiUrl, data) => {
   return Http({
     url: apiUrl,
     method: 'DELETE',
-    data: data
+    params: data || null
   })
 }
 
