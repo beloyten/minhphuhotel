@@ -23,18 +23,18 @@ var actions = {
   logOut (ctx) {
     // ctx.dispatch('setUser', {}),
     ctx.dispatch('setJwt', null),
-    ctx.dispatch('setLoggedIn', false),
+    ctx.dispatch('setLoggedIn', null),
     LocalStorage.removeToken(),
     LocalStorage.removeRemember(),
-    router.push({ name: 'Login' })
+    router.push({ name: 'Đăng nhập' })
   },
   forceLogout (ctx) {
     ctx.dispatch('setUser', {})
     ctx.dispatch('setJwt', null)
-    ctx.dispatch('setLoggedIn', false)
+    ctx.dispatch('setLoggedIn', null)
     LocalStorage.removeToken()
     LocalStorage.removeRemember()
-    router.push({ name: 'Login' })
+    router.push({ name: 'Đăng nhập' })
   }
 }
 

@@ -73,8 +73,7 @@ export default {
     }
   },
   mounted() {
-    this.isLoggedIn && this.$router.push({ name: 'LandingPage' })
-
+    this.isLoggedIn && this.$router.push({ name: 'Trang chủ' })
   },
   methods: {
     async handleAfterLogin (result) {

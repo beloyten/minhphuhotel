@@ -2,7 +2,7 @@
   <header class="header">
     <div class="container">
       <div class="logo">
-        <router-link :to="{ name: 'LandingPage' }">
+        <router-link :to="{ name: 'Trang chủ' }">
           <img src="/images/logo.svg" alt="Best Life">
         </router-link>
       </div>

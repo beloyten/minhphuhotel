@@ -26,7 +26,7 @@ var service = {
 
   //gallery
   addPhotoToGallery: data => Post(`${apiUrl}/admin/gallery/add-to-gallery`, data),
-  deleteBanner: data => Delete(`${apiUrl}/admin/gallery/delete-pic`, data), 
+  deleteImageGallery: data => Delete(`${apiUrl}/admin/gallery/delete-pic`, data), 
   getAllPhotoInGallery: () =>  Get(`${apiUrl}/all/gallery/get-all-pic`),
   
   //preface
@@ -40,13 +40,13 @@ var service = {
   createRoom: data => Post(`${apiUrl}/admin/create-room`, data), // EVENT, SERVICE
   deleteService: data => Delete(`${apiUrl}/admin/delete-room`, data),
   updateRoom: data => Put(`${apiUrl}/admin/edit-room`, data),
-  getAllMinorService: () => Get(`${apiUrl}/all/get-all-room`),
+  getAllRoom: () => Get(`${apiUrl}/all/get-all-room`),
   getOneRoom: id => Get(`${apiUrl}/all/get-one-post/${id}`),
 
   //Employee
   createEmployee: data => Post(`${apiUrl}/admin/add-employee`, data), // EVENT, SERVICE
   deleteEmployee: id => Delete(`${apiUrl}/admin/delete-employee`, id),
-  updateRoom: data => Put(`${apiUrl}/admin/edit-employee`, data),
+  updateEmployee: data => Put(`${apiUrl}/admin/edit-employee`, data),
   getAllEmployee: () => Get(`${apiUrl}/all/get-all-employee`),
   
 }

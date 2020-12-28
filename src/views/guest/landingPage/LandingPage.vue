@@ -6,7 +6,7 @@
         </div>
         <div class="heading-item" id="headingItem">
             <router-link to="/">Trang chủ</router-link>
-            <router-link to="/post-detail">Dịch vụ</router-link>
+            <router-link to="/list-room">Danh sách phòng</router-link>
             <router-link to="/contact">Liên hệ</router-link>
         </div>
         <div class="booking" id="booking" @click="toBooking()">
@@ -191,13 +191,13 @@
                     </div>
                 </div>
                 <div class="line-one1">
-                    <div class="line-media2">
+                    <div class="line-media-one2">
                         <div class="line-img4" id="lineImg4">
                             <img src="images/background-homepage2.jpg" alt=""/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>
                         </div>
                     </div>
-                    <div class="line-media-one2">
+                    <div class="line-media2">
                         <div class="line-img5" id="lineImg5">
                             <img src="images/background-homepage3.jpg" alt=""/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>

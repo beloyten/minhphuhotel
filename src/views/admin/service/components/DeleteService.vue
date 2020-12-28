@@ -1,8 +1,9 @@
 <template>
-    <div :class='{loading: loading}'>>
+    <div :class='{loading: loading}'>
         <el-dialog
             title="Warning"
-            :visible.sync="openDialogDelete"
+            :visible="openDialogDelete"
+            :close-on-click-modal="false"
             width="30%"
             center
             @close="close()"
@@ -28,25 +29,24 @@ export default {
         success: false
     },
     methods: {
-    async close() {
-        console.log("on close: "+ this.openDialogDelete)
-        this.openDialog = false
-        await this.$store.dispatch('getAllHomepageService')
-        await this.$store.dispatch('getAllMinorService')
-        this.$emit('update:openDialogDelete', false)
-    },
-    async deleteService() {
-        this.loading = true
-        await this.$store.dispatch('deleteService', {id: this.service.id}).then(rs => {
-            if(rs.status === 'success') {
-                this.$emit('update:success', true)
-                this.close()
-            }
-        })
-        setTimeout(() => {
-            this.loading = false
-        }, 300)
-    
-    }}
+        async close() {
+            await this.$store.dispatch('getAllHomepageService')
+            await this.$store.dispatch('getAllMinorService')
+            this.$emit('update:openDialogDelete', false)
+        },
+        async deleteService() {
+            this.loading = true
+            await this.$store.dispatch('deleteService', {id: this.service.id}).then(rs => {
+                if(rs.status === 'success') {
+                    this.$emit('update:success', true)
+                    this.close()
+                }
+            })
+            setTimeout(() => {
+                this.loading = false
+            }, 300)
+        
+    }
+    }
 }
 </script>

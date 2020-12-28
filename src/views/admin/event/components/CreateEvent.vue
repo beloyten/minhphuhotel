@@ -1,6 +1,6 @@
 <template>
     <div :class='{loading: loading}'>
-        <el-dialog :title="edit ? 'Cập nhật dịch vụ': 'Thêm mới dịch vụ'" :visible="openDialogCreate" @close="close()" :close-on-click-modal="false">
+        <el-dialog :title="edit ? 'Cập nhật sự kiện': 'Thêm mới sự kiện'" :visible="openDialogCreate" @close="close()" :close-on-click-modal="false">
             <el-form>
                 <el-form-item label="Upload ảnh" :label-width="formLabelWidth">
                     <vue-upload-multiple-image
@@ -47,7 +47,7 @@ export default {
                 brief: "",
                 shortDescription: "",
                 description:"",
-                type:"SERVICE",
+                type:"ROOM",
             },
             loading: false,
             imgList: [],

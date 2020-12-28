@@ -1,5 +1,5 @@
 <template>
-    <el-dialog title="Xem trước dịch vụ" :visible="openDialogPreview" @close="close()" :fullscreen="true">
+    <el-dialog title="Xem trước phòng" :visible="openDialogPreview" @close="close()" :fullscreen="true">
         <div class="detail-post">
             <div class="detail-post-content">
             <el-carousel :autoplay="false" height="60em" indicator-position="none" :loop="false" :interval='0'>

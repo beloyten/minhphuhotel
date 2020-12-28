@@ -105,22 +105,11 @@
                 </div>
             </el-tab-pane>
         </el-tabs>
-        <CreateService v-if="openDialogCreate" :openDialogCreate.sync="openDialogCreate" :edit.sync="edit" :service="service" :success.sync="success"/>
-        <DeleteService v-if="openDialogDelete" :openDialogDelete.sync="openDialogDelete" :service="service" :success.sync="success"/>
-        <PreviewService v-if="openDialogPreview" :openDialogPreview.sync="openDialogPreview" :id="id"/>
     </div>
 </template>
 <script>
-import CreateService from './components/CreateService';
-import DeleteService from './components/DeleteService';
-import PreviewService from './components/PreviewService';
 
 export default {
-    components: {
-        CreateService,
-        DeleteService,
-        PreviewService
-    },
     data() {
       return {
         activeName: 'first',

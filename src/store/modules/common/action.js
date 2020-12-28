@@ -13,7 +13,7 @@ const actions = {
   checkLoggedIn (__) {
     return new Promise(resolve => {
       var token = LocalStorage.getToken() || ''
-      token ? resolve(true) : (Router.push({ name: 'Login' }), resolve(false))
+      token ? resolve(true) : (Router.push({ name: 'Đăng nhập' }), resolve(false))
     })
   },
   uploadFile(_, data) {

@@ -15,10 +15,10 @@ const routes = [
     path: '/admin',
     component: AuthLayout,
     hidden: true,
-    redirect: { title: 'Login', requiresAuth: false },
+    redirect: { title: 'Đăng nhập', requiresAuth: false },
     children: [
       {
-        name: 'Login',
+        name: 'Đăng nhập',
         path: '',
         component: () => import("@/views/admin/auth/Login.vue")
       }
@@ -28,10 +28,10 @@ const routes = [
     path: '/',
     component: AuthLayout,
     hidden: true,
-    meta: { title: 'LandingPage', requiresAuth: false },
+    meta: { title: 'Trang chủ', requiresAuth: false },
     children: [
       {
-        name: 'LandingPage',
+        name: 'Trang chủ',
         path: '',
         component: () => import("@/views/guest/landingPage/LandingPage.vue")
       }
@@ -41,10 +41,10 @@ const routes = [
     path: '/contact',
     component: AuthLayout,
     hidden: true,
-    meta: { title: 'Contact', requiresAuth: false },
+    meta: { title: 'Liên hệ', requiresAuth: false },
     children: [
       {
-        name: 'Contact',
+        name: 'Liên hệ',
         path: '',
         component: () => import("@/views/guest/contact/Contact.vue")
       }
@@ -54,10 +54,10 @@ const routes = [
     path: '/list-room',
     component: AuthLayout,
     hidden: true,
-    meta: { title: 'ListRoom', requiresAuth: false },
+    meta: { title: 'Danh sách phòng', requiresAuth: false },
     children: [
       {
-        name: 'ListRoom',
+        name: 'Danh sách phòng',
         path: '',
         component: () => import("@/views/guest/room/ListRoom.vue")
       }
@@ -79,10 +79,10 @@ const routes = [
   {
     path: '/service',
     component: DashboardLayout,
-    meta: { title: 'Service', requiresAuth: true },
+    meta: { title: 'Dịch vụ', requiresAuth: true },
     children: [
       {
-        name: 'Service',
+        name: 'Dịch vụ',
         path: '',
         component: () => import("@/views/admin/service/Service.vue")
       }
@@ -91,10 +91,10 @@ const routes = [
   {
     path: '/event',
     component: DashboardLayout,
-    meta: { title: 'Event', requiresAuth: true },
+    meta: { title: 'Sự kiện', requiresAuth: true },
     children: [
       {
-        name: 'Event',
+        name: 'Sự kiện',
         path: '',
         component: () => import("@/views/admin/event/Event.vue")
       }
@@ -103,36 +103,36 @@ const routes = [
   {
     path: '/room',
     component: DashboardLayout,
-    meta: { title: 'Room', requiresAuth: true },
+    meta: { title: 'Quản lý phòng', requiresAuth: true },
     children: [
       {
-        name: 'Room',
+        name: 'Quản lý phòng',
         path: '',
         component: () => import("@/views/admin/room/Room.vue")
       }
     ]
   },
   {
-    path: '/banner',
+    path: '/gallery',
     component: DashboardLayout,
-    meta: { title: 'Banner', requiresAuth: true },
+    meta: { title: 'Thư viện ảnh', requiresAuth: true },
     children: [
       {
-        name: 'Banner',
+        name: 'Thư viện ảnh',
         path: '',
-        component: () => import("@/views/admin/banner/Banner.vue")
+        component: () => import("@/views/admin/gallery/Gallery.vue")
       }
     ]
   },
   {
-    path: '/email-config',
+    path: '/setting',
     component: DashboardLayout,
-    meta: { title: 'Email', requiresAuth: true },
+    meta: { title: 'Setting', requiresAuth: true },
     children: [
       {
-        name: 'Email',
+        name: 'Setting',
         path: '',
-        component: () => import("@/views/admin/email/Email.vue")
+        component: () => import("@/views/admin/setting/Setting.vue")
       }
     ]
   },

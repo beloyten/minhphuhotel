@@ -5,7 +5,7 @@
         </div>
         <div class="heading-item" id="headingItem">
             <router-link to="/">Trang chủ</router-link>
-            <router-link to="/post-detail">Dịch vụ</router-link>
+            <router-link to="/post-detail">Danh sách phòng</router-link>
             <router-link to="/contact">Liên hệ</router-link>
         </div>
         <div class="booking" id="bookingHeader" @click="toBooking()">

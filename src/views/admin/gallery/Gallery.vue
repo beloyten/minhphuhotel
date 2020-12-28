@@ -4,7 +4,7 @@
             <div class="header">
                 <div class="left">
                     <div class="title">
-                        Danh sách sự kiện
+                        Thư viện ảnh
                     </div>
                     <button @click="handleCreate()">Thêm mới</button>
                 </div>
@@ -52,22 +52,11 @@
                     </el-table-column>
             </el-table>
         </div>
-        <CreateEvent v-if="openDialogCreate" :openDialogCreate.sync="openDialogCreate" :edit.sync="edit" :service="service" :success.sync="success"/>
-        <DeleteEvent v-if="openDialogDelete" :openDialogDelete.sync="openDialogDelete" :service="service" :success.sync="success"/>
-        <PreviewEvent v-if="openDialogPreview" :openDialogPreview.sync="openDialogPreview" :id="id"/>
     </div>
 </template>
 <script>
-import CreateEvent from './components/CreateEvent';
-import DeleteEvent from './components/DeleteEvent';
-import PreviewEvent from './components/PreviewEvent';
 
 export default {
-    components: {
-        CreateEvent,
-        DeleteEvent,
-        PreviewEvent
-    },
     data() {
       return {
         activeName: 'first',

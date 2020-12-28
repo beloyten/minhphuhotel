@@ -48,7 +48,7 @@ export default {
     computed: {},
     methods: {
         toHomepage() {
-            if(this.$route.name === 'LandingPage') {
+            if(this.$route.name === 'Trang chủ') {
                 this.scrollToTop()
             } else {
                 this.$router.push("/")
