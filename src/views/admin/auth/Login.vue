@@ -73,12 +73,12 @@ export default {
     }
   },
   mounted() {
-    this.isLoggedIn && this.$router.push({ name: 'Overview' })
+    this.isLoggedIn && this.$router.push({ name: 'LandingPage' })
 
   },
   methods: {
     async handleAfterLogin (result) {
-      this.$router.push('/')
+      this.$router.push('/service')
     },
     async submit () {
       this.loading = true

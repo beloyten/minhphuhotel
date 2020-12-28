@@ -35,9 +35,9 @@ export default {
         await this.$store.dispatch('getAllMinorService')
         this.$emit('update:openDialogDelete', false)
     },
-    deleteService() {
+    async deleteService() {
         this.loading = true
-        this.$store.dispatch('deleteService', {id: this.service.id}).then(rs => {
+        await this.$store.dispatch('deleteService', {id: this.service.id}).then(rs => {
             if(rs.status === 'success') {
                 this.$emit('update:success', true)
                 this.close()

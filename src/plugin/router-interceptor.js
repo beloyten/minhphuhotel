@@ -10,8 +10,9 @@ const RouterInterceptor = {
         let token = LocalStorage.getToken()
         // If token is empty, redirect to login page
         if (!token) {
+          console.log(1)
           next({
-            name: 'Login',
+            path: '/admin',
             query: { nextUrl: to.fullPath }
           })
         } else { // Next if token exist

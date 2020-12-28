@@ -16,8 +16,11 @@
                 <el-form-item label="Brief" :label-width="formLabelWidth">
                     <el-input v-model="serviceDetail.brief" autocomplete="off"></el-input>
                 </el-form-item>
+                <el-form-item label="Short Description" :label-width="formLabelWidth">
+                    <el-input v-model="serviceDetail.shortDescription" autocomplete="off"></el-input>
+                </el-form-item>
                 <el-form-item label="Description" :label-width="formLabelWidth">
-                    <textarea id="message" v-model="serviceDetail.shortDescription"></textarea>
+                    <textarea id="message" v-model="serviceDetail.description"></textarea>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -66,10 +69,12 @@ export default {
             this.$emit('update:openDialogCreate', false)
         },
         uploadImageSuccess(formData, index, fileList) {
+            console.log('data', formData, index, fileList)
             this.imgList = fileList;
         },
         editImage (formData, index, fileList) {
-            this.imgList = fileList;
+            console.log('edit data', formData, index, fileList)
+            this.imgList.splice(index, 1, fileList[index]);
         },
         beforeRemove (index, done, fileList) {
             this.$confirm("Bạn muốn xóa ảnh này khỏi danh sách?",'Xác Thực', {
@@ -78,19 +83,20 @@ export default {
                     type: 'warning'
                 }
             ).then(()=>{
+                this.imgList.splice(index, 1)
                 done()
             }).catch(() => {
 
             })
         },
-        updateService() {
+        async updateService() {
             this.loading = true
             let listImage = this.imgList.map(item => {
                 let obj = {}
                 obj.img = item.path
                 return obj
             })
-            this.$store.dispatch('updateService', {
+            await this.$store.dispatch('updateService', {
                 list: listImage,
                 post: this.serviceDetail
             }).then(rs => {
@@ -110,14 +116,14 @@ export default {
                 this.loading = false
             }, 300)
         },
-        createService() {
+        async createService() {
             this.loading = true
             let listImage = this.imgList.map(item => {
                 let obj = {}
                 obj.img = item.path
                 return obj
             })
-            this.$store.dispatch('createService', {
+            await this.$store.dispatch('createService', {
                 list: listImage,
                 post: this.serviceDetail
             }).then(rs => {
@@ -150,7 +156,7 @@ export default {
             console.log(imgResponse)
             let listImage = imgResponse.map((item,index) => {
                 let obj = {}
-                if(index === 1) {
+                if(index === 0) {
                     obj.default = 1
                     obj.hightlight = 1
                     obj.name = ''
