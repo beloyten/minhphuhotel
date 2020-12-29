@@ -21,11 +21,12 @@ var actions = {
     })
   },
   logOut (ctx) {
-    // ctx.dispatch('setUser', {}),
-    ctx.dispatch('setJwt', null),
-    ctx.dispatch('setLoggedIn', null),
-    LocalStorage.removeToken(),
-    LocalStorage.removeRemember(),
+    ctx.dispatch('setUser', {})
+    ctx.dispatch('setJwt', null)
+    ctx.dispatch('setLoggedIn', null)
+    LocalStorage.removeToken()
+    LocalStorage.removeRemember()
+    LocalStorage.removeIsLoggedInMinhPhu()
     router.push({ name: 'Đăng nhập' })
   },
   forceLogout (ctx) {
@@ -34,6 +35,7 @@ var actions = {
     ctx.dispatch('setLoggedIn', null)
     LocalStorage.removeToken()
     LocalStorage.removeRemember()
+    LocalStorage.removeIsLoggedInMinhPhu()
     router.push({ name: 'Đăng nhập' })
   }
 }

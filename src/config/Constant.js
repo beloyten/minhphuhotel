@@ -9,6 +9,6 @@ export default {
   INVALID_ROLE: 409,
 
   // LocalStorage
-  JWT: 'jwt',
-  IS_LOGGED: 'isLoggedIn'
+  JWT: 'jwtMinhPhu',
+  IS_LOGGED: 'isLoggedInMinhPhu'
 }

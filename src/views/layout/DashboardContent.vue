@@ -4,7 +4,7 @@
       <div class="flex-1">
         <h2 class="title">{{title}}</h2>
       </div>
-      <div class="flex-1 profile">
+      <div class="flex-1 profile" @click="logout()">
         <img src="/images/icons/logout.svg" alt="">
       </div>
     </div>
@@ -21,6 +21,11 @@ export default {
   computed: {
     title () {
       return this.$route.name
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logOut')
     }
   },
   created() {
