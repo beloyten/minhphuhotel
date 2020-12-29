@@ -8,7 +8,7 @@
             center
             @close="close()"
             >
-            <span>Bạn có muốn xóa sự kiện {{this.service.title}} ?</span>
+            <span>Bạn có muốn xóa sự kiện {{this.event.title}} ?</span>
             <span slot="footer" class="dialog-footer">
                 <el-button @click=" close()" >Trở về</el-button>
                 <el-button type="danger" @click="deleteService()">Xóa</el-button>
@@ -25,18 +25,16 @@ export default {
     },
     props: {
         openDialogDelete: false,
-        service: {},
+        event: {},
         success: false
     },
     methods: {
     async close() {
-        await this.$store.dispatch('getAllHomepageService')
-        await this.$store.dispatch('getAllMinorService')
         this.$emit('update:openDialogDelete', false)
     },
     async deleteService() {
         this.loading = true
-        await this.$store.dispatch('deleteService', {id: this.service.id}).then(rs => {
+        await this.$store.dispatch('deleteService', {id: this.event.id}).then(rs => {
             if(rs.status === 'success') {
                 this.$emit('update:success', true)
                 this.close()

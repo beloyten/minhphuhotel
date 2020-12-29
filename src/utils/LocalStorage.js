@@ -22,6 +22,9 @@ export default new Vue({
     },
     removeRemember () {
       return this.removeItem(CONSTANT.REMEMBER)
+    },
+    removeIsLoggedInMinhPhu() {
+      return localStorage.removeItem(CONSTANT.IS_LOGGED)
     }
   }
 })

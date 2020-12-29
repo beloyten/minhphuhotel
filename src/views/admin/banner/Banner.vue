@@ -4,14 +4,14 @@
             <div class="header">
                 <div class="left">
                     <div class="title">
-                        Danh sách phòng
+                        Danh sách Banner
                     </div>
                     <button @click="handleCreate()">Thêm mới</button>
                 </div>
             </div>
             <el-table
-                ref="roomTable"
-                :data="listAllRoom"
+                ref="eventTable"
+                :data="listAllBanner"
                 style="width: 100%; min-height: 500px;">
                     <el-table-column
                         label="ID"
@@ -19,8 +19,8 @@
                         <template slot-scope="scope">{{ scope.$index + 1 }}</template>
                     </el-table-column>
                     <el-table-column
-                        property="name"
-                        label="Tên phòng"
+                        property="title"
+                        label="Tiêu đề"
                         width="200">
                     </el-table-column>
                     <el-table-column
@@ -31,16 +31,6 @@
                     <el-table-column
                         property="shortDescription"
                         label="Mô tả ngắn"
-                        show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column
-                        property="status"
-                        label="Tình trạng"
-                        show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column
-                        property="price"
-                        label="Giá phòng"
                         show-overflow-tooltip>
                     </el-table-column>
                     <el-table-column
@@ -62,28 +52,28 @@
                     </el-table-column>
             </el-table>
         </div>
-        <CreateRoom v-if="openDialogCreate" :openDialogCreate.sync="openDialogCreate" :edit.sync="edit" :room="room" :success.sync="success"/>
-        <DeleteRoom v-if="openDialogDelete" :openDialogDelete.sync="openDialogDelete" :room="room" :success.sync="success"/>
-        <PreviewRoom v-if="openDialogPreview" :openDialogPreview.sync="openDialogPreview" :id="id"/>
+        <CreateBanner v-if="openDialogCreate" :openDialogCreate.sync="openDialogCreate" :edit.sync="edit" :banner="banner" :success.sync="success"/>
+        <DeleteBanner v-if="openDialogDelete" :openDialogDelete.sync="openDialogDelete" :banner="banner" :success.sync="success"/>
+        <PreviewBanner v-if="openDialogPreview" :openDialogPreview.sync="openDialogPreview" :id="id"/>
     </div>
 </template>
 <script>
-import CreateRoom from './components/CreateRoom';
-import DeleteRoom from './components/DeleteRoom';
-import PreviewRoom from './components/PreviewRoom';
+import CreateBanner from './components/CreateBanner';
+import DeleteBanner from './components/DeleteBanner';
+import PreviewBanner from './components/PreviewBanner';
 
 export default {
     components: {
-        CreateRoom,
-        DeleteRoom,
-        PreviewRoom
+        CreateBanner,
+        DeleteBanner,
+        PreviewBanner
     },
     data() {
       return {
         openDialogCreate: false,
         openDialogDelete:false,
         openDialogPreview: false,
-        room: {},
+        banner: {},
         edit: false,
         success: false,
         loading: false,
@@ -91,8 +81,8 @@ export default {
       }
     },
     computed: {
-        listAllRoom() {
-            return this.$store.getters.listAllRoom
+        listAllBanner() {
+            return this.$store.getters.listAllBanner
         },
     },
     watch: {
@@ -113,12 +103,12 @@ export default {
     },
     methods: {
         handleEdit(index, row) {
-            this.room = row
+            this.banner = row
             this.edit = true
             this.openDialogCreate = true
         },
         handleCreate(index, row) {
-            this.room = ""
+            this.banner = ""
             this.edit = false
             this.openDialogCreate = true
         },
@@ -127,12 +117,12 @@ export default {
             this.openDialogPreview = true
         },
         handleDelete(index, row) {
-            this.room = row
+            this.banner = row
             this.openDialogDelete = true
         },
         async fetch() {
             this.loading = true
-            await this.$store.dispatch('getAllRoom')
+            await this.$store.dispatch('getAllBanner')
             setTimeout(() => {
                 this.loading = false
             }, 300)

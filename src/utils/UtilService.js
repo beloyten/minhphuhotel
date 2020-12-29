@@ -18,8 +18,13 @@ export default new Vue({
       return re.test(email)
     },
     checkValidatePhone (phone) {
-      var re = /^[0][3,7,8,9]\(?\d{2}\)?\d{3}?\d{3}$/
+      var re = /^[0][1,3,7,8,9]\(?\d{2}\)?\d{3}?\d{3}$/
       return re.test(phone)
+    },
+    formatCash(str) {
+      return str.split('').reverse().reduce((prev, next, index) => {
+        return ((index % 3) ? next : (next + ',')) + prev
+      })
     }
   }
 })

@@ -8,10 +8,10 @@
             center
             @close="close()"
             >
-            <span>Bạn có muốn xóa phòng {{this.room.name}} ?</span>
+            <span>Bạn có muốn xóa ảnh này không ?</span>
             <span slot="footer" class="dialog-footer">
-                <el-button @click=" close()" >Trở về</el-button>
-                <el-button type="danger" @click="deleteRoom()">Xóa</el-button>
+                <el-button @click="close()" >Trở về</el-button>
+                <el-button type="danger" @click="deleteImage()">Xóa</el-button>
             </span>
         </el-dialog>
     </div>
@@ -25,16 +25,16 @@ export default {
     },
     props: {
         openDialogDelete: false,
-        room: {},
+        id: null,
         success: false
     },
     methods: {
     async close() {
         this.$emit('update:openDialogDelete', false)
     },
-    async deleteRoom() {
+    async deleteImage() {
         this.loading = true
-        await this.$store.dispatch('deleteRoom', {id: this.room.id}).then(rs => {
+        await this.$store.dispatch('deleteImageGallery', {id: this.id}).then(rs => {
             if(rs.status === 'success') {
                 this.$emit('update:success', true)
                 this.close()

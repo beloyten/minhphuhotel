@@ -1,7 +1,7 @@
 <template>
     <div class="admin-service" :class='{loading: loading}'>
         <el-tabs v-model="activeName" @tab-click="handleClick">
-            <el-tab-pane label="Dịch vụ chính" name="first">
+            <el-tab-pane label="Dịch vụ chính" name="homepageService">
                 <div class="major-service">
                     <div class="header">
                         <div class="left">
@@ -11,13 +11,13 @@
                         </div>
                     </div>
                     <el-table
-                        ref="multipleTable"
+                        ref="homepageServiceTable"
                         :data="listHompageService"
                         style="width: 100%; min-height: 500px;">
                             <el-table-column
                                 label="ID"
                                 width="75">
-                                <template slot-scope="scope">{{ scope.row.id }}</template>
+                                <template slot-scope="scope">{{ scope.$index + 1 }}</template>
                             </el-table-column>
                             <el-table-column
                                 property="title"
@@ -50,7 +50,7 @@
                     </el-table>
                 </div>
             </el-tab-pane>
-            <el-tab-pane label="Các dịch vụ khác" name="second">
+            <el-tab-pane label="Các dịch vụ khác" name="otherService">
                 <div class="major-service">
                     <div class="header">
                         <div class="left">
@@ -61,13 +61,13 @@
                         </div>
                     </div>
                     <el-table
-                        ref="multipleTable"
+                        ref="otherServiceTable"
                         :data="listMinorSerivce"
                         style="width: 100%">
                             <el-table-column
                                 label="ID"
                                 width="75">
-                                <template slot-scope="scope">{{ scope.row.id }}</template>
+                                <template slot-scope="scope">{{ scope.$index + 1 }}</template>
                             </el-table-column>
                             <el-table-column
                                 property="title"
@@ -75,12 +75,12 @@
                                 width="200">
                             </el-table-column>
                             <el-table-column
-                                property="brieft"
+                                property="brief"
                                 label="Tóm tắt"
                                 show-overflow-tooltip>
                             </el-table-column>
                             <el-table-column
-                                property="shortDes"
+                                property="shortDescription"
                                 label="Mô tả ngắn"
                                 show-overflow-tooltip>
                             </el-table-column>
@@ -123,7 +123,7 @@ export default {
     },
     data() {
       return {
-        activeName: 'first',
+        activeName: 'homepageService',
         openDialogCreate: false,
         openDialogDelete:false,
         openDialogPreview: false,
@@ -142,37 +142,26 @@ export default {
             return this.$store.getters.listMinorService
         }
     },
-    // watch: {
-    //     openDialogCreate(e) {
-    //         if(e && this.success) {
-    //             this.success = false
-    //             this.loading = true
-    //             this.fetch()
-    //         }
-    //     },
-    //     openDialogDelete(e) {
-    //         if(e && this.success) {
-    //             this.success = false
-    //             this.loading = true
-    //             this.fetch()
-    //         }
-    //     }
-    // },
-    methods: {
-        toggleSelection(rows) {
-            if (rows) {
-            rows.forEach(row => {
-                this.$refs.multipleTable.toggleRowSelection(row);
-            });   
-            } else {
-            this.$refs.multipleTable.clearSelection();
+    watch: {
+        openDialogCreate(e) {
+            if(!e && this.success) {
+                this.success = false
+                this.loading = true
+                this.fetch()
             }
         },
-        handleSelectionChange(val) {
-            this.multipleSelection = val;
-        },
-        handleClick(tab, event) {
-            console.log(tab, event);
+        openDialogDelete(e) {
+            if(!e && this.success) {
+                this.success = false
+                this.loading = true
+                this.fetch()
+            }
+        }
+    },
+    methods: {
+        async handleClick(tab, event) {
+            this.loading = true
+            await this.fetch()
         },
         handleEdit(index, row) {
             this.service = row
@@ -194,8 +183,11 @@ export default {
         },
         async fetch() {
             this.loading = true
-            await this.$store.dispatch('getAllHomepageService')
-            await this.$store.dispatch('getAllMinorService')
+            if(this.activeName === 'homepageService') {
+                await this.$store.dispatch('getAllHomepageService')
+            } else if(this.activeName === 'otherService'){
+                await this.$store.dispatch('getAllMinorService')
+            }
             setTimeout(() => {
                 this.loading = false
             }, 300)

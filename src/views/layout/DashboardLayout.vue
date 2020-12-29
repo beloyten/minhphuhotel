@@ -3,7 +3,7 @@
     <!-- <Header/> -->
     <main>
       <div class="left-menu">
-        <div class="logo-admin">
+        <div class="logo-admin" @click="toService()">
           <img src="/images/logo.jpg" alt="">
         </div>
         <div class="item" v-for="(route, index) in filterredRoutes" :key="index">
@@ -71,6 +71,9 @@ export default {
         return UtilService.isUserHasRole(this.user, router.meta.roles)
       }
       return  true
+    },
+    toService() {
+      this.$router.push("/service")
     }
   }
 }

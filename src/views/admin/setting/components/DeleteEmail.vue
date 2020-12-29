@@ -2,16 +2,16 @@
     <div :class='{loading: loading}'>
         <el-dialog
             title="Warning"
-            :visible="openDialogDelete"
+            :visible="openDialogDeleteEmail"
             :close-on-click-modal="false"
             width="30%"
             center
             @close="close()"
             >
-            <span>Bạn có muốn xóa phòng {{this.room.name}} ?</span>
+            <span>Bạn có muốn xóa email {{this.employee.email}} ?</span>
             <span slot="footer" class="dialog-footer">
                 <el-button @click=" close()" >Trở về</el-button>
-                <el-button type="danger" @click="deleteRoom()">Xóa</el-button>
+                <el-button type="danger" @click="deleteEmail()">Xóa</el-button>
             </span>
         </el-dialog>
     </div>
@@ -24,17 +24,17 @@ export default {
         }
     },
     props: {
-        openDialogDelete: false,
-        room: {},
+        openDialogDeleteEmail: false,
+        employee: {},
         success: false
     },
     methods: {
     async close() {
-        this.$emit('update:openDialogDelete', false)
+        this.$emit('update:openDialogDeleteEmail', false)
     },
-    async deleteRoom() {
+    async deleteEmail() {
         this.loading = true
-        await this.$store.dispatch('deleteRoom', {id: this.room.id}).then(rs => {
+        await this.$store.dispatch('deleteEmployee', {id: this.employee.id}).then(rs => {
             if(rs.status === 'success') {
                 this.$emit('update:success', true)
                 this.close()

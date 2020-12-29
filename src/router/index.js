@@ -4,6 +4,7 @@ import Router from 'vue-router'
 /* Layout */
 import DashboardLayout from '@/views/layout/DashboardLayout'
 import AuthLayout from '@/views/layout/AuthLayout'
+import BlankLayout from '@/views/layout/BlankLayout'
 
 // Pages
 import NotfoundComponent from '@/views/404'
@@ -26,7 +27,7 @@ const routes = [
   },
   {
     path: '/',
-    component: AuthLayout,
+    component: BlankLayout,
     hidden: true,
     meta: { title: 'Trang chủ', requiresAuth: false },
     children: [
@@ -39,7 +40,7 @@ const routes = [
   },
   {
     path: '/contact',
-    component: AuthLayout,
+    component: BlankLayout,
     hidden: true,
     meta: { title: 'Liên hệ', requiresAuth: false },
     children: [
@@ -52,7 +53,7 @@ const routes = [
   },
   {
     path: '/list-room',
-    component: AuthLayout,
+    component: BlankLayout,
     hidden: true,
     meta: { title: 'Danh sách phòng', requiresAuth: false },
     children: [
@@ -65,12 +66,12 @@ const routes = [
   },
   {
     path: '/post-detail',
-    component: AuthLayout,
+    component: BlankLayout,
     hidden: true,
-    meta: { title: 'Dịch vụ', requiresAuth: false },
+    meta: { title: 'Post Detail', requiresAuth: false },
     children: [
       {
-        name: 'Dịch vụ',
+        name: 'Post Detail',
         path: '',
         component: () => import("@/views/guest/detailPost/DetailPost.vue")
       }
@@ -121,6 +122,18 @@ const routes = [
         name: 'Thư viện ảnh',
         path: '',
         component: () => import("@/views/admin/gallery/Gallery.vue")
+      }
+    ]
+  },
+  {
+    path: '/banner',
+    component: DashboardLayout,
+    meta: { title: 'Banner', requiresAuth: true },
+    children: [
+      {
+        name: 'Banner',
+        path: '',
+        component: () => import("@/views/admin/banner/Banner.vue")
       }
     ]
   },

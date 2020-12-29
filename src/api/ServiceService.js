@@ -16,6 +16,7 @@ var service = {
   createBanner: data => Post(`${apiUrl}/admin/create-banner`, data),
   deleteBanner: data => Delete(`${apiUrl}/admin/delete-banner`, data),
   getAllBanner: () => Get(`${apiUrl}/all/get-all-banner`), 
+  updateBanner: data => Put(`${apiUrl}/admin/edit-banner`, data),
 
   //contact Controller
   getContact: () => Get(`${apiUrl}/all/get-contact`), 
@@ -31,17 +32,17 @@ var service = {
   
   //preface
   editPreface: data => Put(`${apiUrl}/all/edit-preface`, data),
-  getPreface: () =>  get(`${apiUrl}/all/get-preface`),
+  getPreface: () =>  Get(`${apiUrl}/all/get-preface`),
 
   //event
-  getAllEvent: () =>  get(`${apiUrl}/all/get-all-event`),
+  getAllEvent: () =>  Get(`${apiUrl}/all/get-all-event`),
         //add and get one dung của post truyền type "EVENT"
   //ROOM
   createRoom: data => Post(`${apiUrl}/admin/create-room`, data), // EVENT, SERVICE
-  deleteService: data => Delete(`${apiUrl}/admin/delete-room`, data),
+  deleteRoom: data => Delete(`${apiUrl}/admin/delete-room`, data),
   updateRoom: data => Put(`${apiUrl}/admin/edit-room`, data),
   getAllRoom: () => Get(`${apiUrl}/all/get-all-room`),
-  getOneRoom: id => Get(`${apiUrl}/all/get-one-post/${id}`),
+  getOneRoom: id => Get(`${apiUrl}/all/get-one-room/${id}`),
 
   //Employee
   createEmployee: data => Post(`${apiUrl}/admin/add-employee`, data), // EVENT, SERVICE

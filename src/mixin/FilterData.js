@@ -55,6 +55,11 @@ export default {
       },
       changeRouteParams (queryObj) {
         this.$router.push({ name: this.$route.name, query: queryObj })
+      },
+      formatCash(str) {
+        return str.split('').reverse().reduce((prev, next, index) => {
+          return ((index % 3) ? next : (next + ',')) + prev
+        })
       }
     }
   }

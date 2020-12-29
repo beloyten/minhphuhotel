@@ -6,7 +6,7 @@
                 <el-carousel-item v-for="(item, index) in post.list" :key="index">
                     <div class="item">
                         <img
-                            :src="item"
+                            :src="item.img"
                             alt=""
                         />
                     </div>
@@ -14,13 +14,13 @@
             </el-carousel> 
             <div class="post-content">
                 <div class="post-title">
-                    <span>{{post && post.room && post.room.name ? post.room.name : ''}}</span>
+                    <span>{{post && post.post && post.post.title ? post.post.title : ''}}</span>
                 </div>
                 <div class="post-bread">
-                    <span>{{post && post.room && post.room.brief ? post.room.brief : ''}}</span>
+                    <span>{{post && post.post && post.post.brief ? post.post.brief : ''}}</span>
                 </div>
                 <div class="post-content-text">
-                    <textarea v-model="post.room.description" disabled> 
+                    <textarea v-model="post.post.description" disabled> 
                     </textarea>
                 </div>
             </div>
@@ -34,8 +34,8 @@ export default {
         return {
             post: {
                 list: [],
-                room: {
-                    name: '',
+                post: {
+                    title: '',
                     brief: '',
                     shortDescription: '', 
                     description: ''
@@ -54,7 +54,7 @@ export default {
     },
     async created() {
         if(this.id) {
-            await this.$store.dispatch('getOneRoom', this.id).then(rs => {
+            await this.$store.dispatch('getOnePost', this.id).then(rs => {
                 if(rs.status === 'success') {
                     this.post = rs.data
                 }

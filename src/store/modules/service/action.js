@@ -67,6 +67,12 @@ var actions = {
       resolve(res)
     })
   },
+  updateBanner(ctx, data) {
+    return new Promise(async resolve => {
+      var res = await API.updateBanner(data)
+      resolve(res)
+    })
+  },
   getAllBanner(ctx) {
     return new Promise(async resolve => {
       var res = await API.getAllBanner()
@@ -118,8 +124,9 @@ var actions = {
   getAllPhotoInGallery(ctx) {
     return new Promise(async resolve => {
       var res = await API.getAllPhotoInGallery()
-      if(res && res.data) {
-        ctx.dispatch('setListAllPhotoGallery', res.data)
+      console.log(res)
+      if(res && res.data && res.data.content) {
+        ctx.dispatch('setListAllPhotoGallery', res.data.content)
       }
       resolve(res)
     })
@@ -154,9 +161,9 @@ var actions = {
       resolve(res)
     })
   },
-  deleteService(ctx, data) {
+  deleteRoom(ctx, data) {
     return new Promise(async resolve => {
-      var res = await API.deleteService(data)
+      var res = await API.deleteRoom(data)
       resolve(res)
     })
   },
@@ -190,12 +197,6 @@ var actions = {
   deleteEmployee(ctx, id) {
     return new Promise(async resolve => {
       var res = await API.deleteEmployee(id)
-      resolve(res)
-    })
-  },
-  updateRoom(ctx, data) {
-    return new Promise(async resolve => {
-      var res = await API.updateRoom(data)
       resolve(res)
     })
   },

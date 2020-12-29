@@ -10,13 +10,13 @@
                 </div>
             </div>
             <el-table
-                ref="multipleTable"
-                :data="listHompageService"
+                ref="eventTable"
+                :data="listAllEvent"
                 style="width: 100%; min-height: 500px;">
                     <el-table-column
                         label="ID"
                         width="75">
-                        <template slot-scope="scope">{{ scope.row.id }}</template>
+                        <template slot-scope="scope">{{ scope.$index + 1 }}</template>
                     </el-table-column>
                     <el-table-column
                         property="title"
@@ -52,8 +52,8 @@
                     </el-table-column>
             </el-table>
         </div>
-        <CreateEvent v-if="openDialogCreate" :openDialogCreate.sync="openDialogCreate" :edit.sync="edit" :service="service" :success.sync="success"/>
-        <DeleteEvent v-if="openDialogDelete" :openDialogDelete.sync="openDialogDelete" :service="service" :success.sync="success"/>
+        <CreateEvent v-if="openDialogCreate" :openDialogCreate.sync="openDialogCreate" :edit.sync="edit" :event="event" :success.sync="success"/>
+        <DeleteEvent v-if="openDialogDelete" :openDialogDelete.sync="openDialogDelete" :event="event" :success.sync="success"/>
         <PreviewEvent v-if="openDialogPreview" :openDialogPreview.sync="openDialogPreview" :id="id"/>
     </div>
 </template>
@@ -70,11 +70,10 @@ export default {
     },
     data() {
       return {
-        activeName: 'first',
         openDialogCreate: false,
         openDialogDelete:false,
         openDialogPreview: false,
-        service: {},
+        event: {},
         edit: false,
         success: false,
         loading: false,
@@ -82,23 +81,20 @@ export default {
       }
     },
     computed: {
-        listHompageService() {
-            return this.$store.getters.listHomepageService
+        listAllEvent() {
+            return this.$store.getters.listAllEvent
         },
-        listMinorSerivce() {
-            return this.$store.getters.listMinorService
-        }
     },
     watch: {
         openDialogCreate(e) {
-            if(e && this.success) {
+            if(!e && this.success) {
                 this.success = false
                 this.loading = true
                 this.fetch()
             }
         },
         openDialogDelete(e) {
-            if(e && this.success) {
+            if(!e && this.success) {
                 this.success = false
                 this.loading = true
                 this.fetch()
@@ -106,28 +102,13 @@ export default {
         }
     },
     methods: {
-        toggleSelection(rows) {
-            if (rows) {
-            rows.forEach(row => {
-                this.$refs.multipleTable.toggleRowSelection(row);
-            });   
-            } else {
-            this.$refs.multipleTable.clearSelection();
-            }
-        },
-        handleSelectionChange(val) {
-            this.multipleSelection = val;
-        },
-        handleClick(tab, event) {
-            console.log(tab, event);
-        },
         handleEdit(index, row) {
-            this.service = row
+            this.event = row
             this.edit = true
             this.openDialogCreate = true
         },
         handleCreate(index, row) {
-            this.service = ""
+            this.event = ""
             this.edit = false
             this.openDialogCreate = true
         },
@@ -136,15 +117,12 @@ export default {
             this.openDialogPreview = true
         },
         handleDelete(index, row) {
-            this.service = row
-            console.log("okk"+this.openDialogDelete)
+            this.event = row
             this.openDialogDelete = true
-            console.log(this.openDialogDelete)
         },
         async fetch() {
             this.loading = true
-            await this.$store.dispatch('getAllHomepageService')
-            await this.$store.dispatch('getAllMinorService')
+            await this.$store.dispatch('getAllEvent')
             setTimeout(() => {
                 this.loading = false
             }, 300)

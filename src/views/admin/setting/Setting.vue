@@ -1,87 +1,38 @@
 <template>
     <div class="admin-service" :class='{loading: loading}'>
         <el-tabs v-model="activeName" @tab-click="handleClick">
-            <el-tab-pane label="Dịch vụ chính" name="first">
+            <el-tab-pane label="Cài đặt Email" name="email">
                 <div class="major-service">
                     <div class="header">
                         <div class="left">
                             <div class="title">
-                                Danh sách dịch vụ chính
+                                Danh sách Email
                             </div>
+                            <button @click="handleCreateEmail()">Thêm mới</button>
                         </div>
                     </div>
                     <el-table
                         ref="multipleTable"
-                        :data="listHompageService"
-                        style="width: 100%; min-height: 500px;">
-                            <el-table-column
-                                label="ID"
-                                width="75">
-                                <template slot-scope="scope">{{ scope.row.id }}</template>
-                            </el-table-column>
-                            <el-table-column
-                                property="title"
-                                label="Tiêu đề"
-                                width="200">
-                            </el-table-column>
-                            <el-table-column
-                                property="brief"
-                                label="Tóm tắt"
-                                show-overflow-tooltip>
-                            </el-table-column>
-                            <el-table-column
-                                property="shortDescription"
-                                label="Mô tả ngắn"
-                                show-overflow-tooltip>
-                            </el-table-column>
-                            <el-table-column
-                                label=""
-                                width="175">
-                                <template slot-scope="scope">
-                                    <el-button
-                                    size="mini"
-                                    type="primary"
-                                    @click="handleEdit(scope.$index, scope.row)">Sửa</el-button>
-                                    <el-button
-                                    size="mini"
-                                    @click="handleDetail(scope.$index, scope.row)">Xem trước</el-button>
-                                </template>
-                            </el-table-column>
-                    </el-table>
-                </div>
-            </el-tab-pane>
-            <el-tab-pane label="Các dịch vụ khác" name="second">
-                <div class="major-service">
-                    <div class="header">
-                        <div class="left">
-                            <div class="title">
-                                Danh sách dịch vụ
-                            </div>
-                            <button @click="handleCreate()">Thêm mới</button>
-                        </div>
-                    </div>
-                    <el-table
-                        ref="multipleTable"
-                        :data="listMinorSerivce"
+                        :data="listAllEmployee"
                         style="width: 100%">
                             <el-table-column
                                 label="ID"
                                 width="75">
-                                <template slot-scope="scope">{{ scope.row.id }}</template>
+                                <template slot-scope="scope">{{ scope.$index + 1 }}</template>
                             </el-table-column>
                             <el-table-column
-                                property="title"
-                                label="Tiêu đề"
+                                property="type"
+                                label="Type"
                                 width="200">
                             </el-table-column>
                             <el-table-column
-                                property="brieft"
-                                label="Tóm tắt"
+                                property="name"
+                                label="Họ và tên"
                                 show-overflow-tooltip>
                             </el-table-column>
                             <el-table-column
-                                property="shortDes"
-                                label="Mô tả ngắn"
+                                property="email"
+                                label="Email"
                                 show-overflow-tooltip>
                             </el-table-column>
                             <el-table-column
@@ -91,100 +42,302 @@
                                     <el-button
                                     size="mini"
                                     type="primary"
-                                    @click="handleEdit(scope.$index, scope.row)">Sửa</el-button>
-                                    <el-button
-                                    size="mini"
-                                    @click="handleDetail(scope.$index, scope.row)">Xem trước</el-button>
+                                    @click="handleEditEmail(scope.$index, scope.row)">Sửa</el-button>
                                     <el-button
                                     size="mini"
                                     type="danger"
-                                    @click="handleDelete(scope.$index, scope.row)">Xóa</el-button>
+                                    @click="handleDeleteEmail(scope.$index, scope.row)">Xóa</el-button>
                                 </template>
                             </el-table-column>
                     </el-table>
                 </div>
             </el-tab-pane>
+            <el-tab-pane label="Cài đặt liên lạc" name="contact">
+                <div class="major-service">
+                    <div class="header">
+                        <div class="left">
+                            <div class="title">
+                                Thông tin liên hệ
+                            </div>
+                            <button @click="enableEdit = true">Chỉnh sửa</button>
+                        </div>
+                    </div>
+                    <div class="contact-admin">
+                        <el-form>
+                            <el-form-item label="Số điện thoại" :label-width="formLabelWidth">
+                                <el-input v-model="contact.phone" :disabled="!enableEdit" autocomplete="off" :class="{error_input : errorFormContact.phone}"></el-input>
+                            </el-form-item>
+                            <el-form-item label="Email" :label-width="formLabelWidth">
+                                <el-input v-model="contact.email" :disabled="!enableEdit" autocomplete="off" :class="{error_input : errorFormContact.email}"></el-input>
+                            </el-form-item>
+                            <el-form-item label="Facebook" :label-width="formLabelWidth">
+                                <el-input v-model="contact.facebook" :disabled="!enableEdit" autocomplete="off" :class="{error_input : errorFormContact.facebook}"></el-input>
+                            </el-form-item>
+                            <el-form-item label="Instagram" :label-width="formLabelWidth">
+                                <el-input v-model="contact.insta" :disabled="!enableEdit" autocomplete="off" :class="{error_input : errorFormContact.instagram}"></el-input>
+                            </el-form-item>
+                            <el-form-item label="Youtube" :label-width="formLabelWidth">
+                                <el-input v-model="contact.youtube" :disabled="!enableEdit" autocomplete="off" :class="{error_input : errorFormContact.youtube}"></el-input>
+                            </el-form-item>
+                            <el-form-item label="Địa chỉ" :label-width="formLabelWidth">
+                                <el-input v-model="contact.address" :disabled="!enableEdit" autocomplete="off" :class="{error_input : errorFormContact.address}"></el-input>
+                            </el-form-item>
+                        </el-form>
+                        <span slot="footer" class="dialog-footer">
+                            <el-button @click="closeEditContact()" v-if="enableEdit">Trở về</el-button>
+                            <el-button type="primary" v-if="enableEdit" @click="updateContact()">Cập nhật</el-button>
+                        </span>
+                    </div>
+                </div>
+            </el-tab-pane>
+            <el-tab-pane label="Đổi mật khẩu" name="changePass">
+                <div class="major-service">
+                    <div class="header">
+                        <div class="left">
+                            <div class="title">
+                                Danh sách dịch vụ
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-admin">
+                        <el-form>
+                            <el-form-item label="Mật khẩu hiện tại" :label-width="formLabelWidth">
+                                <el-input v-model="user.currentPassword" autocomplete="off" :class="{error_input : errorFormChangePass.currentPassword}"></el-input>
+                            </el-form-item>
+                            <el-form-item label="Mật khẩu mới" :label-width="formLabelWidth">
+                                <el-input v-model="user.newPassword" autocomplete="off" :class="{error_input : errorFormChangePass.newPassword}"></el-input>
+                            </el-form-item>
+                            <el-form-item label="Nhập lại mật khẩu" :label-width="formLabelWidth">
+                                <el-input v-model="user.confirmPassword" autocomplete="off" :class="{error_input : errorFormChangePass.confirmPassword}"></el-input>
+                            </el-form-item>
+                        </el-form>
+                        <span slot="footer" class="dialog-footer">
+                            <el-button type="primary" @click="cancelChangePass()">Hủy bỏ</el-button>
+                            <el-button type="primary" @click="changePassword()">Cập nhật</el-button>
+                        </span>
+                    </div>
+                </div>
+            </el-tab-pane>
         </el-tabs>
+        <CreateEmail v-if="openDialogCreateEmail" :openDialogCreateEmail.sync="openDialogCreateEmail" :edit="edit" :employee="employee" :success.sync="success"/>
+        <DeleteEmail v-if="openDialogDeleteEmail" :openDialogDeleteEmail.sync="openDialogDeleteEmail" :employee="employee" :success.sync="success"/>
     </div>
 </template>
 <script>
+import CreateEmail from './components/CreateEmail'
+import DeleteEmail from './components/DeleteEmail'
+import UtilService from '@/utils/UtilService'
 
 export default {
+    components: {
+        CreateEmail,
+        DeleteEmail
+    },
     data() {
       return {
-        activeName: 'first',
-        openDialogCreate: false,
-        openDialogDelete:false,
-        openDialogPreview: false,
-        service: {},
+        activeName: 'email',
+        openDialogCreateEmail: false,
+        openDialogDeleteEmail:false,
+        employee: {},
         edit: false,
         success: false,
         loading: false,
-        id: null
+        id: null,
+        contact: {
+            phone: '',
+            email: '',
+            address: '',
+            facebook: '',
+            insta: '',
+            youtube: ''
+        },
+        errorFormContact: {
+            phone: false,
+            email: false,
+            address: false,
+            facebook: false,
+            instagram: false,
+            youtube: false
+        }, 
+        user: {
+            currentPassword: '', 
+            newPassword: '',
+            confirmPassword: ''
+        },
+        errorFormChangePass: {
+            currentPassword: false,
+            newPassword: false,
+            confirmPassword: false
+        },
+        enableEdit: false
       }
     },
     computed: {
-        listHompageService() {
-            return this.$store.getters.listHomepageService
+        listAllEmployee() {
+            return this.$store.getters.listAllEmployee;
         },
-        listMinorSerivce() {
-            return this.$store.getters.listMinorService
+        isValidPhone() {
+            return this.contact.phone.trim() && UtilService.checkValidatePhone(this.contact.phone)
+        },
+        isValidEmail() {
+            return this.contact.email.trim() && UtilService.checkValidateEmail(this.contact.email)
+        },
+        isValidAddress() {
+            return this.contact.address.trim()
+        },
+        isValidFacebook() {
+            return this.contact.facebook.trim()
+        },
+        isValidInstagram() {
+            return this.contact.insta.trim()
+        },
+        isValidYouTube() {
+            return this.contact.youtube.trim()
+        },
+        isValidFormContact() {
+            return this.isValidPhone && this.isValidEmail && this.isValidAddress 
+                && this.isValidFacebook && this.isValidInstagram && this.isValidYouTube
+        },
+        isValidCurrentPassword() {
+            return this.user.currentPassword.trim()
+        },
+        isValidNewPassword() {
+            return this.user.newPassword.trim()
+        },
+        isValidConfirmPassword() {
+            return this.user.confirmPassword.trim()
+        },
+        isValidFormChangePass() {
+            return this.isValidCurrentPassword && this.isValidNewPassword && this.isValidConfirmPassword
         }
     },
-    // watch: {
-    //     openDialogCreate(e) {
-    //         if(e && this.success) {
-    //             this.success = false
-    //             this.loading = true
-    //             this.fetch()
-    //         }
-    //     },
-    //     openDialogDelete(e) {
-    //         if(e && this.success) {
-    //             this.success = false
-    //             this.loading = true
-    //             this.fetch()
-    //         }
-    //     }
-    // },
-    methods: {
-        toggleSelection(rows) {
-            if (rows) {
-            rows.forEach(row => {
-                this.$refs.multipleTable.toggleRowSelection(row);
-            });   
-            } else {
-            this.$refs.multipleTable.clearSelection();
+    watch: {
+        openDialogCreateEmail(e) {
+            if(!e && this.success) {
+                this.success = false
+                this.loading = true
+                this.fetch()
             }
         },
-        handleSelectionChange(val) {
-            this.multipleSelection = val;
+        openDialogDeleteEmail(e) {
+            if(!e && this.success) {
+                this.success = false
+                this.loading = true
+                this.fetch()
+            }
+        }
+    },
+    methods: {
+        async handleClick(tab, event) {
+            this.loading = true
+            await this.fetch()
         },
-        handleClick(tab, event) {
-            console.log(tab, event);
-        },
-        handleEdit(index, row) {
-            this.service = row
+        handleEditEmail(index, row) {
+            this.employee = row
             this.edit = true
-            this.openDialogCreate = true
+            this.openDialogCreateEmail = true
         },
-        handleCreate(index, row) {
-            this.service = {}
+        handleCreateEmail(index, row) {
+            this.employee = {}
             this.edit = false
-            this.openDialogCreate = true
+            this.openDialogCreateEmail = true
         },
-        handleDetail(index, row) {
-            this.id = row.id
-            this.openDialogPreview = true
+        async closeEditContact() {
+            this.enableEdit = false
+            this.errorFormContact = {
+                phone: false,
+                email: false,
+                address: false,
+                facebook: false,
+                instagram: false,
+                youtube: false
+            }
+            await this.fetch()
         },
-        handleDelete(index, row) {
-            this.service = row
-            this.openDialogDelete = true
+        async updateContact() {
+            this.loading = true
+            this.errorFormContact.phone = !this.isValidPhone
+            this.errorFormContact.email = !this.isValidEmail
+            this.errorFormContact.address = !this.isValidAddress
+            this.errorFormContact.facebook = !this.isValidFacebook
+            this.errorFormContact.instagram = !this.isValidInstagram
+            this.errorFormContact.youtube = !this.isValidYouTube
+            if(this.isValidFormContact) {
+                await this.$store.dispatch('updateContact', this.contact).then(rs => {
+                    if(rs.status === 'success') {
+                        this.fetch()
+                    } else {
+                        this.loading = false
+                    }
+                })
+            } else {
+                this.loading = false
+                this.$store.dispatch('showErrorMsg', 'Vui lòng kiểm tra lại thông tin.')
+            }
+        },
+        cancelChangePass() {
+            this.user = {
+                currentPassword: '', 
+                newPassword: '',
+                confirmPassword: ''
+            }
+            this.errorFormChangePass = {
+                currentPassword: false,
+                newPassword: false,
+                confirmPassword: false
+            }
+        },
+        async changePassword() {
+            this.loading = true
+            this.errorFormChangePass.currentPassword = !this.isValidCurrentPassword
+            this.errorFormChangePass.newPassword = !this.isValidNewPassword
+            this.errorFormChangePass.confirmPassword = !this.isValidConfirmPassword
+            if(this.isValidFormChangePass) {
+                if(this.user.confirmPassword !== this.user.newPassword) {
+                    this.loading = false 
+                    this.$store.dispatch('showErrorMsg', 'Mật khẩu không trùng khớp.')
+                } else {
+                    await this.$store.dispatch('changePassword', {
+                        password: this.user.newPassword,
+                        username: 'admin'
+                    }).then(rs => {
+                        if(rs.status === 'success') {
+                            this.user = {
+                                currentPassword: '', 
+                                newPassword: '',
+                                confirmPassword: ''
+                            }
+                            this.errorFormChangePass = {
+                                currentPassword: false,
+                                newPassword: false,
+                                confirmPassword: false
+                            },
+                            setTimeout(() => {
+                                this.loading = false
+                            },300)
+                        }
+                    })
+                }
+            } else {
+                this.loading = true
+                this.$store.dispatch('showErrorMsg','Vui lòng kiểm tra lại thông tin.')
+            }
+        },
+        handleDeleteEmail(index, row) {
+            this.employee = row
+            this.openDialogDeleteEmail = true
         },
         async fetch() {
             this.loading = true
-            await this.$store.dispatch('getAllHomepageService')
-            await this.$store.dispatch('getAllMinorService')
+            if(this.activeName === 'email') {
+                await this.$store.dispatch('getAllEmployee')
+            } else if(this.activeName === 'contact') {
+                await this.$store.dispatch('getContact').then(rs => {
+                    if(rs.status === 'success') {
+                        this.contact = rs.data
+                    }
+                })
+            }
             setTimeout(() => {
                 this.loading = false
             }, 300)

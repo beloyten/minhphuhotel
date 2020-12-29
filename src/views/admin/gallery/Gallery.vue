@@ -9,85 +9,73 @@
                     <button @click="handleCreate()">Thêm mới</button>
                 </div>
             </div>
-            <el-table
-                ref="multipleTable"
-                :data="listHompageService"
-                style="width: 100%; min-height: 500px;">
-                    <el-table-column
-                        label="ID"
-                        width="75">
-                        <template slot-scope="scope">{{ scope.row.id }}</template>
-                    </el-table-column>
-                    <el-table-column
-                        property="title"
-                        label="Tiêu đề"
-                        width="200">
-                    </el-table-column>
-                    <el-table-column
-                        property="brief"
-                        label="Tóm tắt"
-                        show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column
-                        property="shortDescription"
-                        label="Mô tả ngắn"
-                        show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column
-                        label=""
-                        width="275">
-                        <template slot-scope="scope">
-                            <el-button
-                            size="mini"
-                            type="primary"
-                            @click="handleEdit(scope.$index, scope.row)">Sửa</el-button>
-                            <el-button
-                            size="mini"
-                            @click="handleDetail(scope.$index, scope.row)">Xem trước</el-button>
-                            <el-button
-                            size="mini"
-                            type="danger"
-                            @click="handleDelete(scope.$index, scope.row)">Xóa</el-button>
-                        </template>
-                    </el-table-column>
-            </el-table>
+            <div class="list-gallery" v-if="listAllPhotoGallery.length > 0">
+                <div class="img-gallery-admin" v-for="item in getNumberRow" :key="item">
+                    <div class="img-gallery">
+                        <img :src="listAllPhotoGallery[item*3-3] && listAllPhotoGallery[item*3-3].img ? listAllPhotoGallery[item*3-3].img : ''" alt="" :class="{display_none: !listAllPhotoGallery[item*3-3]}" @click="viewImage(item)"/>
+                        <img v-if="listAllPhotoGallery[item*3-3]" class="img-logo" src="images/icons/delete.png" alt="" @click.prevent="handleDelete(listAllPhotoGallery[item*3-3])"/>
+                    </div>
+                    <div class="img-gallery">
+                        <img :src="listAllPhotoGallery[item*3-2] && listAllPhotoGallery[item*3-2].img ? listAllPhotoGallery[item*3-2].img : ''" alt="" :class="{display_none: !listAllPhotoGallery[item*3-2]}" @click="viewImage(item)"/>
+                        <img v-if="listAllPhotoGallery[item*3-2]" class="img-logo" src="images/icons/delete.png" alt="" @click.prevent="handleDelete(listAllPhotoGallery[item*3-2])"/>
+                    </div>
+                    <div class="img-gallery">
+                        <img :src="listAllPhotoGallery[item*3-1] && listAllPhotoGallery[item*3-1].img ? listAllPhotoGallery[item*3-1].img : ''" alt="" :class="{display_none: !listAllPhotoGallery[item*3-1]}" @click="viewImage(item)"/>
+                        <img v-if="listAllPhotoGallery[item*3-1]" class="img-logo" src="images/icons/delete.png" alt="" @click.prevent="handleDelete(listAllPhotoGallery[item*3-1])"/>
+                    </div>
+                </div>
+            </div>
+            <div v-else class="no-data">
+                <p>Thư viện ảnh của bạn chưa có ảnh nào. Hãy <a href="#" @click.prevent="handleCreate()">Thêm mới</a> để thêm một ảnh vào thư viện.</p>
+            </div>
         </div>
+        <AddImage v-if="openDialogCreate" :openDialogCreate.sync="openDialogCreate" :success.sync="success"/>
+        <DeleteImage v-if="openDialogDelete" :openDialogDelete.sync="openDialogDelete" :success.sync="success" :id="id"/>
+        <ViewImage v-if="openDialogView" :openDialogView.sync="openDialogView"/>
     </div>
 </template>
 <script>
+import AddImage from "./components/AddImage"
+import DeleteImage from "./components/DeleteImage"
+import ViewImage from "./components/ViewImage"
 
 export default {
+    components: {
+        AddImage,
+        DeleteImage,
+        ViewImage
+    },
     data() {
       return {
         activeName: 'first',
         openDialogCreate: false,
         openDialogDelete:false,
-        openDialogPreview: false,
+        openDialogView: false,
         service: {},
         edit: false,
         success: false,
         loading: false,
-        id: null
+        id: null,
+        getNumberRow: 0
       }
     },
     computed: {
-        listHompageService() {
-            return this.$store.getters.listHomepageService
+        listAllPhotoGallery() {
+            return this.$store.getters.listAllPhotoGallery
         },
-        listMinorSerivce() {
-            return this.$store.getters.listMinorService
-        }
     },
     watch: {
         openDialogCreate(e) {
-            if(e && this.success) {
+            if(!e && this.success) {
                 this.success = false
                 this.loading = true
                 this.fetch()
             }
         },
         openDialogDelete(e) {
-            if(e && this.success) {
+            console.log(e)
+            console.log(this.success)
+            if(!e && this.success) {
                 this.success = false
                 this.loading = true
                 this.fetch()
@@ -95,48 +83,28 @@ export default {
         }
     },
     methods: {
-        toggleSelection(rows) {
-            if (rows) {
-            rows.forEach(row => {
-                this.$refs.multipleTable.toggleRowSelection(row);
-            });   
-            } else {
-            this.$refs.multipleTable.clearSelection();
-            }
-        },
-        handleSelectionChange(val) {
-            this.multipleSelection = val;
-        },
-        handleClick(tab, event) {
-            console.log(tab, event);
-        },
-        handleEdit(index, row) {
-            this.service = row
-            this.edit = true
-            this.openDialogCreate = true
-        },
         handleCreate(index, row) {
-            this.service = ""
-            this.edit = false
             this.openDialogCreate = true
         },
-        handleDetail(index, row) {
-            this.id = row.id
-            this.openDialogPreview = true
-        },
-        handleDelete(index, row) {
-            this.service = row
-            console.log("okk"+this.openDialogDelete)
+        handleDelete(object) {
+            this.id = object.id
             this.openDialogDelete = true
-            console.log(this.openDialogDelete)
         },
         async fetch() {
             this.loading = true
-            await this.$store.dispatch('getAllHomepageService')
-            await this.$store.dispatch('getAllMinorService')
+            await this.$store.dispatch('getAllPhotoInGallery')
+            if(this.listAllPhotoGallery.length % 3 === 0) {
+                this.getNumberRow = Math.floor(this.listAllPhotoGallery.length / 3)
+            } else {
+                this.getNumberRow = Math.floor(this.listAllPhotoGallery.length / 3) + 1
+            }
             setTimeout(() => {
                 this.loading = false
             }, 300)
+        },
+        viewImage() {
+            this.openDialogView = true
+            console.log(this.openDialogView)
         }
     },
     async created() {

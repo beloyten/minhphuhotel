@@ -37,6 +37,12 @@ var actions = {
     LocalStorage.removeRemember()
     LocalStorage.removeIsLoggedInMinhPhu()
     router.push({ name: 'Đăng nhập' })
+  },
+  changePassword (ctx, data) {
+    return new Promise( async resolve => {
+      var res = await API.changePassword(data)
+      resolve(res)
+    })
   }
 }
 
