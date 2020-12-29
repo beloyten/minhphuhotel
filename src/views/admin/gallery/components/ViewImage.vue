@@ -1,7 +1,7 @@
 <template>
     <el-dialog title="Xem trước thư viện ảnh" :visible="openDialogView" @close="close()" :fullscreen="true">
         <div class="gallery-preview">
-            <el-carousel :autoplay="false" height="800px" indicator-position="outside" trigger="click" :loop="false" :interval='0'>
+            <el-carousel :initial-index="index" :autoplay="false" height="800px" indicator-position="outside" trigger="click" :loop="false" :interval='0'>
                 <el-carousel-item v-for="(item, index) in listAllPhotoGallery" :key="index">
                     <div class="item">
                         <img
@@ -25,7 +25,8 @@ export default {
         },
     },
     props: {
-        openDialogView: false
+        openDialogView: false,
+        index: 0
     }, 
     methods: {
         close() {

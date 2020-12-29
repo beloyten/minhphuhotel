@@ -12,15 +12,15 @@
             <div class="list-gallery" v-if="listAllPhotoGallery.length > 0">
                 <div class="img-gallery-admin" v-for="item in getNumberRow" :key="item">
                     <div class="img-gallery">
-                        <img :src="listAllPhotoGallery[item*3-3] && listAllPhotoGallery[item*3-3].img ? listAllPhotoGallery[item*3-3].img : ''" alt="" :class="{display_none: !listAllPhotoGallery[item*3-3]}" @click="viewImage(item)"/>
+                        <img :src="listAllPhotoGallery[item*3-3] && listAllPhotoGallery[item*3-3].img ? listAllPhotoGallery[item*3-3].img : ''" alt="" :class="{display_none: !listAllPhotoGallery[item*3-3]}" @click="viewImage(item*3-3)"/>
                         <img v-if="listAllPhotoGallery[item*3-3]" class="img-logo" src="images/icons/delete.png" alt="" @click.prevent="handleDelete(listAllPhotoGallery[item*3-3])"/>
                     </div>
                     <div class="img-gallery">
-                        <img :src="listAllPhotoGallery[item*3-2] && listAllPhotoGallery[item*3-2].img ? listAllPhotoGallery[item*3-2].img : ''" alt="" :class="{display_none: !listAllPhotoGallery[item*3-2]}" @click="viewImage(item)"/>
+                        <img :src="listAllPhotoGallery[item*3-2] && listAllPhotoGallery[item*3-2].img ? listAllPhotoGallery[item*3-2].img : ''" alt="" :class="{display_none: !listAllPhotoGallery[item*3-2]}" @click="viewImage(item*3-2)"/>
                         <img v-if="listAllPhotoGallery[item*3-2]" class="img-logo" src="images/icons/delete.png" alt="" @click.prevent="handleDelete(listAllPhotoGallery[item*3-2])"/>
                     </div>
                     <div class="img-gallery">
-                        <img :src="listAllPhotoGallery[item*3-1] && listAllPhotoGallery[item*3-1].img ? listAllPhotoGallery[item*3-1].img : ''" alt="" :class="{display_none: !listAllPhotoGallery[item*3-1]}" @click="viewImage(item)"/>
+                        <img :src="listAllPhotoGallery[item*3-1] && listAllPhotoGallery[item*3-1].img ? listAllPhotoGallery[item*3-1].img : ''" alt="" :class="{display_none: !listAllPhotoGallery[item*3-1]}" @click="viewImage(item*3-1)"/>
                         <img v-if="listAllPhotoGallery[item*3-1]" class="img-logo" src="images/icons/delete.png" alt="" @click.prevent="handleDelete(listAllPhotoGallery[item*3-1])"/>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
         </div>
         <AddImage v-if="openDialogCreate" :openDialogCreate.sync="openDialogCreate" :success.sync="success"/>
         <DeleteImage v-if="openDialogDelete" :openDialogDelete.sync="openDialogDelete" :success.sync="success" :id="id"/>
-        <ViewImage v-if="openDialogView" :openDialogView.sync="openDialogView"/>
+        <ViewImage v-if="openDialogView" :openDialogView.sync="openDialogView" :index="index"/>
     </div>
 </template>
 <script>
@@ -56,7 +56,8 @@ export default {
         success: false,
         loading: false,
         id: null,
-        getNumberRow: 0
+        getNumberRow: 1,
+        index: 0
       }
     },
     computed: {
@@ -102,9 +103,9 @@ export default {
                 this.loading = false
             }, 300)
         },
-        viewImage() {
+        viewImage(number) {
+            this.index = number
             this.openDialogView = true
-            console.log(this.openDialogView)
         }
     },
     async created() {
