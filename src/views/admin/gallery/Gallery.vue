@@ -93,7 +93,7 @@ export default {
         },
         async fetch() {
             this.loading = true
-            await this.$store.dispatch('getAllPhotoInGallery')
+            await this.$store.dispatch('getAllPhotoInGallery', {is_limit: false})
             if(this.listAllPhotoGallery.length % 3 === 0) {
                 this.getNumberRow = Math.floor(this.listAllPhotoGallery.length / 3)
             } else {

@@ -12,6 +12,9 @@
                         :showPrimary="false"
                     ></vue-upload-multiple-image>
                 </el-form-item>
+                <el-form-item label="Tên dịch vụ" :label-width="formLabelWidth">
+                    <el-input v-model="serviceDetail.name" autocomplete="off" :class="{error_input : errorForm.name}"></el-input>
+                </el-form-item>
                 <el-form-item label="Tiêu đề" :label-width="formLabelWidth">
                     <el-input v-model="serviceDetail.title" autocomplete="off" :class="{error_input : errorForm.title}"></el-input>
                 </el-form-item>
@@ -44,6 +47,7 @@ export default {
         return { 
             formLabelWidth: '170px',
             serviceDetail: {
+                name: "",
                 title: "",
                 brief: "",
                 shortDescription: "",
@@ -54,6 +58,7 @@ export default {
             imgList: [],
             dialogImageUrl: '',
             errorForm: {
+                name: false,
                 title: false,
                 brief: false,
                 shortDescription: false,
@@ -62,6 +67,9 @@ export default {
         }
     },
     computed: {
+        isValidName() {
+            return this.serviceDetail.name.trim()
+        },
         isValidTitle() {
             return this.serviceDetail.title.trim()
         },
@@ -112,6 +120,7 @@ export default {
         },
         async updateService() {
             this.loading = true
+            this.errorForm.name = !this.isValidName
             this.errorForm.title = !this.isValidTitle
             this.errorForm.brief = !this.isValidBrief
             this.errorForm.shortDescription = !this.isValidShortDescription

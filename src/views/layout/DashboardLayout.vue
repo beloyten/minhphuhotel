@@ -59,8 +59,11 @@ export default {
       return result
     },
     user () {
-      return this.$store.getters.user.user
+      return this.$store.getters.user
     },
+    isLoggedIn () {
+      return this.$store.getters.isLoggedInMinhPhu
+    }
   },
   created () {
     // this.$store.dispatch('getUserInfo')

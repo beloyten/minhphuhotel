@@ -90,6 +90,32 @@
                     </div>
                 </div>
             </el-tab-pane>
+            <el-tab-pane label="Cài đặt giới thiệu" name="preface">
+                <div class="major-service">
+                    <div class="header">
+                        <div class="left">
+                            <div class="title">
+                                Thông tin giới thiệu
+                            </div>
+                            <button @click="enableEditPreface = true">Chỉnh sửa</button>
+                        </div>
+                    </div>
+                    <div class="contact-admin">
+                        <el-form>
+                            <el-form-item label="Tiêu đề" :label-width="formLabelWidth">
+                                <el-input v-model="preface.title" :disabled="!enableEditPreface" autocomplete="off" :class="{error_input : errorFormPreface.title}"></el-input>
+                            </el-form-item>
+                            <el-form-item label="Nội dung" :label-width="formLabelWidth">
+                                <textarea id="message" :disabled="!enableEditPreface" v-model="preface.description" :class="{error_textarea: errorFormPreface.description}"></textarea>
+                            </el-form-item>
+                        </el-form>
+                        <span slot="footer" class="dialog-footer">
+                            <el-button @click="closeEditPreface()" v-if="enableEditPreface">Trở về</el-button>
+                            <el-button type="primary" v-if="enableEditPreface" @click="updatePreface()">Cập nhật</el-button>
+                        </span>
+                    </div>
+                </div>
+            </el-tab-pane>
             <el-tab-pane label="Đổi mật khẩu" name="changePass">
                 <div class="major-service">
                     <div class="header">
@@ -159,6 +185,14 @@ export default {
             instagram: false,
             youtube: false
         }, 
+        preface: {
+            title: '',
+            description: ''
+        },
+        errorFormPreface: {
+            title: false,
+            description: false
+        }, 
         user: {
             currentPassword: '', 
             newPassword: '',
@@ -169,7 +203,9 @@ export default {
             newPassword: false,
             confirmPassword: false
         },
-        enableEdit: false
+        enableEdit: false,
+        enableEditPreface: false,
+        formLabelWidth: '170px'
       }
     },
     computed: {
@@ -209,6 +245,15 @@ export default {
         },
         isValidFormChangePass() {
             return this.isValidCurrentPassword && this.isValidNewPassword && this.isValidConfirmPassword
+        },
+        isValidTitlePreface() {
+            return this.preface.title.trim()
+        },
+        isValidDescriptionPreface() {
+            return this.preface.description.trim()
+        },
+        isValidFormPreface() {
+            return this.isValidTitlePreface && this.isValidDescriptionPreface
         }
     },
     watch: {
@@ -254,6 +299,14 @@ export default {
             }
             await this.fetch()
         },
+        async closeEditPreface() {
+            this.enableEditPreface = false
+            this.errorFormPreface = {
+                title: false,
+                escription: false
+            }
+            await this.fetch()
+        },
         async updateContact() {
             this.loading = true
             this.errorFormContact.phone = !this.isValidPhone
@@ -265,6 +318,25 @@ export default {
             if(this.isValidFormContact) {
                 await this.$store.dispatch('updateContact', this.contact).then(rs => {
                     if(rs.status === 'success') {
+                        this.enableEdit = false
+                        this.fetch()
+                    } else {
+                        this.loading = false
+                    }
+                })
+            } else {
+                this.loading = false
+                this.$store.dispatch('showErrorMsg', 'Vui lòng kiểm tra lại thông tin.')
+            }
+        },
+        async updatePreface() {
+            this.loading = true
+            this.errorFormPreface.title = !this.isValidTitlePreface
+            this.errorFormPreface.description = !this.isValidDescriptionPreface
+            if(this.isValidFormPreface) {
+                await this.$store.dispatch('editPreface', this.preface).then(rs => {
+                    if(rs.status === 'success') {
+                        this.enableEditPreface = false
                         this.fetch()
                     } else {
                         this.loading = false
@@ -335,6 +407,12 @@ export default {
                 await this.$store.dispatch('getContact').then(rs => {
                     if(rs.status === 'success') {
                         this.contact = rs.data
+                    }
+                })
+            } else  if(this.activeName === 'preface') {
+                await this.$store.dispatch('getPreface').then(rs => {
+                    if(rs.status === 'success') {
+                        this.preface = rs.data
                     }
                 })
             }

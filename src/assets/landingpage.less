@@ -8,7 +8,7 @@
         height: calc(100vw * 0.5);
     }
     .landing-page-carousel {
-        .item-1, .item-2, .item-3 {
+        .item{
             position: relative;
             height: 100%;
             img {
@@ -22,8 +22,10 @@
                 justify-content: center;
                 align-items: center;
                 color: #fff;
-                left: 34%;
-                font-size: calc(100vw * 0.026);
+                left: 30%;
+                font-size: calc(100vw * 0.035);
+                font-weight: bold;
+                font-family: 'GLACIAL';
             }
         }
     }
@@ -217,8 +219,6 @@
         z-index: 1;
         position: relative;
         height: 100%;
-        background: linear-gradient(#222020cc, rgba(57, 57, 57, 0.2)),
-            url("../assets/image/background-homepage2.jpg");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -229,10 +229,14 @@
         align-items: center;
         justify-content: center;
         .event-text {
+            position: absolute;
             font-size: 60px;
             height: 80px;
+            bottom: calc(100vw * 0.2);
         }
         a {
+            position: absolute;
+            bottom: calc(100vw * 0.16);
             color: white;
             font-size: 15px;
             margin-top: 0;
@@ -241,6 +245,10 @@
                 background-color:  #ab6c2d;
                 border-radius: 30px;
             }
+        }
+        img {
+            filter: brightness(50%);
+            object-fit: cover;
         }
     }
     .form-booking {
@@ -472,6 +480,9 @@
             font-size: 15px;
             margin-top: 5px;
             font-family: OpenSans;
+        }
+        .address {
+            height: 50px;
         }
         .icon-contact {
             display: flex;

@@ -82,6 +82,12 @@ var actions = {
       resolve(res)
     })
   },
+  getOneBanner (ctx, data) {
+    return new Promise(async resolve => {
+      var res = await API.getOneBanner(data)
+      resolve(res)
+    })
+  },
   getContact(ctx) {
     return new Promise(async resolve => {
       var res = await API.getContact()
@@ -121,9 +127,9 @@ var actions = {
       resolve(res)
     })
   },
-  getAllPhotoInGallery(ctx) {
+  getAllPhotoInGallery(ctx, data) {
     return new Promise(async resolve => {
-      var res = await API.getAllPhotoInGallery()
+      var res = await API.getAllPhotoInGallery(data)
       console.log(res)
       if(res && res.data && res.data.content) {
         ctx.dispatch('setListAllPhotoGallery', res.data.content)

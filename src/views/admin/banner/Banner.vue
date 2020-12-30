@@ -20,17 +20,11 @@
                     </el-table-column>
                     <el-table-column
                         property="title"
-                        label="Tiêu đề"
-                        width="200">
+                        label="Tiêu đề">
                     </el-table-column>
                     <el-table-column
                         property="brief"
                         label="Tóm tắt"
-                        show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column
-                        property="shortDescription"
-                        label="Mô tả ngắn"
                         show-overflow-tooltip>
                     </el-table-column>
                     <el-table-column
