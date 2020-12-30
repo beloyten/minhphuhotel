@@ -40,15 +40,7 @@
 </template>
 
 <script>
-
-import Config from '@/config/Config'
-import { Message, MessageBox } from 'element-ui'
-import Constant from '@/config/Constant'
-import Router from 'vue-router'
-import router from '@/router'
-import CONSTANT from '@/config/Constant'
 export default {
-  name: 'login',
   data() {
     return {
       loginForm: {
@@ -82,7 +74,7 @@ export default {
     async submit () {
       this.loading = true
       await this.$store.dispatch('login', this.loginForm).then(rs => {
-        if (rs.status.toLowerCase() === CONSTANT.SUCCESS.toLowerCase()) {
+        if (rs.status === 'success') {
           this.handleAfterLogin(rs)
         }
       })

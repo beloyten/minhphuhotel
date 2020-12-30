@@ -5,7 +5,7 @@
 <script>
 export default {
     created () {
-      this.$router.push({ name: 'Login' })
+      this.$router.push({ name: 'Dịch vụ' })
     }
 }
 </script>

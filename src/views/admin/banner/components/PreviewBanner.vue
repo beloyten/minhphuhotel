@@ -6,7 +6,7 @@
                 <el-carousel-item v-for="(item, index) in post.list" :key="index">
                     <div class="item">
                         <img
-                            :src="item.img"
+                            :src="item"
                             alt=""
                         />
                     </div>
@@ -54,9 +54,10 @@ export default {
     },
     async created() {
         if(this.id) {
-            await this.$store.dispatch('getOnePost', this.id).then(rs => {
+            await this.$store.dispatch('getOneBanner', this.id).then(rs => {
                 if(rs.status === 'success') {
-                    this.post = rs.data
+                    this.post.post = rs.data
+                    this.post.list.push(rs.data.image)
                 }
             })
         }

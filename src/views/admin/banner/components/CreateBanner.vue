@@ -152,10 +152,10 @@ export default {
     async created() {
         if(this.edit) {
             let imgResponse = []
-            await this.$store.dispatch('getOnePost', this.banner.id).then(rs => {
+            await this.$store.dispatch('getOneBanner', this.banner.id).then(rs => {
                 if(rs.status === 'success') {
-                    this.bannerDetail = rs.data.post
-                    imgResponse = rs.data.list
+                    this.bannerDetail = rs.data
+                    imgResponse.push(rs.data.image)
                 }
             })
             let listImage = imgResponse.map((item,index) => {
@@ -164,12 +164,12 @@ export default {
                     obj.default = 1
                     obj.highlight = 1
                     obj.name = ''
-                    obj.path = item.img
+                    obj.path = item
                 } else {
                     obj.default = 0
                     obj.highlight = 0
                     obj.name = ''
-                    obj.path = item.img
+                    obj.path = item
                 }
                 return obj
             })

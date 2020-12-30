@@ -20,6 +20,11 @@
                                 <template slot-scope="scope">{{ scope.$index + 1 }}</template>
                             </el-table-column>
                             <el-table-column
+                                property="name"
+                                label="Tên dịch vụ"
+                                width="200">
+                            </el-table-column>
+                            <el-table-column
                                 property="title"
                                 label="Tiêu đề"
                                 width="200">
@@ -68,6 +73,11 @@
                                 label="ID"
                                 width="75">
                                 <template slot-scope="scope">{{ scope.$index + 1 }}</template>
+                            </el-table-column>
+                            <el-table-column
+                                property="name"
+                                label="Tên dịch vụ"
+                                width="200">
                             </el-table-column>
                             <el-table-column
                                 property="title"

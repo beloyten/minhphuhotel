@@ -16,34 +16,20 @@
     </div>
     <div class="body-landing-page">
         <el-carousel indicator-position="outside" class="landing-page-carousel">
-            <el-carousel-item>
-                <div class="item-1">
-                    <img src="images/background-homepage1.jpg" alt="">
-                    <div class="item__content">Minh Phú Diamond Palace</div>
-                </div>
-            </el-carousel-item>
-            <el-carousel-item>
-                <div class="item-2">
-                    <img src="images/background-homepage2.jpg" alt="">
-                    <div class="item__content">Minh Phú Diamond Palace</div>
-                </div>
-            </el-carousel-item>
-            <el-carousel-item>
-                <div class="item-3">
-                    <img src="images/background-homepage3.jpg" alt="">
-                    <div class="item__content">Minh Phú Diamond Palace</div>
+            <el-carousel-item v-for="(item,index) in listAllBanner" :key="index">
+                <div class="item">
+                    <img :src="item.image" alt="">
+                    <div class="item__content">{{item.title}}</div>
                 </div>
             </el-carousel-item>
         </el-carousel>
         <div class="content">
             <div class="content-title" id="contentTitle">
-                Chào mừng đến với Khách sạn Minh Phú
+                {{preface.title}}
             </div>
             <div class="content-space">____________________________________________________</div>
             <div class="content-short" id="contentShort">
-                Hãy tìm kiếm niềm vui và tận hưởng những dịch vụ tuyệt vời từ Khách sạn lớn nhất Nghệ An. Hãy tìm kiếm niềm vui và tận hưởng những dịch vụ tuyệt vời từ Khách sạn lớn nhất Nghệ An.
-                Hãy tìm kiếm niềm vui và tận hưởng những dịch vụ tuyệt vời từ Khách sạn lớn nhất Nghệ An. Hãy tìm kiếm niềm vui và tận hưởng những dịch vụ tuyệt vời từ Khách sạn lớn nhất Nghệ An.
-                Hãy tìm kiếm niềm vui và tận hưởng những dịch vụ tuyệt vời từ Khách sạn lớn nhất Nghệ An. Hãy tìm kiếm niềm vui và tận hưởng những dịch vụ tuyệt vời từ Khách sạn lớn nhất Nghệ An.
+                {{preface.description}}
             </div>
         </div>
         <div class="post">
@@ -109,21 +95,10 @@
             </div>
         </div>
         <el-carousel indicator-position="none" :interval="5000" height="52em">
-            <el-carousel-item>
+            <el-carousel-item v-for="(item,index) in listAllEvent" :key="index">
                 <div class="event">
-                    <div class="event-text">banner cho event</div>
-                    <router-link to="post-detail">Xem thêm</router-link>
-                </div>
-            </el-carousel-item>
-            <el-carousel-item>
-                <div class="event">
-                    <div class="event-text">banner cho event</div>
-                    <router-link to="post-detail">Xem thêm</router-link>
-                </div>
-            </el-carousel-item>
-            <el-carousel-item>
-                <div class="event">
-                    <div class="event-text">banner cho event</div>
+                    <img :src="item.coverImg"/>
+                    <div class="event-text">{{item.title}}</div>
                     <router-link to="post-detail">Xem thêm</router-link>
                 </div>
             </el-carousel-item>
@@ -175,17 +150,17 @@
                 <div class="line-one1">
                     <div class="line-media1">
                         <div class="line-img1" id="lineImg1">
-                            <img src="images/background-login.jpg" alt=""/>
+                            <img :src="listAllPhotoGallery[0].img" alt=""/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>
                         </div>
                         <div class="line-img2" id="lineImg2">
-                            <img src="images/room.jpg" alt=""/>
+                            <img :src="listAllPhotoGallery[1].img" alt=""/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>
                         </div>
                     </div>
                     <div class="line-media-one1">
                         <div class="line-img3" id="lineImg3">
-                            <img src="images/background-homepage1.jpg" alt=""/>
+                            <img :src="listAllPhotoGallery[2].img" alt=""/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>
                         </div>
                     </div>
@@ -193,17 +168,17 @@
                 <div class="line-one1">
                     <div class="line-media-one2">
                         <div class="line-img4" id="lineImg4">
-                            <img src="images/background-homepage2.jpg" alt=""/>
+                            <img :src="listAllPhotoGallery[3].img" alt=""/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>
                         </div>
                     </div>
                     <div class="line-media2">
                         <div class="line-img5" id="lineImg5">
-                            <img src="images/background-homepage3.jpg" alt=""/>
+                            <img :src="listAllPhotoGallery[4].img" alt=""/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>
                         </div>
                         <div class="line-img6" id="lineImg6">
-                            <img src="images/background-login.jpg" alt=""/>
+                            <img :src="listAllPhotoGallery[5].img" alt=""/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>
                         </div>
                     </div>
@@ -234,8 +209,8 @@
             <div class="footer-content">
                 <h2>Contact Us</h2>
                 <div class="line"></div>
-                <h3>Tell: (84-24) 3823 8115</h3>
-                <h3>Mail: Minhphu@gmail.com</h3>
+                <h3>Tell: {{contact.phone}}</h3>
+                <h3>Mail: {{contact.email}}</h3>
                 <div class="icon-contact">
                     <div class="icon icon-fb">
                         <img src="images/icons/fb.png" alt="">
@@ -258,8 +233,7 @@
             <div class="footer-content">
                 <h2>Address</h2>
                 <div class="line line-small"></div>
-                <h3>76 Yen Phu (small road)</h3>
-                <h3>Tay Ho - Ha Noi</h3>
+                <h3 class="address">{{contact.address}}</h3>
                 <div class="back-to-top" @click="scrollToTop()">
                     <img src="images/icons/back-to-top.png" alt="">
                 </div>
@@ -280,15 +254,59 @@ export default {
     data () {
         return {
             dateBooking: '',
-            down: false
+            down: false,
+            preface: {
+                title: '',
+                description: ''
+            },
+            contact: {
+                email: '',
+                facebook: '',
+                instagram: '',
+                phone: '',
+                youtube: '',
+                address: ''
+            }
         }
     },
     computed: {
         listHomepageService() {
             return this.$store.getters.listHomepageService
+        },
+        listAllBanner () {
+            return this.$store.getters.listAllBanner
+        },
+        listAllBanner () {
+            return this.$store.getters.listAllBanner
+        },
+        listAllService () {
+            return this.$store.getters.listAllService
+        },
+        listAllEvent () {
+            return this.$store.getters.listAllEvent
+        },
+        listAllPhotoGallery () {
+            return this.$store.getters.listAllPhotoGallery
         }
     },
     methods: {
+        async fetch() {
+            await this.$store.dispatch('getAllHomepageService')
+            await this.$store.dispatch('getAllBanner')
+            await this.$store.dispatch('getAllService')
+            await this.$store.dispatch('getAllEvent')
+            await this.$store.dispatch('getAllPhotoInGallery')
+            await this.$store.dispatch('getPreface').then(rs => {
+                if(rs.status === 'success') {
+                    this.preface = rs.data
+                }
+            })
+            await this.$store.dispatch('getContact').then(rs => {
+                if(rs.status === 'success') {
+                    this.contact = rs.data
+                }
+            })
+        },
         viewMore() {
             this.$router.push("/post-detail")
         },
@@ -940,8 +958,7 @@ export default {
             this.toBooking()
         }
         this.$store.dispatch('setBooking', false)
-        await this.$store.dispatch('getAllHomepageService')
-        console.log(this.listHomepageService)
+        await this.fetch()
     }
 }
 </script>

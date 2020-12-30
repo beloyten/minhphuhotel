@@ -17,6 +17,7 @@ var service = {
   deleteBanner: data => Delete(`${apiUrl}/admin/delete-banner`, data),
   getAllBanner: () => Get(`${apiUrl}/all/get-all-banner`), 
   updateBanner: data => Put(`${apiUrl}/admin/edit-banner`, data),
+  getOneBanner: id => Get(`${apiUrl}/all/get-one-banner/${id}`),
 
   //contact Controller
   getContact: () => Get(`${apiUrl}/all/get-contact`), 
@@ -28,10 +29,10 @@ var service = {
   //gallery
   addPhotoToGallery: data => Post(`${apiUrl}/admin/gallery/add-to-gallery`, data),
   deleteImageGallery: data => Delete(`${apiUrl}/admin/gallery/delete-pic`, data), 
-  getAllPhotoInGallery: () =>  Get(`${apiUrl}/all/gallery/get-all-pic`),
+  getAllPhotoInGallery: data =>  Get(`${apiUrl}/all/gallery/get-all-pic`, data),
   
   //preface
-  editPreface: data => Put(`${apiUrl}/all/edit-preface`, data),
+  editPreface: data => Put(`${apiUrl}/admin/edit-preface`, data),
   getPreface: () =>  Get(`${apiUrl}/all/get-preface`),
 
   //event
