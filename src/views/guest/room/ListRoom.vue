@@ -6,40 +6,29 @@
             </div>
             <div class="post-content">
                 <div class="post-title">
-                    <span>Khách sạn chuẩn 4 sao</span>
+                    <span>{{post.title}}</span>
                 </div>
                 <div class="post-bread">
-                    <span>Cảm hứng từ thiết kế Italy</span>
+                    <span>{{post.brief}}</span>
                 </div>
                 <div class="post-content-text">
-                    <span>Set in Hong Kong, less than 1 km from Hong Kong Convention and 
-                        set in Hong Kong, less than 1 km from Hong Kong Convention and 
-                        set in Hong Kong, less than 1 km from Hong Kong Convention and 
-                        set in Hong Kong, less than 1 km from Hong Kong Convention and 
-                        set in Hong Kong, less than 1 km from Hong Kong Convention and
-                        set in Hong Kong, less than 1 km from Hong Kong Convention and
-                        set in Hong Kong, less than 1 km from Hong Kong Convention and
-                        set in Hong Kong, less than 1 km from Hong Kong Convention and
-                        set in Hong Kong, less than 1 km from Hong Kong Convention and  
-                        set in Hong Kong, less than 1 km from Hong Kong Convention and  
-                        set in Hong Kong, less than 1 km from Hong Kong Convention and  
-                        set in Hong Kong, less than 1 km from Hong Kong Convention and . 
-                    </span>
+                    <textarea v-model="post.description" disabled> 
+                    </textarea>
                 </div>
             </div>
             <div class="post-img">
                 <el-carousel :interval="4000" type="card" height="40em">
-                    <el-carousel-item v-for="item in listRoom" :key="item.roomName">
+                    <el-carousel-item v-for="(item,index) in listAllRoom" :key="index">
                         <div class="item">
                             <div class="item__content">
-                                <div class="room-title">{{item.roomName}}</div>
-                                <div class="room-status">{{item.status == 0? 'Hết phòng': 'Còn phòng'}}</div>
-                                <div class="room-price">{{item.price+' VND'}}</div>
-                                <router-link to="/post-detail">Xem thêm</router-link>
+                                <div class="room-title">{{item.room.name}}</div>
+                                <div class="room-status">{{item.room.status}}</div>
+                                <div class="room-price">{{formatCash(item.room.price+"")+' VNĐ'}}</div>
+                                <router-link :to="'/room-detail?id='+item.room.id">Xem thêm</router-link>
                             </div>
                             <img
                                 class="item__image"
-                                :src="item.imgUrl"
+                                :src="item.image"
                                 alt=""
                             />
                         </div>
@@ -53,42 +42,43 @@
 <script>
 import Header from "../components/Header"
 import Footer from "../components/Footer"
+import FilterData from "@/mixin/FilterData"
 
 export default {
+    mixins: [FilterData],
     components: {
         Header,
         Footer
     },
     data() {
         return {
-            image: "../images/background-homepage1.jpg",
-            listRoom: [
-                {
-                    roomName: "Phòng VIP",
-                    status: 0,
-                    price: '500.000',
-                    imgUrl: "images/background-login.jpg"
-                },
-                {
-                    roomName: "Phòng siêu VIP",
-                    status: 1,
-                    price: '1.000.000',
-                    imgUrl: "images/background-homepage1.jpg"
-                },
-                {
-                    roomName: "Phòng oke",
-                    status: 0,
-                    price: '1.500.000',
-                    imgUrl: "images/background-homepage2.jpg"
-                },
-                {
-                    roomName: "Phòng khá oke",
-                    status: 1,
-                    price: '2.000.000',
-                    imgUrl: "images/background-homepage3.jpg"
-                }
-            ]
+            image: '',
+            post: {
+                brief: '', 
+                title: '', 
+                shortDescription: '', 
+                description: '', 
+                name: '',
+                type: ''
+            }
         }
+    },
+    computed: {
+        listAllRoom() {
+            return this.$store.getters.listAllRoom
+        }
+    },
+    async created() {
+        await this.$store.dispatch('getOnePost', 1).then(rs => {
+            if(rs.status === 'success') {
+                this.post = rs.data.post
+                if(rs.data.list.length > 0) {
+                    this.image = rs.data.list[0].img
+                    this.post = rs.data.post
+                }
+            }
+        })
+        await this.$store.dispatch('getAllRoom')
     },
     mounted() {
         

@@ -18,7 +18,7 @@
         <el-carousel indicator-position="outside" class="landing-page-carousel">
             <el-carousel-item v-for="(item,index) in listAllBanner" :key="index">
                 <div class="item">
-                    <img :src="item.image" alt="">
+                    <img :src="item.image" alt=""/>
                     <div class="item__content">{{item.title}}</div>
                 </div>
             </el-carousel-item>
@@ -41,7 +41,7 @@
                         <div class="post-content-short">
                             <p>{{listHomepageService[0] && listHomepageService[0].shortDescription ? listHomepageService[0].shortDescription: ''}}</p>
                         </div>
-                        <button class="view-more1" id="viewMore1" @click="viewMore()">Xem thêm</button>
+                        <button class="view-more1" id="viewMore1" @click="viewMore(listHomepageService[0].id)">Xem thêm</button>
                     </div>
                     <div class="post-image1" id="postImage1">
                         <img :src="listHomepageService[0] && listHomepageService[0].coverImg ?listHomepageService[0].coverImg : ''" alt=""/>
@@ -57,7 +57,7 @@
                         <div class="post-content-short">
                             <p>{{listHomepageService[1] && listHomepageService[1].shortDescription ? listHomepageService[1].shortDescription : ''}}</p>
                         </div>
-                        <button class="view-more2" id="viewMore2" @click="viewMore()">Xem thêm</button>
+                        <button class="view-more2" id="viewMore2" @click="viewMore(listHomepageService[1].id)">Xem thêm</button>
                     </div>
                 </div>
                 <div class="post-content-detail">
@@ -67,7 +67,7 @@
                         <div class="post-content-short">
                             <p>{{listHomepageService[2] && listHomepageService[2].shortDescription ? listHomepageService[2].shortDescription : ''}}</p>
                         </div>
-                        <button class="view-more3" id="viewMore3" @click="viewMore()">Xem thêm</button>
+                        <button class="view-more3" id="viewMore3" @click="viewMore(listHomepageService[2].id)">Xem thêm</button>
                     </div>
                     <div class="post-image3" id="postImage3">
                         <img :src="listHomepageService[2] && listHomepageService[2].coverImg ?listHomepageService[2].coverImg : ''" alt=""/>
@@ -79,18 +79,20 @@
             <div class="service-list-content">
                 <div class="service-title" id="serviceTitle">DANH SÁCH DỊCH VỤ</div>
                 <div class="service-list-item" id="serviceListItem">
-                    <ul>
-                        <li @click="toListRoom()">Khách sạn</li>
-                        <li @click="toDetail()">Hội nghị</li>
-                    </ul>
-                    <ul>
-                        <li>Spa & xông hơi</li>
-                        <li>Karaoke</li>
-                    </ul>
-                    <ul>
-                        <li>Nhà hàng & Tiệc cưới</li>
-                        <li>Cafe</li>
-                    </ul>
+                    <div class="all-service" v-for="item in getNumberRow" :key="item">
+                        <div class="service-item" @click="viewPostDetail(listAllService[item*3-3])">
+                            <div class="dot-before" v-if="listAllService[item*3-3]"></div>
+                            <a>{{listAllService[item*3-3] && listAllService[item*3-3].name ? listAllService[item*3-3].name : ''}}</a>
+                        </div> 
+                        <div class="service-item" @click="viewPostDetail(listAllService[item*3-2])">
+                            <div class="dot-before" v-if="listAllService[item*3-2]"></div>
+                            <a>{{listAllService[item*3-2] && listAllService[item*3-2].name ? listAllService[item*3-2].name : ''}}</a>
+                        </div> 
+                        <div class="service-item" @click="viewPostDetail(listAllService[item*3-1])">
+                            <div class="dot-before" v-if="listAllService[item*3-1]"></div>
+                            <a>{{listAllService[item*3-1] && listAllService[item*3-1].name ? listAllService[item*3-1].name : ''}}</a>
+                        </div> 
+                    </div>
                 </div>
             </div>
         </div>
@@ -99,42 +101,44 @@
                 <div class="event">
                     <img :src="item.coverImg"/>
                     <div class="event-text">{{item.title}}</div>
-                    <router-link to="post-detail">Xem thêm</router-link>
+                    <router-link :to="'/post-detail?id='+item.id">Xem thêm</router-link>
                 </div>
             </el-carousel-item>
         </el-carousel>
-        <div class="form-booking" id="formBooking">
+        <div class="form-booking" id="formBooking" :class='{loading: loading}'>
             <div class="form-booking-detail">
                 <div class="booking-field">
                     <div class="field">
                         <label for="fullname">Họ & tên</label>
-                        <input type="text" id="fullname"/>
+                        <input type="text" id="fullname" v-model="formBooking.fullName" :class="{error_input_normal: errorForm.fullName}"/>
                     </div>
                     <div class="field">
                         <label for="phone">Số điện thoại</label>
-                        <input type="text" id="phone"/>
+                        <input type="text" id="phone" v-model="formBooking.phoneNumber" :class="{error_input_normal: errorForm.phoneNumber}"/>
                     </div>
                     <div class="field">
                         <label for="service">Dịch vụ</label>
-                        <select id="service">
-                            <option>Khách sạn</option>
-                            <option>Spa</option>
-                            <option>Karaoke</option>
-                            <option>Tiệc cưới</option>
-                            <option>Hội nghị</option>
-                        </select>
+                        <el-select id="service" v-model="formBooking.serviceName" placeholder="Dịch vụ" :class="{error_input : errorForm.serviceName}">
+                            <el-option
+                                v-for="(item, index) in listAllService"
+                                :key="index"
+                                :label="item.name"
+                                :value="item.name">
+                            </el-option>
+                        </el-select>
                     </div>
                     <div class="field">
                         <label for="datetime">Ngày đặt</label>
                         <el-date-picker
+                            :class="{error_date: errorForm.date}"
                             id="datetime"
-                            v-model="dateBooking"
+                            v-model="formBooking.date"
                             type="datetime"
                             placeholder="Select date and time">
                         </el-date-picker>
                     </div>
                 </div>
-                <div class="submit-booking">
+                <div class="submit-booking" @click="submitBooking()">
                     Submit
                 </div>
             </div>
@@ -150,17 +154,17 @@
                 <div class="line-one1">
                     <div class="line-media1">
                         <div class="line-img1" id="lineImg1">
-                            <img :src="listAllPhotoGallery[0].img" alt=""/>
+                            <img :src="listAllPhotoGallery[0].img" alt="" @click="viewImage(0)"/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>
                         </div>
                         <div class="line-img2" id="lineImg2">
-                            <img :src="listAllPhotoGallery[1].img" alt=""/>
+                            <img :src="listAllPhotoGallery[1].img" alt="" @click="viewImage(1)"/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>
                         </div>
                     </div>
                     <div class="line-media-one1">
                         <div class="line-img3" id="lineImg3">
-                            <img :src="listAllPhotoGallery[2].img" alt=""/>
+                            <img :src="listAllPhotoGallery[2].img" alt="" @click="viewImage(2)"/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>
                         </div>
                     </div>
@@ -168,17 +172,17 @@
                 <div class="line-one1">
                     <div class="line-media-one2">
                         <div class="line-img4" id="lineImg4">
-                            <img :src="listAllPhotoGallery[3].img" alt=""/>
+                            <img :src="listAllPhotoGallery[3].img" alt="" @click="viewImage(3)"/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>
                         </div>
                     </div>
                     <div class="line-media2">
                         <div class="line-img5" id="lineImg5">
-                            <img :src="listAllPhotoGallery[4].img" alt=""/>
+                            <img :src="listAllPhotoGallery[4].img" alt="" @click="viewImage(4)"/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>
                         </div>
                         <div class="line-img6" id="lineImg6">
-                            <img :src="listAllPhotoGallery[5].img" alt=""/>
+                            <img :src="listAllPhotoGallery[5].img" alt="" @click="viewImage(5)"/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>
                         </div>
                     </div>
@@ -212,13 +216,13 @@
                 <h3>Tell: {{contact.phone}}</h3>
                 <h3>Mail: {{contact.email}}</h3>
                 <div class="icon-contact">
-                    <div class="icon icon-fb">
+                    <div class="icon icon-fb" @click="toFacebook()">
                         <img src="images/icons/fb.png" alt="">
                     </div>
-                    <div class="icon icon-instagram">
+                    <div class="icon icon-instagram" @click="toInstagram()">
                         <img src="images/icons/instagram.png" alt="">
                     </div>
-                    <div class="icon icon-youtube">
+                    <div class="icon icon-youtube" @click="toYoutube()">
                         <img src="images/icons/youtube.png" alt="">
                     </div>
                 </div>
@@ -240,20 +244,23 @@
             </div>
         </div>
     </div>
+    <PreviewImage v-if="openDialogView" :openDialogView.sync="openDialogView" :index="index"/>
 </div>
 </template>
 <script>
 import Header from "../components/Header";
 import Footer from "../components/Footer"
+import UtilService from "@/utils/UtilService"
+import PreviewImage from "../components/PreviewImage"
 
 export default {
     components: {
         Header,
-        Footer
+        Footer,
+        PreviewImage
     },
     data () {
         return {
-            dateBooking: '',
             down: false,
             preface: {
                 title: '',
@@ -266,7 +273,23 @@ export default {
                 phone: '',
                 youtube: '',
                 address: ''
-            }
+            },
+            formBooking: {
+                date: null,
+                fullName: '',
+                phoneNumber: '',
+                serviceName: null
+            },
+            errorForm: {
+                date: false,
+                fullName: false,
+                phoneNumber: false,
+                serviceName: false
+            },
+            getNumberRow: 0,
+            loading: false,
+            openDialogView: false,
+            index: 0
         }
     },
     computed: {
@@ -287,12 +310,28 @@ export default {
         },
         listAllPhotoGallery () {
             return this.$store.getters.listAllPhotoGallery
+        },
+        isValidFullName() {
+            return this.formBooking.fullName.trim()
+        },
+        isValidPhone() {
+            return this.formBooking.phoneNumber.trim() && UtilService.checkValidatePhone(this.formBooking.phoneNumber)
+        },
+        isValidService() {
+            return this.formBooking.serviceName
+        },
+        isValidDate() {
+            return this.formBooking.date
+        },
+        isValidForm() {
+            return this.isValidFullName && this.isValidPhone && this.isValidService && this.isValidDate
         }
     },
     methods: {
         async fetch() {
-            await this.$store.dispatch('getAllHomepageService')
+            this.loading = true
             await this.$store.dispatch('getAllBanner')
+            await this.$store.dispatch('getAllHomepageService')
             await this.$store.dispatch('getAllService')
             await this.$store.dispatch('getAllEvent')
             await this.$store.dispatch('getAllPhotoInGallery')
@@ -306,9 +345,86 @@ export default {
                     this.contact = rs.data
                 }
             })
+            if(this.listAllService.length % 3 === 0) {
+                this.getNumberRow = Math.floor(this.listAllService.length / 3)
+            } else {
+                this.getNumberRow = Math.floor(this.listAllService.length / 3) + 1
+            }
+            await setTimeout(() => {
+                this.loading = false
+            })
         },
-        viewMore() {
-            this.$router.push("/post-detail")
+        viewPostDetail(item) {
+            if(item.id !== 1) {
+                this.$router.push("/post-detail?id="+item.id)
+            } else {
+                this.$router.push("/list-room")
+            }
+        },
+        toFacebook() {
+            if(this.contact.facebook.slice(0,7) !== "https://") {
+                window.open("https://"+this.contact.facebook);
+            } else {
+                window.open(this.contact.facebook);
+            }
+        },
+        toInstagram() {
+            if(this.contact.insta.slice(0,7) !== "https://") {
+                window.open("https://"+this.contact.insta);
+            } else {
+                window.open(this.contact.insta);
+            }
+        },
+        toYoutube() {
+            if(this.contact.youtube.slice(0,7) !== "https://") {
+                window.open("https://"+this.youtube.facebook);
+            } else {
+                window.open(this.youtube.facebook);
+            }
+        },
+        viewImage(number) {
+            this.index = number
+            this.openDialogView = true
+        },
+        async submitBooking() {
+            this.loading = true
+            this.errorForm.fullName =  !this.isValidFullName
+            this.errorForm.phoneNumber = !this.isValidPhone
+            this.errorForm.serviceName = !this.isValidService
+            this.errorForm.date = !this.isValidDate
+            if(this.isValidForm) {
+                this.formBooking.date = UtilService.convertTime(this.formBooking.date)
+                await this.$store.dispatch('bookService', this.formBooking).then(rs => {
+                    if(rs.status === 'success') {
+                        this.formBooking = {
+                            date: null,
+                            fullName: '',
+                            phoneNumber: '',
+                            serviceName: null
+                        }
+                        this.errorForm = {
+                            date: false,
+                            fullName: false,
+                            phoneNumber: false,
+                            serviceName: false
+                        }
+                        this.loading = false
+                    } else {
+                        this.loading = false
+                    }
+                })    
+            } else {
+                this.loading = false
+                this.$store.dispatch('showErrorMsg', 'Vui lòng điền đầy đủ thông tin.')
+            }
+        },
+        viewMore(id) {
+            console.log(id)
+            if(id===1) {
+                this.$router.push("/list-room")
+            } else {
+                this.$router.push("/post-detail?id="+id)
+            }
         },
         toDetail() {
             this.$router.push("/post-detail")
@@ -453,6 +569,7 @@ export default {
                 left += ele.offsetLeft;
                 ele = ele.offsetParent;
             }
+            console.log(ele)
             document.head.appendChild(stylePostImg1);
             document.head.appendChild(styleHeaderLogo);
             document.head.appendChild(styleHeaderItem);
@@ -952,12 +1069,13 @@ export default {
             //     booking.style.width = "20%"
             //     textBooking.style.display = "inline"
             // }
-    },
-    async created() {
+            
         if(this.$store.getters.booking) {
             this.toBooking()
         }
         this.$store.dispatch('setBooking', false)
+    },
+    async created() {
         await this.fetch()
     }
 }

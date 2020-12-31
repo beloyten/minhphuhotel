@@ -7,16 +7,16 @@
             <div class="footer-content">
                 <h2>Contact Us</h2>
                 <div class="line"></div>
-                <h3>Tell: (84-24) 3823 8115</h3>
-                <h3>Mail: Minhphu@gmail.com</h3>
+                <h3>Tell: {{contact.phone}}</h3>
+                <h3>Mail: {{contact.email}}</h3>
                 <div class="icon-contact">
-                    <div class="icon icon-fb">
+                    <div class="icon icon-fb" @click="toFacebook()">
                         <img src="images/icons/fb.png" alt="">
                     </div>
-                    <div class="icon icon-instagram">
+                    <div class="icon icon-instagram" @click="toInstagram()">
                         <img src="images/icons/instagram.png" alt="">
                     </div>
-                    <div class="icon icon-youtube">
+                    <div class="icon icon-youtube" @click="toYoutube()">
                         <img src="images/icons/youtube.png" alt="">
                     </div>
                 </div>
@@ -31,8 +31,7 @@
             <div class="footer-content">
                 <h2>Address</h2>
                 <div class="line line-small"></div>
-                <h3>76 Yen Phu (small road)</h3>
-                <h3>Tay Ho - Ha Noi</h3>
+                <h3>{{contact.address}}</h3>
                 <div class="back-to-top" @click="scrollToTop()">
                     <img src="images/icons/back-to-top.png" alt="">
                 </div>
@@ -45,7 +44,11 @@ export default {
     data () {
         return {}
     },
-    computed: {},
+    computed: {
+        contact () {
+            return this.$store.getters.contact
+        }
+    },
     methods: {
         toHomepage() {
             if(this.$route.name === 'Trang chủ') {
@@ -56,7 +59,31 @@ export default {
         },
         scrollToTop() {
             window.scrollTo(0,0)
+        },
+        toFacebook() {
+            if(this.contact.facebook.slice(0,7) !== "https://") {
+                window.open("https://"+this.contact.facebook);
+            } else {
+                window.open(this.contact.facebook);
+            }
+        },
+        toInstagram() {
+            if(this.contact.insta.slice(0,7) !== "https://") {
+                window.open("https://"+this.contact.insta);
+            } else {
+                window.open(this.contact.insta);
+            }
+        },
+        toYoutube() {
+            if(this.contact.youtube.slice(0,7) !== "https://") {
+                window.open("https://"+this.youtube.facebook);
+            } else {
+                window.open(this.youtube.facebook);
+            }
         }
+    },
+    async created () {
+        await this.$store.dispatch('getContact')
     }
 }
 </script>

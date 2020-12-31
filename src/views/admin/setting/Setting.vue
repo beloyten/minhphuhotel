@@ -16,7 +16,7 @@
                         :data="listAllEmployee"
                         style="width: 100%">
                             <el-table-column
-                                label="ID"
+                                label="STT"
                                 width="75">
                                 <template slot-scope="scope">{{ scope.$index + 1 }}</template>
                             </el-table-column>
@@ -128,13 +128,13 @@
                     <div class="contact-admin">
                         <el-form>
                             <el-form-item label="Mật khẩu hiện tại" :label-width="formLabelWidth">
-                                <el-input v-model="user.currentPassword" autocomplete="off" :class="{error_input : errorFormChangePass.currentPassword}"></el-input>
+                                <el-input type="password" v-model="user.currentPassword" autocomplete="off" :class="{error_input : errorFormChangePass.currentPassword}"></el-input>
                             </el-form-item>
                             <el-form-item label="Mật khẩu mới" :label-width="formLabelWidth">
-                                <el-input v-model="user.newPassword" autocomplete="off" :class="{error_input : errorFormChangePass.newPassword}"></el-input>
+                                <el-input type="password" v-model="user.newPassword" autocomplete="off" :class="{error_input : errorFormChangePass.newPassword}"></el-input>
                             </el-form-item>
                             <el-form-item label="Nhập lại mật khẩu" :label-width="formLabelWidth">
-                                <el-input v-model="user.confirmPassword" autocomplete="off" :class="{error_input : errorFormChangePass.confirmPassword}"></el-input>
+                                <el-input type="password" v-model="user.confirmPassword" autocomplete="off" :class="{error_input : errorFormChangePass.confirmPassword}"></el-input>
                             </el-form-item>
                         </el-form>
                         <span slot="footer" class="dialog-footer">
@@ -366,12 +366,14 @@ export default {
             this.errorFormChangePass.confirmPassword = !this.isValidConfirmPassword
             if(this.isValidFormChangePass) {
                 if(this.user.confirmPassword !== this.user.newPassword) {
+                    this.errorFormChangePass.newPassword = true
+                    this.errorFormChangePass.confirmPassword = true
                     this.loading = false 
                     this.$store.dispatch('showErrorMsg', 'Mật khẩu không trùng khớp.')
                 } else {
                     await this.$store.dispatch('changePassword', {
-                        password: this.user.newPassword,
-                        username: 'admin'
+                        new_password: this.user.newPassword,
+                        old_password: this.user.currentPassword
                     }).then(rs => {
                         if(rs.status === 'success') {
                             this.user = {
@@ -383,15 +385,17 @@ export default {
                                 currentPassword: false,
                                 newPassword: false,
                                 confirmPassword: false
-                            },
+                            }
                             setTimeout(() => {
                                 this.loading = false
                             },300)
+                        } else {
+                            this.loading = false
                         }
                     })
                 }
             } else {
-                this.loading = true
+                this.loading = false
                 this.$store.dispatch('showErrorMsg','Vui lòng kiểm tra lại thông tin.')
             }
         },

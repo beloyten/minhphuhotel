@@ -14,32 +14,32 @@
                 :data="listAllRoom"
                 style="width: 100%; min-height: 500px;">
                     <el-table-column
-                        label="ID"
+                        label="STT"
                         width="75">
                         <template slot-scope="scope">{{ scope.$index + 1 }}</template>
                     </el-table-column>
                     <el-table-column
-                        property="name"
+                        property="room.name"
                         label="Tên phòng"
                         width="200">
                     </el-table-column>
                     <el-table-column
-                        property="brief"
+                        property="room.brief"
                         label="Tóm tắt"
                         show-overflow-tooltip>
                     </el-table-column>
                     <el-table-column
-                        property="shortDescription"
+                        property="room.shortDescription"
                         label="Mô tả ngắn"
                         show-overflow-tooltip>
                     </el-table-column>
                     <el-table-column
-                        property="status"
+                        property="room.status"
                         label="Tình trạng"
                         show-overflow-tooltip>
                     </el-table-column>
                     <el-table-column
-                        property="price"
+                        property="room.price"
                         label="Giá phòng"
                         show-overflow-tooltip>
                     </el-table-column>
@@ -113,7 +113,7 @@ export default {
     },
     methods: {
         handleEdit(index, row) {
-            this.room = row
+            this.room = row.room
             this.edit = true
             this.openDialogCreate = true
         },
@@ -123,11 +123,11 @@ export default {
             this.openDialogCreate = true
         },
         handleDetail(index, row) {
-            this.id = row.id
+            this.id = row.room.id
             this.openDialogPreview = true
         },
         handleDelete(index, row) {
-            this.room = row
+            this.room = row.room
             this.openDialogDelete = true
         },
         async fetch() {

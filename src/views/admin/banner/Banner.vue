@@ -14,7 +14,7 @@
                 :data="listAllBanner"
                 style="width: 100%; min-height: 500px;">
                     <el-table-column
-                        label="ID"
+                        label="STT"
                         width="75">
                         <template slot-scope="scope">{{ scope.$index + 1 }}</template>
                     </el-table-column>

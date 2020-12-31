@@ -1,30 +1,17 @@
 <template>
-    <el-dialog title="Xem trước phòng" :visible="openDialogPreview" @close="close()" :fullscreen="true">
-        <div class="detail-post">
-            <div class="detail-post-content">
-            <el-carousel :autoplay="false" height="60em" indicator-position="none" :loop="false" :interval='0'>
-                <el-carousel-item v-for="(item, index) in post.list" :key="index">
+    <el-dialog title="Xem trước Banner" :visible="openDialogPreview" @close="close()" :fullscreen="true">
+        <div class="banner-preview">
+            <el-carousel indicator-position="outside" height="800px" class="banner">
+                <el-carousel-item>
                     <div class="item">
                         <img
-                            :src="item"
+                            :src="post.image"
                             alt=""
                         />
+                        <div class="item__content">{{post.title}}</div>
                     </div>
                 </el-carousel-item>
             </el-carousel> 
-            <div class="post-content">
-                <div class="post-title">
-                    <span>{{post && post.post && post.post.title ? post.post.title : ''}}</span>
-                </div>
-                <div class="post-bread">
-                    <span>{{post && post.post && post.post.brief ? post.post.brief : ''}}</span>
-                </div>
-                <div class="post-content-text">
-                    <textarea v-model="post.post.description" disabled> 
-                    </textarea>
-                </div>
-            </div>
-        </div>
         </div>
     </el-dialog>
 </template>
@@ -33,13 +20,9 @@ export default {
     data () {
         return {
             post: {
-                list: [],
-                post: {
-                    title: '',
-                    brief: '',
-                    shortDescription: '', 
-                    description: ''
-                }
+                title: '',
+                brief: '',
+                image: ''
             }
         }
     },
@@ -56,8 +39,7 @@ export default {
         if(this.id) {
             await this.$store.dispatch('getOneBanner', this.id).then(rs => {
                 if(rs.status === 'success') {
-                    this.post.post = rs.data
-                    this.post.list.push(rs.data.image)
+                    this.post = rs.data
                 }
             })
         }
