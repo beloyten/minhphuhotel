@@ -18,7 +18,7 @@
         <el-carousel indicator-position="outside" class="landing-page-carousel">
             <el-carousel-item v-for="(item,index) in listAllBanner" :key="index">
                 <div class="item">
-                    <img :src="item.image" alt=""/>
+                    <img :src="item.image? item.image : ''" alt=""/>
                     <div class="item__content">{{item.title}}</div>
                 </div>
             </el-carousel-item>
@@ -99,7 +99,7 @@
         <el-carousel indicator-position="none" :interval="5000" height="52em">
             <el-carousel-item v-for="(item,index) in listAllEvent" :key="index">
                 <div class="event">
-                    <img :src="item.coverImg"/>
+                    <img :src="item.coverImg ? item.coverImg : ''"/>
                     <div class="event-text">{{item.title}}</div>
                     <router-link :to="'/post-detail?id='+item.id">Xem thêm</router-link>
                 </div>
@@ -154,17 +154,17 @@
                 <div class="line-one1">
                     <div class="line-media1">
                         <div class="line-img1" id="lineImg1">
-                            <img :src="listAllPhotoGallery[0].img" alt="" @click="viewImage(0)"/>
+                            <img :src="listAllPhotoGallery[0] && listAllPhotoGallery[0].img ? listAllPhotoGallery[0].img : ''" alt="" @click="viewImage(0)"/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>
                         </div>
                         <div class="line-img2" id="lineImg2">
-                            <img :src="listAllPhotoGallery[1].img" alt="" @click="viewImage(1)"/>
+                            <img :src="listAllPhotoGallery[1] && listAllPhotoGallery[1].img ? listAllPhotoGallery[1].img : ''" alt="" @click="viewImage(1)"/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>
                         </div>
                     </div>
                     <div class="line-media-one1">
                         <div class="line-img3" id="lineImg3">
-                            <img :src="listAllPhotoGallery[2].img" alt="" @click="viewImage(2)"/>
+                            <img :src="listAllPhotoGallery[2] && listAllPhotoGallery[2].img ? listAllPhotoGallery[2].img : ''" alt="" @click="viewImage(2)"/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>
                         </div>
                     </div>
@@ -172,17 +172,17 @@
                 <div class="line-one1">
                     <div class="line-media-one2">
                         <div class="line-img4" id="lineImg4">
-                            <img :src="listAllPhotoGallery[3].img" alt="" @click="viewImage(3)"/>
+                            <img :src="listAllPhotoGallery[3] && listAllPhotoGallery[3].img ? listAllPhotoGallery[3].img : ''" alt="" @click="viewImage(3)"/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>
                         </div>
                     </div>
                     <div class="line-media2">
                         <div class="line-img5" id="lineImg5">
-                            <img :src="listAllPhotoGallery[4].img" alt="" @click="viewImage(4)"/>
+                            <img :src="listAllPhotoGallery[4] && listAllPhotoGallery[4].img ? listAllPhotoGallery[4].img : ''" alt="" @click="viewImage(4)"/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>
                         </div>
                         <div class="line-img6" id="lineImg6">
-                            <img :src="listAllPhotoGallery[5].img" alt="" @click="viewImage(5)"/>
+                            <img :src="listAllPhotoGallery[5] && listAllPhotoGallery[5].img ? listAllPhotoGallery[5].img : ''" alt="" @click="viewImage(5)"/>
                             <img class="img-logo" src="images/logo-white.png" alt=""/>
                         </div>
                     </div>
@@ -231,9 +231,9 @@
                 <h2>Service</h2>
                 <div class="line line-small"></div>
                 <div class="footer-service">
-                    <a @click.prevent="viewPostDetail(listHomepageService[0])">{{listHomepageService[0].name}}</a>
-                    <a @click.prevent="viewPostDetail(listHomepageService[1])">{{listHomepageService[1].name}}</a>
-                    <a @click.prevent="viewPostDetail(listHomepageService[2])">{{listHomepageService[2].name}}</a>
+                    <a @click.prevent="viewPostDetail(listHomepageService[0])">{{listHomepageService[0] && listHomepageService[0].name ? listHomepageService[0].name : ''}}</a>
+                    <a @click.prevent="viewPostDetail(listHomepageService[1])">{{listHomepageService[1] && listHomepageService[1].name ? listHomepageService[1].name : ''}}</a>
+                    <a @click.prevent="viewPostDetail(listHomepageService[2])">{{listHomepageService[2] && listHomepageService[2].name ? listHomepageService[2].name : ''}}</a>
                 </div>
             </div>
             <div class="footer-content">
@@ -566,12 +566,11 @@ export default {
             var top = 0;
             var left = 0;
         
-            while(ele.tagName != "BODY") {
+            while(ele && ele.tagName != "BODY") {
                 top += ele.offsetTop;
                 left += ele.offsetLeft;
                 ele = ele.offsetParent;
             }
-            console.log(ele)
             document.head.appendChild(stylePostImg1);
             document.head.appendChild(styleHeaderLogo);
             document.head.appendChild(styleHeaderItem);
