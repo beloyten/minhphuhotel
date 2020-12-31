@@ -3,6 +3,9 @@
         <Header/>
         <div class="contact-detail">
             <div class="contact-content">
+                <div class="contact-title">
+                    <p>Minh Phú Diamond Palace</p>
+                </div>
                 <div class="contact-text">
                     <h2>Contact Us</h2>
                     <div class="line line-contact"></div>
@@ -15,8 +18,8 @@
                     <h3>{{contact.address}}</h3>
                 </div>
             </div>
-            <div class="contact-map">
-                <img src="images/map.png" alt=""/>
+            <div class="contact-map" :class="{display_none: !contact.addressImg}">
+                <img :src="contact.addressImg" alt=""/>
             </div>
         </div>
         <Footer/>
