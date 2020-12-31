@@ -138,7 +138,7 @@
                             </el-form-item>
                         </el-form>
                         <span slot="footer" class="dialog-footer">
-                            <el-button type="primary" @click="cancelChangePass()">Hủy bỏ</el-button>
+                            <el-button @click="cancelChangePass()">Hủy bỏ</el-button>
                             <el-button type="primary" @click="changePassword()">Cập nhật</el-button>
                         </span>
                     </div>
@@ -372,8 +372,8 @@ export default {
                     this.$store.dispatch('showErrorMsg', 'Mật khẩu không trùng khớp.')
                 } else {
                     await this.$store.dispatch('changePassword', {
-                        new_password: this.user.newPassword,
-                        old_password: this.user.currentPassword
+                        newPassword: this.user.newPassword,
+                        oldPassword: this.user.currentPassword
                     }).then(rs => {
                         if(rs.status === 'success') {
                             this.user = {
