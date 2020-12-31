@@ -78,6 +78,19 @@ const routes = [
     ]
   },
   {
+    path: '/room-detail',
+    component: BlankLayout,
+    hidden: true,
+    meta: { title: 'Room Detail', requiresAuth: false },
+    children: [
+      {
+        name: 'Room Detail',
+        path: '',
+        component: () => import("@/views/guest/detailRoom/DetailRoom.vue")
+      }
+    ]
+  },
+  {
     path: '/service',
     component: DashboardLayout,
     meta: { title: 'Dịch vụ', requiresAuth: true },

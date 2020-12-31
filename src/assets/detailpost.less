@@ -5,6 +5,29 @@
         margin-top: 5em;
         min-height: 120em;
         width: 100%;
+        .landing-page-carousel {
+            .item{
+                position: relative;
+                height: 100%;
+                img {
+                    filter: brightness(60%);
+                    object-fit: cover;
+                }
+                .item__content {
+                    position: absolute;
+                    bottom: calc(100vw * 0.5);
+                    width: 100%;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    color: #fff;
+                    left: 30%;
+                    font-size: calc(100vw * 0.035);
+                    font-weight: bold;
+                    font-family: 'GLACIAL';
+                }
+            }
+        }
         .post-img {
             height: 54em;
         }
@@ -20,7 +43,7 @@
             flex-direction: column;
             justify-content: center;
             .post-title {
-                margin-left: 20%;
+                margin-left: 15%;
                 height: 5em;
                 padding-top: 2em;
                 span {
@@ -30,7 +53,7 @@
                 }
             }
             .post-bread {
-                margin-left: 20%;
+                margin-left: 15%;
                 margin-top: 3em;
                 height: 4em;
                 padding-top: 2em;
@@ -43,7 +66,7 @@
             .post-content-text {
                 min-height: 25em;
                 padding-top: 2em;
-                margin-left: 20%;
+                margin-left: 15%;
                 margin-top: 2em;
                 width: 60%;
                 textarea {
@@ -78,7 +101,7 @@
     .item__content {
         position: absolute;
         top: 22em;
-        width: 30%;
+        width: 35%;
         height: 18em;
         background-color: #cccc;
         text-align: center;
@@ -89,7 +112,7 @@
         align-items: flex-start;
         padding: 1.5em;
         .room-title {
-            font-size: 2em;
+            font-size: 1.5em;
         }
         .room-status {
             margin-top: 2em;

@@ -6,14 +6,13 @@
                 <div class="contact-text">
                     <h2>Contact Us</h2>
                     <div class="line line-contact"></div>
-                    <h3>Tell: (84-24) 3823 8115</h3>
-                    <h3>Mail: Minhphu@gmail.com</h3>
+                    <h3>Tell: {{contact.phone}}</h3>
+                    <h3>Mail: {{contact.email}}</h3>
                 </div>
                 <div class="contact-text">
                     <h2>Address</h2>
                     <div class="line line-contact"></div>
-                    <h3>76 Yen Phu (small road)</h3>
-                    <h3>Tay Ho - Hanoi</h3>
+                    <h3>{{contact.address}}</h3>
                 </div>
             </div>
             <div class="contact-map">
@@ -31,6 +30,17 @@ export default {
     components: {
         Header,
         Footer
+    },
+    data() {
+        return {}
+    },
+    computed: {
+        contact() {
+            return this.$store.getters.contact
+        }
+    },
+    async created() {
+        await this.$store.dispatch('getContact')
     }
 }
 </script>

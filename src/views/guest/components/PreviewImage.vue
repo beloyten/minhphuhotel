@@ -1,5 +1,5 @@
 <template>
-    <el-dialog title="Xem trước thư viện ảnh" :visible="openDialogView" @close="close()" :fullscreen="true">
+    <el-dialog title="Xem ảnh" :visible="openDialogView" @close="close()" :fullscreen="true">
         <div class="gallery-preview">
             <el-carousel :initial-index="index" :autoplay="false" height="800px" indicator-position="outside" trigger="click" :loop="false" :interval='0'>
                 <el-carousel-item v-for="(item, index) in listAllPhotoGallery" :key="index">
@@ -35,7 +35,7 @@ export default {
     },
     async created() {
         if(this.id) {
-            await this.$store.dispatch('getAllPhotoInGallery', {is_limit: false}).then(rs => {
+            await this.$store.dispatch('getAllPhotoInGallery').then(rs => {
                 if(rs.status === 'success') {
                     this.post = rs.data
                 }

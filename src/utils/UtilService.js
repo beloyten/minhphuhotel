@@ -25,6 +25,14 @@ export default new Vue({
       return str.split('').reverse().reduce((prev, next, index) => {
         return ((index % 3) ? next : (next + ',')) + prev
       })
+    },
+    convertTime(time) {
+      console.log(this.$moment(Date.parse(time)).utc().local())
+      return time ? this.$moment(Date.parse(time)).utc().local().format('DD-MM-YYYY hh:mm:ss a') : ''
+    },
+    convertFromTime(string) {
+      const datearray = string.split("-")
+      return new Date(datearray[1] + '-' + datearray[0] + '-' + datearray[2])
     }
   }
 })

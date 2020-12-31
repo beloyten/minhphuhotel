@@ -1289,6 +1289,9 @@ textarea {
     }
   }
 }
+.error_input_normal {
+  border-color: red;
+}
 .error_textarea {
   border: 1px solid red;
   &:hover {
@@ -1454,3 +1457,34 @@ textarea {
     justify-content: flex-end;
   }
 }
+.banner-preview {
+  background-color: white;
+  .banner {
+    .item {
+      position: relative;
+      img {
+        filter: brightness(60%);
+        object-fit: cover;
+      }
+      .item__content {
+        position: absolute;
+        bottom: calc(100vw * 0.37);
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        left: 29%;
+        font-size: calc(100vw * 0.035);
+        font-weight: bold;
+        font-family: 'GLACIAL';
+        
+      }
+    }
+  }
+}
+.error_date {
+  input {
+    border-color: red;
+  }   
+} 
