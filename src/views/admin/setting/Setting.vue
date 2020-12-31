@@ -53,7 +53,7 @@
                 </div>
             </el-tab-pane>
             <el-tab-pane label="Cài đặt liên lạc" name="contact">
-                <div class="major-service">
+                <div class="major-service contact-service">
                     <div class="header">
                         <div class="left">
                             <div class="title">
@@ -82,6 +82,21 @@
                             <el-form-item label="Địa chỉ" :label-width="formLabelWidth">
                                 <el-input v-model="contact.address" :disabled="!enableEdit" autocomplete="off" :class="{error_input : errorFormContact.address}"></el-input>
                             </el-form-item>
+                            <el-form-item label="Ảnh Google Map" :label-width="formLabelWidth">              
+                                <div class="left">
+                                    <div class="upload-img-button">
+                                        <p>Upload ảnh</p>
+                                    </div>
+                                    <p class="notice">*Hãy upload ảnh có kích cỡ 4:9 để có chất lượng đẹp nhất.</p>
+                                </div>
+                                <div class="upload-contact" :class="{upload_contact_disabled: !enableEdit}">
+                                        <input id="uploadImg" :disabled="!enableEdit" type="file" accept="image/*" @change="uploadImage($event)">
+                                </div>
+                            </el-form-item>
+                                <div class="img-loaded">        
+                                    <img id="imgLoaded" alt="">
+                                    <p id="textWaiting">Image here</p>
+                                </div>
                         </el-form>
                         <span slot="footer" class="dialog-footer">
                             <el-button @click="closeEditContact()" v-if="enableEdit">Trở về</el-button>
@@ -175,7 +190,8 @@ export default {
             address: '',
             facebook: '',
             insta: '',
-            youtube: ''
+            youtube: '',
+            addressImg: ''
         },
         errorFormContact: {
             phone: false,
@@ -276,6 +292,22 @@ export default {
         async handleClick(tab, event) {
             this.loading = true
             await this.fetch()
+        },
+        uploadImage(e) {
+            let vm = this
+            var preview = document.getElementById('imgLoaded')
+            var file = document.getElementById('uploadImg').files[0]
+            var textWaiting = document.getElementById('textWaiting')
+            var reader = new FileReader()
+            reader.onloadend = function () {
+                preview.src = reader.result
+                vm.contact.addressImg = reader.result
+                preview.style.display = 'block'
+                textWaiting.style.display = 'none'
+            }
+            if(file) {
+                reader.readAsDataURL(file)
+            }
         },
         handleEditEmail(index, row) {
             this.employee = row

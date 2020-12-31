@@ -1185,6 +1185,9 @@ html {
   scroll-behavior: smooth;
 }
 .admin-service {
+  .contact-service {
+    min-height: 1200px !important;
+  }
   .major-service {
     font-family: OpenSans !important;
     min-height: 700px;
@@ -1455,6 +1458,84 @@ textarea {
     margin-top: 40px;
     display: flex;
     justify-content: flex-end;
+  }
+  .left {
+    .upload-img-button {
+      width: 200px;
+      height: 50px;
+      background-color: green;
+      display: flex;
+      color: white;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      border-radius: 5px;
+      &:hover {
+        cursor: no-drop;
+      }
+      p {
+        &:hover {
+          cursor: no-drop;
+        }
+      }
+    }
+    .notice {
+      color: red;
+      width: 60%;
+      margin-top: 20px;
+    }
+  }
+  // input {
+  //   background-color: #cccccc;
+  //   color: black;
+  //   height: 50px;
+  //   width: 200px;
+  //   margin-left: -380px;
+  //   opacity: 1;
+  //   &:hover {
+  //     cursor: pointer;
+  //   }
+  // }
+  .upload-contact {
+    margin-top: -110px;
+    input {
+      background-color: #cccccc;
+      color: black;
+      height: 50px;
+      width: 200px;
+      margin-left: 0x;
+      opacity: 0;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  
+  .upload_contact_disabled {
+    input {
+      &:hover {
+        cursor: no-drop;
+      }
+    }
+  }
+  .img-loaded {
+    height: 300px;
+    width: 300px;
+    margin-left: 67%;
+    margin-top: -50px;
+    img {
+      height: 300px;
+      width: 300px;
+      display: none;
+    }
+    p {
+      height: 300px;
+      width: 300px;
+      border: 2px dashed black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }
 .banner-preview {
