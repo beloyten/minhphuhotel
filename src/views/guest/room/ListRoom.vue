@@ -2,8 +2,16 @@
     <div class="detail-post">
         <Header/>
         <div class="detail-post-content">
-            <div class="post-img" :style="{ backgroundImage: 'url(' + image + ')' }">  
-            </div>
+            <el-carousel :autoplay="false" height="60em" indicator-position="none" :loop="false" :interval='0'>
+                <el-carousel-item v-for="(item, index) in listImage" :key="index">
+                    <div class="item">
+                        <img
+                            :src="item.img"
+                            alt=""
+                        />
+                    </div>
+                </el-carousel-item>
+            </el-carousel>
             <div class="post-content">
                 <div class="post-title">
                     <span>{{post.title}}</span>
@@ -52,7 +60,7 @@ export default {
     },
     data() {
         return {
-            image: '',
+            listImage: [],
             post: {
                 brief: '', 
                 title: '', 
@@ -73,7 +81,7 @@ export default {
             if(rs.status === 'success') {
                 this.post = rs.data.post
                 if(rs.data.list.length > 0) {
-                    this.image = rs.data.list[0].img
+                    this.listImage = rs.data.list
                     this.post = rs.data.post
                 }
             }
