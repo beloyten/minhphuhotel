@@ -144,46 +144,48 @@
             </div>
         </div>
         <div class="gallery">
-            <div class="gallery-title" id="galleryTitle">
-                <span>Minh Phu Gallery</span>
-            </div>
-            <div class="gallery-short-content">
-                <span>Photos & Videos</span>
-            </div>
-            <div class="gallery-media">
-                <div class="line-one1">
-                    <div class="line-media1">
-                        <div class="line-img1" id="lineImg1">
-                            <img :src="listAllPhotoGallery[0] && listAllPhotoGallery[0].img ? listAllPhotoGallery[0].img : ''" alt="" @click="viewImage(0)"/>
-                            <img class="img-logo" src="images/logo-white.png" alt=""/>
-                        </div>
-                        <div class="line-img2" id="lineImg2">
-                            <img :src="listAllPhotoGallery[1] && listAllPhotoGallery[1].img ? listAllPhotoGallery[1].img : ''" alt="" @click="viewImage(1)"/>
-                            <img class="img-logo" src="images/logo-white.png" alt=""/>
-                        </div>
-                    </div>
-                    <div class="line-media-one1">
-                        <div class="line-img3" id="lineImg3">
-                            <img :src="listAllPhotoGallery[2] && listAllPhotoGallery[2].img ? listAllPhotoGallery[2].img : ''" alt="" @click="viewImage(2)"/>
-                            <img class="img-logo" src="images/logo-white.png" alt=""/>
-                        </div>
-                    </div>
+            <div class="gallery-ele">
+                <div class="gallery-title" id="galleryTitle">
+                    <span>Minh Phu Gallery</span>
                 </div>
-                <div class="line-one1">
-                    <div class="line-media-one2">
-                        <div class="line-img4" id="lineImg4">
-                            <img :src="listAllPhotoGallery[3] && listAllPhotoGallery[3].img ? listAllPhotoGallery[3].img : ''" alt="" @click="viewImage(3)"/>
-                            <img class="img-logo" src="images/logo-white.png" alt=""/>
+                <div class="gallery-short-content">
+                    <span>Photos & Videos</span>
+                </div>
+                <div class="gallery-media">
+                    <div class="line-one1">
+                        <div class="line-media1">
+                            <div class="line-img1" id="lineImg1">
+                                <img :src="listAllPhotoGallery[0] && listAllPhotoGallery[0].img ? listAllPhotoGallery[0].img : ''" alt="" @click="viewImage(0)"/>
+                                <img class="img-logo" src="images/logo-white.png" alt=""/>
+                            </div>
+                            <div class="line-img2" id="lineImg2">
+                                <img :src="listAllPhotoGallery[1] && listAllPhotoGallery[1].img ? listAllPhotoGallery[1].img : ''" alt="" @click="viewImage(1)"/>
+                                <img class="img-logo" src="images/logo-white.png" alt=""/>
+                            </div>
+                        </div>
+                        <div class="line-media-one1">
+                            <div class="line-img3" id="lineImg3">
+                                <img :src="listAllPhotoGallery[2] && listAllPhotoGallery[2].img ? listAllPhotoGallery[2].img : ''" alt="" @click="viewImage(2)"/>
+                                <img class="img-logo" src="images/logo-white.png" alt=""/>
+                            </div>
                         </div>
                     </div>
-                    <div class="line-media2">
-                        <div class="line-img5" id="lineImg5">
-                            <img :src="listAllPhotoGallery[4] && listAllPhotoGallery[4].img ? listAllPhotoGallery[4].img : ''" alt="" @click="viewImage(4)"/>
-                            <img class="img-logo" src="images/logo-white.png" alt=""/>
+                    <div class="line-one2">
+                        <div class="line-media-one2">
+                            <div class="line-img4" id="lineImg4">
+                                <img :src="listAllPhotoGallery[3] && listAllPhotoGallery[3].img ? listAllPhotoGallery[3].img : ''" alt="" @click="viewImage(3)"/>
+                                <img class="img-logo" src="images/logo-white.png" alt=""/>
+                            </div>
                         </div>
-                        <div class="line-img6" id="lineImg6">
-                            <img :src="listAllPhotoGallery[5] && listAllPhotoGallery[5].img ? listAllPhotoGallery[5].img : ''" alt="" @click="viewImage(5)"/>
-                            <img class="img-logo" src="images/logo-white.png" alt=""/>
+                        <div class="line-media2">
+                            <div class="line-img5" id="lineImg5">
+                                <img :src="listAllPhotoGallery[4] && listAllPhotoGallery[4].img ? listAllPhotoGallery[4].img : ''" alt="" @click="viewImage(4)"/>
+                                <img class="img-logo" src="images/logo-white.png" alt=""/>
+                            </div>
+                            <div class="line-img6" id="lineImg6">
+                                <img :src="listAllPhotoGallery[5] && listAllPhotoGallery[5].img ? listAllPhotoGallery[5].img : ''" alt="" @click="viewImage(5)"/>
+                                <img class="img-logo" src="images/logo-white.png" alt=""/>
+                            </div>
                         </div>
                     </div>
                 </div>
