@@ -2,9 +2,12 @@
     width: 100%;
     background-color: #fdfbf7;
     .detail-post-content {
-        margin-top: 5em;
+        margin-top: 70px;
         min-height: 120em;
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         .landing-page-carousel {
             .item{
                 position: relative;
@@ -28,11 +31,19 @@
                 }
             }
         }
-        .post-img {
+        .post-img, .post-img-vertical {
             height: 54em;
         }
-        .post-content {
+        .post-img-vertical {
+            display: none;
+        }
+        .content {
             width: 100%;
+            display: flex;
+            justify-content: center;    
+        }
+        .post-content {
+            width: 1200px;
             background: linear-gradient(#fdfbf7, rgba(253, 251, 247, 0.9)),
                 url("../assets/image/logo-yellow.png");
             background-repeat: no-repeat;
@@ -43,8 +54,6 @@
             flex-direction: column;
             justify-content: center;
             .post-title {
-                margin-left: 15%;
-                height: 5em;
                 padding-top: 5%;
                 span {
                     font-size: 5.5em;
@@ -53,9 +62,7 @@
                 }
             }
             .post-bread {
-                margin-left: 15%;
-                margin-top: 3em;
-                height: 4em;
+                height: 18px;
                 padding-top: 5%;
                 span {
                     font-size: 3em;
@@ -65,18 +72,17 @@
             }
             .post-content-text {
                 min-height: 400px;
-                padding-top: 5%;
-                margin-left: 14.5%;
-                margin-top: 2em;
-                width: 60%;
+                padding-top: 10%;
+                width: 100%;
                 textarea {
-                    min-height: 600px;
+                    min-height: 400px;
                     font-size: 1.5em;
                     color: black;
                     line-height: 2;
                     font-family: OpenSans;
                     background-color: #fdfbf7;
                     border: none;
+                    overflow: hidden;
                     resize: none;
                 }
                 span {

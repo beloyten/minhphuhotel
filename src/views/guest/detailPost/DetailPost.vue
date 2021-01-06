@@ -1,6 +1,7 @@
 <template>
     <div class="detail-post">
         <Header/>
+        <HeaderMobile/>
         <div class="detail-post-content">
             <el-carousel :autoplay="false" height="60em" indicator-position="none" :loop="false" :interval='0'>
                 <el-carousel-item v-for="(item, index) in listImage" :key="index">
@@ -12,16 +13,18 @@
                     </div>
                 </el-carousel-item>
             </el-carousel> 
-            <div class="post-content">
-                <div class="post-title">
-                    <span>{{post.title}}</span>
-                </div>
-                <div class="post-bread">
-                    <span>{{post.brief}}</span>
-                </div>
-                <div class="post-content-text">
-                    <textarea v-model="post.description" disabled> 
-                    </textarea>
+            <div class="content">
+                <div class="post-content">
+                    <div class="post-title">
+                        <span>{{post.title}}</span>
+                    </div>
+                    <div class="post-bread">
+                        <span>{{post.brief}}</span>
+                    </div>
+                    <div class="post-content-text">
+                        <textarea v-model="post.description" disabled> 
+                        </textarea>
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,12 +33,14 @@
 </template>
 <script>
 import Header from "../components/Header"
+import HeaderMobile from "../components/HeaderMobile"
 import Footer from "../components/Footer"
 
 export default {
     components: {
         Header,
-        Footer
+        Footer,
+        HeaderMobile
     },
     data() {
         return {

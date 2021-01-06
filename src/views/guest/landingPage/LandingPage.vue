@@ -14,6 +14,27 @@
             <a id="textBooking">Đặt lịch</a>
         </div>
     </div>
+    <div class="heading-mobile">
+        <div class="booking-mobile" id="booking" @click="toBooking()">
+            <img src="images/icons/calender-white.png" alt="">
+            <a>Đặt lịch</a>
+        </div>
+        <div class="logo-mobile" id="logo">
+            <div class="logo-img" @click="scrollToTop()">
+                <img src="images/logo.jpg" alt="">
+            </div>
+            <div class="three-dot" @click="viewMenu()">
+                <img src="images/icons/three-dot.png" alt="">
+            </div>
+        </div>
+        <el-dialog :visible.sync="openDialogMenu" :fullscreen="true" class="menu">
+            <div class="menu-mobile">
+                <router-link to="/">Trang chủ</router-link>
+                <router-link to="/list-room">Danh sách phòng</router-link>
+                <router-link to="/contact">Liên hệ</router-link>
+            </div>
+        </el-dialog>
+    </div>
     <div class="body-landing-page">
         <el-carousel indicator-position="outside" class="landing-page-carousel">
             <el-carousel-item v-for="(item,index) in listAllBanner" :key="index">
@@ -27,7 +48,8 @@
             <div class="content-title" id="contentTitle">
                 {{preface.title}}
             </div>
-            <div class="content-space">____________________________________________________</div>
+            <div class="content-space">__________________________________________________________________________________</div>
+            <div class="content-space-short">____________________________________</div>
             <div class="content-short" id="contentShort">
                 {{preface.description}}
             </div>
@@ -96,7 +118,7 @@
                 </div>
             </div>
         </div>
-        <el-carousel indicator-position="none" :interval="5000" height="52em">
+        <el-carousel indicator-position="none" :interval="5000" class="event-carousel">
             <el-carousel-item v-for="(item,index) in listAllEvent" :key="index">
                 <div class="event">
                     <img :src="item.coverImg ? item.coverImg : ''"/>
@@ -144,46 +166,48 @@
             </div>
         </div>
         <div class="gallery">
-            <div class="gallery-title" id="galleryTitle">
-                <span>Minh Phu Gallery</span>
-            </div>
-            <div class="gallery-short-content">
-                <span>Photos & Videos</span>
-            </div>
-            <div class="gallery-media">
-                <div class="line-one1">
-                    <div class="line-media1">
-                        <div class="line-img1" id="lineImg1">
-                            <img :src="listAllPhotoGallery[0] && listAllPhotoGallery[0].img ? listAllPhotoGallery[0].img : ''" alt="" @click="viewImage(0)"/>
-                            <img class="img-logo" src="images/logo-white.png" alt=""/>
-                        </div>
-                        <div class="line-img2" id="lineImg2">
-                            <img :src="listAllPhotoGallery[1] && listAllPhotoGallery[1].img ? listAllPhotoGallery[1].img : ''" alt="" @click="viewImage(1)"/>
-                            <img class="img-logo" src="images/logo-white.png" alt=""/>
-                        </div>
-                    </div>
-                    <div class="line-media-one1">
-                        <div class="line-img3" id="lineImg3">
-                            <img :src="listAllPhotoGallery[2] && listAllPhotoGallery[2].img ? listAllPhotoGallery[2].img : ''" alt="" @click="viewImage(2)"/>
-                            <img class="img-logo" src="images/logo-white.png" alt=""/>
-                        </div>
-                    </div>
+            <div class="gallery-container">
+                <div class="gallery-title" id="galleryTitle">
+                    <span>Minh Phu Gallery</span>
                 </div>
-                <div class="line-one1">
-                    <div class="line-media-one2">
-                        <div class="line-img4" id="lineImg4">
-                            <img :src="listAllPhotoGallery[3] && listAllPhotoGallery[3].img ? listAllPhotoGallery[3].img : ''" alt="" @click="viewImage(3)"/>
-                            <img class="img-logo" src="images/logo-white.png" alt=""/>
+                <div class="gallery-short-content">
+                    <span>Photos & Videos</span>
+                </div>
+                <div class="gallery-media">
+                    <div class="line-one1">
+                        <div class="line-media1">
+                            <div class="line-img1" id="lineImg1">
+                                <img :src="listAllPhotoGallery[0] && listAllPhotoGallery[0].img ? listAllPhotoGallery[0].img : ''" alt="" @click="viewImage(0)"/>
+                                <img class="img-logo" src="images/logo-white.png" alt=""/>
+                            </div>
+                            <div class="line-img2" id="lineImg2">
+                                <img :src="listAllPhotoGallery[1] && listAllPhotoGallery[1].img ? listAllPhotoGallery[1].img : ''" alt="" @click="viewImage(1)"/>
+                                <img class="img-logo" src="images/logo-white.png" alt=""/>
+                            </div>
+                        </div>
+                        <div class="line-media-one1">
+                            <div class="line-img3" id="lineImg3">
+                                <img :src="listAllPhotoGallery[2] && listAllPhotoGallery[2].img ? listAllPhotoGallery[2].img : ''" alt="" @click="viewImage(2)"/>
+                                <img class="img-logo" src="images/logo-white.png" alt=""/>
+                            </div>
                         </div>
                     </div>
-                    <div class="line-media2">
-                        <div class="line-img5" id="lineImg5">
-                            <img :src="listAllPhotoGallery[4] && listAllPhotoGallery[4].img ? listAllPhotoGallery[4].img : ''" alt="" @click="viewImage(4)"/>
-                            <img class="img-logo" src="images/logo-white.png" alt=""/>
+                    <div class="line-one1">
+                        <div class="line-media-one2">
+                            <div class="line-img4" id="lineImg4">
+                                <img :src="listAllPhotoGallery[3] && listAllPhotoGallery[3].img ? listAllPhotoGallery[3].img : ''" alt="" @click="viewImage(3)"/>
+                                <img class="img-logo" src="images/logo-white.png" alt=""/>
+                            </div>
                         </div>
-                        <div class="line-img6" id="lineImg6">
-                            <img :src="listAllPhotoGallery[5] && listAllPhotoGallery[5].img ? listAllPhotoGallery[5].img : ''" alt="" @click="viewImage(5)"/>
-                            <img class="img-logo" src="images/logo-white.png" alt=""/>
+                        <div class="line-media2">
+                            <div class="line-img5" id="lineImg5">
+                                <img :src="listAllPhotoGallery[4] && listAllPhotoGallery[4].img ? listAllPhotoGallery[4].img : ''" alt="" @click="viewImage(4)"/>
+                                <img class="img-logo" src="images/logo-white.png" alt=""/>
+                            </div>
+                            <div class="line-img6" id="lineImg6">
+                                <img :src="listAllPhotoGallery[5] && listAllPhotoGallery[5].img ? listAllPhotoGallery[5].img : ''" alt="" @click="viewImage(5)"/>
+                                <img class="img-logo" src="images/logo-white.png" alt=""/>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -291,7 +315,8 @@ export default {
             getNumberRow: 0,
             loading: false,
             openDialogView: false,
-            index: 0
+            index: 0,
+            openDialogMenu: false
         }
     },
     computed: {
@@ -355,6 +380,9 @@ export default {
             await setTimeout(() => {
                 this.loading = false
             })
+        },
+        viewMenu() {
+            this.openDialogMenu = true
         },
         viewPostDetail(item) {
             if(item.id !== 1) {
