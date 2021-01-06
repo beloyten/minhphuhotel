@@ -12,16 +12,18 @@
                     </div>
                 </el-carousel-item>
             </el-carousel> 
-            <div class="post-content">
-                <div class="post-title">
-                    <span>{{post && post.post && post.post.title ? post.post.title : ''}}</span>
-                </div>
-                <div class="post-bread">
-                    <span>{{post && post.post && post.post.brief ? post.post.brief : ''}}</span>
-                </div>
-                <div class="post-content-text">
-                    <textarea v-model="post.post.description" disabled> 
-                    </textarea>
+            <div class="content">
+                <div class="post-content">
+                    <div class="post-title">
+                        <span>{{post && post.post && post.post.title ? post.post.title : ''}}</span>
+                    </div>
+                    <div class="post-bread">
+                        <span>{{post && post.post && post.post.brief ? post.post.brief : ''}}</span>
+                    </div>
+                    <div class="post-content-text">
+                        <textarea v-model="post.post.description" disabled> 
+                        </textarea>
+                    </div>
                 </div>
             </div>
         </div>

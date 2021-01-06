@@ -14,6 +14,27 @@
             <a id="textBooking">Đặt lịch</a>
         </div>
     </div>
+    <div class="heading-mobile">
+        <div class="booking-mobile" id="booking" @click="toBooking()">
+            <img src="images/icons/calender-white.png" alt="">
+            <a>Đặt lịch</a>
+        </div>
+        <div class="logo-mobile" id="logo">
+            <div class="logo-img" @click="scrollToTop()">
+                <img src="images/logo.jpg" alt="">
+            </div>
+            <div class="three-dot" @click="viewMenu()">
+                <img src="images/icons/three-dot.png" alt="">
+            </div>
+        </div>
+        <el-dialog :visible.sync="openDialogMenu" :fullscreen="true" class="menu">
+            <div class="menu-mobile">
+                <router-link to="/">Trang chủ</router-link>
+                <router-link to="/list-room">Danh sách phòng</router-link>
+                <router-link to="/contact">Liên hệ</router-link>
+            </div>
+        </el-dialog>
+    </div>
     <div class="body-landing-page">
         <el-carousel indicator-position="outside" class="landing-page-carousel">
             <el-carousel-item v-for="(item,index) in listAllBanner" :key="index">
@@ -27,7 +48,8 @@
             <div class="content-title" id="contentTitle">
                 {{preface.title}}
             </div>
-            <div class="content-space">____________________________________________________</div>
+            <div class="content-space">__________________________________________________________________________________</div>
+            <div class="content-space-short">____________________________________</div>
             <div class="content-short" id="contentShort">
                 {{preface.description}}
             </div>
@@ -96,7 +118,7 @@
                 </div>
             </div>
         </div>
-        <el-carousel indicator-position="none" :interval="5000" height="52em">
+        <el-carousel indicator-position="none" :interval="5000" class="event-carousel">
             <el-carousel-item v-for="(item,index) in listAllEvent" :key="index">
                 <div class="event">
                     <img :src="item.coverImg ? item.coverImg : ''"/>
@@ -144,7 +166,7 @@
             </div>
         </div>
         <div class="gallery">
-            <div class="gallery-ele">
+            <div class="gallery-container">
                 <div class="gallery-title" id="galleryTitle">
                     <span>Minh Phu Gallery</span>
                 </div>
@@ -170,7 +192,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="line-one2">
+                    <div class="line-one1">
                         <div class="line-media-one2">
                             <div class="line-img4" id="lineImg4">
                                 <img :src="listAllPhotoGallery[3] && listAllPhotoGallery[3].img ? listAllPhotoGallery[3].img : ''" alt="" @click="viewImage(3)"/>
@@ -293,7 +315,8 @@ export default {
             getNumberRow: 0,
             loading: false,
             openDialogView: false,
-            index: 0
+            index: 0,
+            openDialogMenu: false
         }
     },
     computed: {
@@ -357,6 +380,9 @@ export default {
             await setTimeout(() => {
                 this.loading = false
             })
+        },
+        viewMenu() {
+            this.openDialogMenu = true
         },
         viewPostDetail(item) {
             if(item.id !== 1) {

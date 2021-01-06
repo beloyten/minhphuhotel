@@ -1,6 +1,7 @@
 <template>
     <div class="contact-page">
         <Header/>
+        <HeaderMobile/>
         <div class="contact-detail">
             <div class="contact-content">
                 <div class="contact-title">
@@ -27,12 +28,14 @@
 </template>
 <script>
 import Header from "../components/Header"
+import HeaderMobile from "../components/HeaderMobile"
 import Footer from "../components/Footer"
 
 export default {
     components: {
         Header,
-        Footer
+        Footer,
+        HeaderMobile
     },
     data() {
         return {}

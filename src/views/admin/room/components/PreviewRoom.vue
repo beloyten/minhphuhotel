@@ -12,16 +12,18 @@
                     </div>
                 </el-carousel-item>
             </el-carousel> 
-            <div class="post-content">
-                <div class="post-title">
-                    <span>{{post && post.room && post.room.name ? post.room.name : ''}}</span>
-                </div>
-                <div class="post-bread">
-                    <span>{{post && post.room && post.room.brief ? post.room.brief : ''}}</span>
-                </div>
-                <div class="post-content-text">
-                    <textarea v-model="post.room.description" disabled> 
-                    </textarea>
+            <div class="content">
+                <div class="post-content">
+                    <div class="post-title">
+                        <span>{{post && post.room && post.room.name ? post.room.name : ''}}</span>
+                    </div>
+                    <div class="post-bread">
+                        <span>{{post && post.room && post.room.brief ? post.room.brief : ''}}</span>
+                    </div>
+                    <div class="post-content-text">
+                        <textarea v-model="post.room.description" disabled> 
+                        </textarea>
+                    </div>
                 </div>
             </div>
         </div>

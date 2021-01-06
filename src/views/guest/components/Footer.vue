@@ -24,9 +24,11 @@
             <div class="footer-content">
                 <h2>Service</h2>
                 <div class="line line-small"></div>
-                <h3>Sport Center</h3>
-                <h3>Tennist & Squash</h3>
-                <h3>Tennist & Squash</h3>
+                <div class="footer-service">
+                    <a @click.prevent="viewPostDetail(listHomepageService[0])">{{listHomepageService[0] && listHomepageService[0].name ? listHomepageService[0].name : ''}}</a>
+                    <a @click.prevent="viewPostDetail(listHomepageService[1])">{{listHomepageService[1] && listHomepageService[1].name ? listHomepageService[1].name : ''}}</a>
+                    <a @click.prevent="viewPostDetail(listHomepageService[2])">{{listHomepageService[2] && listHomepageService[2].name ? listHomepageService[2].name : ''}}</a>
+                </div>
             </div>
             <div class="footer-content">
                 <h2>Address</h2>
@@ -47,6 +49,9 @@ export default {
     computed: {
         contact () {
             return this.$store.getters.contact
+        },
+        listHomepageService() {
+            return this.$store.getters.listHomepageService
         }
     },
     methods: {
@@ -80,10 +85,18 @@ export default {
             } else {
                 window.open(this.youtube.facebook);
             }
+        },
+        viewPostDetail(item) {
+            if(item.id !== 1) {
+                this.$router.push("/post-detail?id="+item.id)
+            } else {
+                this.$router.push("/list-room")
+            }
         }
     },
     async created () {
         await this.$store.dispatch('getContact')
+        await this.$store.dispatch('getAllHomepageService')
     }
 }
 </script>
