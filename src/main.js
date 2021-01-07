@@ -10,6 +10,8 @@ import VueClipboard from 'vue-clipboard2'
 import VueQr from 'vue-qr'
 import CKEditor from '@ckeditor/ckeditor5-vue'
 import VueLazyload from 'vue-lazyload'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 
 // language
@@ -87,6 +89,15 @@ Vue.use(RouterInterceptor)
 Vue.config.productionTip = false
 
 new Vue({
+  created() {
+    AOS.init({
+      offset: 150,
+      delay: 0,
+      duration: 400,
+      easing: 'ease',
+      once: false
+    })
+  },
   router,
   store,
   render: h => h(App)

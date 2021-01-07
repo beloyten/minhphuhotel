@@ -3,7 +3,7 @@
         <Header/>
         <HeaderMobile/>
         <div class="contact-detail">
-            <div class="contact-content">
+            <div class="contact-content" data-aos="contact-content-animation">
                 <div class="contact-title">
                     <p>Minh Phú Diamond Palace</p>
                 </div>

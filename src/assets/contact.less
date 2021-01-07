@@ -15,6 +15,7 @@
             color: black;
             margin-left: 14%;
             margin-top: 160px;
+            opacity: 0;
             .contact-title {
                 p {
                     font-size: 50px;
@@ -58,5 +59,32 @@
         .display_none {
             display:none;
         }
+    }
+}
+@-webkit-keyframes displayContactContent {
+    0% {
+        margin-top: 100px
+    }
+    100% {
+        margin-top: 160px
+    }
+}
+
+/* Standard syntax */
+@keyframes displayContactContent {
+    0% {
+        margin-top: 100px
+    }
+    100% {
+        margin-top: 160px
+    }
+}
+[data-aos="contact-content-animation"] {
+    opacity: 0 !important;
+    transition-property: transform, opacity;
+    &.aos-animate {
+        -webkit-animation: displayContactContent 1s; /* Chrome, Safari, Opera */
+        animation: displayContactContent 1s;
+        opacity: 1 !important;
     }
 }

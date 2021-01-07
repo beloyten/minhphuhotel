@@ -1,6 +1,6 @@
 <template>
     <div class="footer-hotel">
-        <div class="footer-animation">
+        <div class="footer-animation" data-aos="footer-animation">
             <div class="footer-logo" @click="toHomepage()">
                 <img src="images/logo-white.png" alt="">
             </div>

@@ -45,12 +45,15 @@
             </el-carousel-item>
         </el-carousel>
         <div class="content">
-            <div class="content-title" id="contentTitle">
+            <div class="content-title" id="contentTitle"
+                data-aos="content-title-animation"
+            >
                 {{preface.title}}
             </div>
             <div class="content-space">__________________________________________________________________________________</div>
             <div class="content-space-short">____________________________________</div>
-            <div class="content-short" id="contentShort">
+            <div class="content-short" id="contentShort"
+                data-aos="content-short-animation">
                 {{preface.description}}
             </div>
         </div>
@@ -63,14 +66,14 @@
                         <div class="post-content-short">
                             <p>{{listHomepageService[0] && listHomepageService[0].shortDescription ? listHomepageService[0].shortDescription: ''}}</p>
                         </div>
-                        <button class="view-more1" id="viewMore1" @click="viewMore(listHomepageService[0].id)">Xem thêm</button>
+                        <button data-aos="view-more1-animation" class="view-more1" id="viewMore1" @click="viewMore(listHomepageService[0].id)">Xem thêm</button>
                     </div>
-                    <div class="post-image1" id="postImage1">
+                    <div class="post-image1" id="postImage1" data-aos="post-image1-animation">
                         <img :src="listHomepageService[0] && listHomepageService[0].coverImg ?listHomepageService[0].coverImg : ''" alt=""/>
                     </div>
                 </div>
                 <div class="post-content-detail-reverse">
-                    <div class="post-image2" id="postImage2">
+                    <div class="post-image2" id="postImage2" data-aos="post-image1-animation">
                         <img :src="listHomepageService[0] && listHomepageService[1].coverImg ?listHomepageService[1].coverImg : ''" alt=""/>
                     </div>
                     <div class="post-text">
@@ -79,7 +82,7 @@
                         <div class="post-content-short">
                             <p>{{listHomepageService[1] && listHomepageService[1].shortDescription ? listHomepageService[1].shortDescription : ''}}</p>
                         </div>
-                        <button class="view-more2" id="viewMore2" @click="viewMore(listHomepageService[1].id)">Xem thêm</button>
+                        <button class="view-more2" data-aos="view-more1-animation" id="viewMore2" @click="viewMore(listHomepageService[1].id)">Xem thêm</button>
                     </div>
                 </div>
                 <div class="post-content-detail">
@@ -89,9 +92,9 @@
                         <div class="post-content-short">
                             <p>{{listHomepageService[2] && listHomepageService[2].shortDescription ? listHomepageService[2].shortDescription : ''}}</p>
                         </div>
-                        <button class="view-more3" id="viewMore3" @click="viewMore(listHomepageService[2].id)">Xem thêm</button>
+                        <button class="view-more3" data-aos="view-more1-animation" id="viewMore3" @click="viewMore(listHomepageService[2].id)">Xem thêm</button>
                     </div>
-                    <div class="post-image3" id="postImage3">
+                    <div class="post-image3" id="postImage3" data-aos="post-image1-animation">
                         <img :src="listHomepageService[2] && listHomepageService[2].coverImg ?listHomepageService[2].coverImg : ''" alt=""/>
                     </div>
                 </div>
@@ -99,8 +102,8 @@
         </div>
         <div class="service-list">
             <div class="service-list-content">
-                <div class="service-title" id="serviceTitle">DANH SÁCH DỊCH VỤ</div>
-                <div class="service-list-item" id="serviceListItem">
+                <div class="service-title" id="serviceTitle" data-aos="service-title-animation">DANH SÁCH DỊCH VỤ</div>
+                <div class="service-list-item" id="serviceListItem" data-aos="service-item-animation">
                     <div class="all-service" v-for="item in getNumberRow" :key="item">
                         <div class="service-item" @click="viewPostDetail(listAllService[item*3-3])">
                             <div class="dot-before" v-if="listAllService[item*3-3]"></div>
@@ -127,7 +130,7 @@
                 </div>
             </el-carousel-item>
         </el-carousel>
-        <div class="form-booking" id="formBooking" :class='{loading: loading}'>
+        <div class="form-booking" data-aos="form-booking-animation" id="formBooking" :class='{loading: loading}'>
             <div class="form-booking-detail">
                 <div class="booking-field">
                     <div class="field">
@@ -167,7 +170,7 @@
         </div>
         <div class="gallery">
             <div class="gallery-container">
-                <div class="gallery-title" id="galleryTitle">
+                <div class="gallery-title" id="galleryTitle" data-aos="gallery-title-animation">
                     <span>Minh Phu Gallery</span>
                 </div>
                 <div class="gallery-short-content">
@@ -176,17 +179,17 @@
                 <div class="gallery-media">
                     <div class="line-one1">
                         <div class="line-media1">
-                            <div class="line-img1" id="lineImg1">
+                            <div class="line-img1" id="lineImg1" data-aos="gallery-image-animation">
                                 <img :src="listAllPhotoGallery[0] && listAllPhotoGallery[0].img ? listAllPhotoGallery[0].img : ''" alt="" @click="viewImage(0)"/>
                                 <img class="img-logo" src="images/logo-white.png" alt=""/>
                             </div>
-                            <div class="line-img2" id="lineImg2">
+                            <div class="line-img2" id="lineImg2" data-aos="gallery-image-animation">
                                 <img :src="listAllPhotoGallery[1] && listAllPhotoGallery[1].img ? listAllPhotoGallery[1].img : ''" alt="" @click="viewImage(1)"/>
                                 <img class="img-logo" src="images/logo-white.png" alt=""/>
                             </div>
                         </div>
                         <div class="line-media-one1">
-                            <div class="line-img3" id="lineImg3">
+                            <div class="line-img3" id="lineImg3" data-aos="gallery-image-animation">
                                 <img :src="listAllPhotoGallery[2] && listAllPhotoGallery[2].img ? listAllPhotoGallery[2].img : ''" alt="" @click="viewImage(2)"/>
                                 <img class="img-logo" src="images/logo-white.png" alt=""/>
                             </div>
@@ -194,17 +197,17 @@
                     </div>
                     <div class="line-one1">
                         <div class="line-media-one2">
-                            <div class="line-img4" id="lineImg4">
+                            <div class="line-img4" id="lineImg4" data-aos="gallery-image-animation">
                                 <img :src="listAllPhotoGallery[3] && listAllPhotoGallery[3].img ? listAllPhotoGallery[3].img : ''" alt="" @click="viewImage(3)"/>
                                 <img class="img-logo" src="images/logo-white.png" alt=""/>
                             </div>
                         </div>
                         <div class="line-media2">
-                            <div class="line-img5" id="lineImg5">
+                            <div class="line-img5" id="lineImg5" data-aos="gallery-image-animation">
                                 <img :src="listAllPhotoGallery[4] && listAllPhotoGallery[4].img ? listAllPhotoGallery[4].img : ''" alt="" @click="viewImage(4)"/>
                                 <img class="img-logo" src="images/logo-white.png" alt=""/>
                             </div>
-                            <div class="line-img6" id="lineImg6">
+                            <div class="line-img6" id="lineImg6" data-aos="gallery-image-animation">
                                 <img :src="listAllPhotoGallery[5] && listAllPhotoGallery[5].img ? listAllPhotoGallery[5].img : ''" alt="" @click="viewImage(5)"/>
                                 <img class="img-logo" src="images/logo-white.png" alt=""/>
                             </div>
@@ -230,7 +233,7 @@
         </svg>
     </div>
     <div class="footer-hotel">
-        <div class="footer-animation" id="footerAnimation">
+        <div class="footer-animation" id="footerAnimation" data-aos="footer-animation">
             <div class="footer-logo" @click="scrollToTop()">
                 <img src="images/logo-white.png" alt="">
             </div>
@@ -288,6 +291,7 @@ export default {
     data () {
         return {
             down: false,
+            up: false,
             preface: {
                 title: '',
                 description: ''
@@ -466,91 +470,6 @@ export default {
             this.$router.push("/")
         },
         toBooking() {
-            var styleFormBooking = document.createElement('style');
-            styleFormBooking.innerHTML = `
-            .form-booking {
-                    -webkit-animation: displayForm 1s; /* Chrome, Safari, Opera */
-                    animation: displayForm 1s;
-                    opacity: 1!important;
-            }
-            `;
-            var stylePostImg2 = document.createElement('style');
-            stylePostImg2.innerHTML = `
-            .post-image2 {
-                    -webkit-animation: displayImg 1s linear forwards; /* Chrome, Safari, Opera */
-                    animation: displayImg 1s linear forwards;
-            }
-            `;
-            var stylePostImg3 = document.createElement('style');
-            stylePostImg3.innerHTML = `
-            .post-image3 {
-                    -webkit-animation: displayImg 1s linear forwards; /* Chrome, Safari, Opera */
-                    animation: displayImg 1s linear forwards;
-            }
-            `;
-            var styleButton1 = document.createElement('style');
-            styleButton1.innerHTML = `
-            .view-more1 {
-                    opacity: 1!important;
-                    -webkit-animation: displayButton 1s; /* Chrome, Safari, Opera */
-                    animation: displayButton 1s;
-            }
-            `;
-            var styleButton2 = document.createElement('style');
-            styleButton2.innerHTML = `
-            .view-more2 {
-                    opacity: 1!important;
-                    -webkit-animation: displayButton 1s; /* Chrome, Safari, Opera */
-                    animation: displayButton 1s;
-            }
-            `;
-            var styleButton3 = document.createElement('style');
-            styleButton3.innerHTML = `
-            .view-more3 {
-                    opacity: 1!important;
-                    -webkit-animation: displayButton 1s; /* Chrome, Safari, Opera */
-                    animation: displayButton 1s;
-            }
-            `;
-            var styleServiceTitle = document.createElement('style');
-            styleServiceTitle.innerHTML = `
-            .service-title {
-                    opacity: 1!important;
-                    -webkit-animation: displayService 1s; /* Chrome, Safari, Opera */
-                    animation: displayService 1s;
-            }
-            `;
-            var styleContentTitle = document.createElement('style');
-            styleContentTitle.innerHTML = `
-            .content-title {
-                    -webkit-animation: displayTitleBottom 1s; /* Chrome, Safari, Opera */
-                    animation: displayTitleBottom 1s;
-                    opacity: 1!important;
-            }
-            `;
-            var styleContentBottom = document.createElement('style');
-            styleContentBottom.innerHTML = `
-            .content-short {
-                    -webkit-animation: displayTitleBottom 1s; /* Chrome, Safari, Opera */
-                    animation: displayTitleBottom 1s;
-                    opacity: 1!important;
-            }
-            `;
-            var styleServiceItem = document.createElement('style');
-            styleServiceItem.innerHTML = `
-            .service-list-item {
-                    opacity: 1!important;
-                    -webkit-animation: displayServiceItem 1s; /* Chrome, Safari, Opera */
-                    animation: displayServiceItem 1s;
-            }
-            `;
-            var stylePostImg1 = document.createElement('style');
-            stylePostImg1.innerHTML = `
-            .post-image1 {
-                    -webkit-animation: displayImg 1s linear forwards; /* Chrome, Safari, Opera */
-                    animation: displayImg 1s linear forwards;
-            }
-            `;
             var styleHeaderLogo = document.createElement('style');
             styleHeaderLogo.innerHTML = `
             .logo {
@@ -599,22 +518,11 @@ export default {
                 left += ele.offsetLeft;
                 ele = ele.offsetParent;
             }
-            document.head.appendChild(stylePostImg1);
             document.head.appendChild(styleHeaderLogo);
             document.head.appendChild(styleHeaderItem);
             document.head.appendChild(styleHeaderBooking);
             document.head.appendChild(styleHeaderBookingLabel);
             document.head.appendChild(styleHeader);
-            document.head.appendChild(styleFormBooking);
-            document.head.appendChild(styleServiceItem);
-            document.head.appendChild(styleServiceTitle);
-            document.head.appendChild(styleButton3);
-            document.head.appendChild(stylePostImg3);
-            document.head.appendChild(styleButton2);
-            document.head.appendChild(stylePostImg2);
-            document.head.appendChild(styleButton1);
-            document.head.appendChild(styleContentBottom);
-            document.head.appendChild(styleContentTitle);
             document.head.appendChild(styleItemContentHide);
             window.scrollTo(left, top-450)
         },
@@ -705,240 +613,6 @@ export default {
                 justify-content: none;
         }
         `;
-        var styleContentTitleNone = document.createElement('style');
-        styleContentTitleNone.innerHTML = `
-        .content-title {
-                -webkit-animation: none; /* Chrome, Safari, Opera */
-                animation: none;
-                opacity: 0!important;
-        }
-        `;
-        var styleContentBottomNone = document.createElement('style');
-        styleContentBottomNone.innerHTML = `
-        .content-short {
-                -webkit-animation: none; /* Chrome, Safari, Opera */
-                animation: none;
-                opacity: 0!important;
-        }
-        `;
-         var stylePostImg1None = document.createElement('style');
-        stylePostImg1None.innerHTML = `
-        .post-image1 {
-                -webkit-animation: none; /* Chrome, Safari, Opera */
-                animation: none;
-        }
-        `;
-        var stylePostImg2None = document.createElement('style');
-        stylePostImg2None.innerHTML = `
-        .post-image2 {
-               -webkit-animation: none; /* Chrome, Safari, Opera */
-                animation: none;
-        }
-        `;
-        var stylePostImg3None = document.createElement('style');
-        stylePostImg3None.innerHTML = `
-        .post-image3 {
-                -webkit-animation: none; /* Chrome, Safari, Opera */
-                animation: none;
-        }
-        `;
-        var styleButton1None = document.createElement('style');
-        styleButton1None.innerHTML = `
-        .view-more1 {
-                -webkit-animation: none; /* Chrome, Safari, Opera */
-                animation: none;
-                opacity: 0!important;
-        }
-        `;
-        var styleButton2None = document.createElement('style');
-        styleButton2None.innerHTML = `
-        .view-more2 {
-                -webkit-animation: none; /* Chrome, Safari, Opera */
-                animation: none;
-                opacity: 0!important;
-        }
-        `;
-        var styleButton3None = document.createElement('style');
-        styleButton3None.innerHTML = `
-        .view-more3 {
-                -webkit-animation: none; /* Chrome, Safari, Opera */
-                animation: none;
-                opacity: 0!important;
-        }
-        `;
-        var styleServiceTitleNone = document.createElement('style');
-        styleServiceTitleNone.innerHTML = `
-        .service-title {
-                -webkit-animation: none; /* Chrome, Safari, Opera */
-                animation: none;
-                opacity: 0!important;
-        }
-        `;
-        var styleServiceItemNone = document.createElement('style');
-        styleServiceItemNone.innerHTML = `
-        .service-list-item {
-                -webkit-animation: none; /* Chrome, Safari, Opera */
-                animation: none;
-                opacity: 0!important;
-        }
-        `;
-        var styleFooterNone = document.createElement('style');
-        styleFooterNone.innerHTML = `
-        .footer-animation {
-                -webkit-animation: none; /* Chrome, Safari, Opera */
-                animation: none;
-                opacity: 0!important;
-        }
-        `;
-        var styleFormBookingNone = document.createElement('style');
-        styleFormBookingNone.innerHTML = `
-        .form-booking {
-               -webkit-animation: none; /* Chrome, Safari, Opera */
-                animation: none;
-                opacity: 0!important;
-        }
-        `;
-        var styleContentTitle = document.createElement('style');
-        styleContentTitle.innerHTML = `
-        .content-title {
-                -webkit-animation: displayTitleBottom 1s; /* Chrome, Safari, Opera */
-                animation: displayTitleBottom 1s;
-                opacity: 1!important;
-        }
-        `;
-        var styleContentBottom = document.createElement('style');
-        styleContentBottom.innerHTML = `
-        .content-short {
-                -webkit-animation: displayContentBottom 1s; /* Chrome, Safari, Opera */
-                animation: displayContentBottom 1s;
-                opacity: 1!important;
-        }
-        `;
-        var stylePostImg1 = document.createElement('style');
-        stylePostImg1.innerHTML = `
-        .post-image1 {
-                -webkit-animation: displayImg 1s linear forwards; /* Chrome, Safari, Opera */
-                animation: displayImg 1s linear forwards;
-        }
-        `;
-        var stylePostImg2 = document.createElement('style');
-        stylePostImg2.innerHTML = `
-        .post-image2 {
-                -webkit-animation: displayImg 1s linear forwards; /* Chrome, Safari, Opera */
-                animation: displayImg 1s linear forwards;
-        }
-        `;
-        var stylePostImg3 = document.createElement('style');
-        stylePostImg3.innerHTML = `
-        .post-image3 {
-                -webkit-animation: displayImg 1s linear forwards; /* Chrome, Safari, Opera */
-                animation: displayImg 1s linear forwards;
-        }
-        `;
-        var styleButton1 = document.createElement('style');
-        styleButton1.innerHTML = `
-        .view-more1 {
-                opacity: 1!important;
-                -webkit-animation: displayButton 1s; /* Chrome, Safari, Opera */
-                animation: displayButton 1s;
-        }
-        `;
-        var styleButton2 = document.createElement('style');
-        styleButton2.innerHTML = `
-        .view-more2 {
-                opacity: 1!important;
-                -webkit-animation: displayButton 1s; /* Chrome, Safari, Opera */
-                animation: displayButton 1s;
-        }
-        `;
-        var styleButton3 = document.createElement('style');
-        styleButton3.innerHTML = `
-        .view-more3 {
-                opacity: 1!important;
-                -webkit-animation: displayButton 1s; /* Chrome, Safari, Opera */
-                animation: displayButton 1s;
-        }
-        `;
-        var styleServiceTitle = document.createElement('style');
-        styleServiceTitle.innerHTML = `
-        .service-title {
-                opacity: 1!important;
-                -webkit-animation: displayService 1s; /* Chrome, Safari, Opera */
-                animation: displayService 1s;
-        }
-        `;
-        var styleServiceItem = document.createElement('style');
-        styleServiceItem.innerHTML = `
-        .service-list-item {
-                opacity: 1!important;
-                -webkit-animation: displayServiceItem 1s; /* Chrome, Safari, Opera */
-                animation: displayServiceItem 1s;
-        }
-        `;
-        var styleFooter = document.createElement('style');
-        styleFooter.innerHTML = `
-        .footer-animation {
-                -webkit-animation: displayFooter 1s; /* Chrome, Safari, Opera */
-                animation: displayFooter 1s;
-                opacity: 1!important;
-        }
-        `;
-        var styleFormBooking = document.createElement('style');
-        styleFormBooking.innerHTML = `
-        .form-booking {
-                -webkit-animation: displayForm 1s; /* Chrome, Safari, Opera */
-                animation: displayForm 1s;
-                opacity: 1!important;
-        }
-        `;
-        var styleImgGallery1 = document.createElement('style');
-        styleImgGallery1.innerHTML = `
-        .line-img1 {
-                -webkit-animation: displayImgGallery 1s; /* Chrome, Safari, Opera */
-                animation: displayImgGallery 1s;
-                opacity: 1!important;
-        }
-        `;
-        var styleImgGallery2 = document.createElement('style');
-        styleImgGallery2.innerHTML = `
-        .line-img2 {
-                -webkit-animation: displayImgGallery 1s; /* Chrome, Safari, Opera */
-                animation: displayImgGallery 1s;
-                opacity: 1!important;
-        }
-        `;
-        var styleImgGallery3 = document.createElement('style');
-        styleImgGallery3.innerHTML = `
-        .line-img3 {
-                -webkit-animation: displayImgGallery 1s; /* Chrome, Safari, Opera */
-                animation: displayImgGallery 1s;
-                opacity: 1!important;
-        }
-        `;
-        var styleImgGallery4 = document.createElement('style');
-        styleImgGallery4.innerHTML = `
-        .line-img4 {
-                -webkit-animation: displayImgGallery 1s; /* Chrome, Safari, Opera */
-                animation: displayImgGallery 1s;
-                opacity: 1!important;
-        }
-        `;
-        var styleImgGallery5 = document.createElement('style');
-        styleImgGallery5.innerHTML = `
-        .line-img5 {
-                -webkit-animation: displayImgGallery 1s; /* Chrome, Safari, Opera */
-                animation: displayImgGallery 1s;
-                opacity: 1!important;
-        }
-        `;
-        var styleImgGallery6 = document.createElement('style');
-        styleImgGallery6.innerHTML = `
-        .line-img6 {
-                -webkit-animation: displayImgGallery 1s; /* Chrome, Safari, Opera */
-                animation: displayImgGallery 1s;
-                opacity: 1!important;
-        }
-        `;
         var styleHeaderLogo = document.createElement('style');
         styleHeaderLogo.innerHTML = `
         .logo {
@@ -984,22 +658,9 @@ export default {
                 opacity: 1!important;
         }
         `;
-        document.head.appendChild(styleContentTitleNone);
-        document.head.appendChild(styleContentBottomNone);
-        document.head.appendChild(stylePostImg1None);
-        document.head.appendChild(stylePostImg2None);
-        document.head.appendChild(stylePostImg3None);
-        document.head.appendChild(styleButton1None);
-        document.head.appendChild(styleButton2None);
-        document.head.appendChild(styleButton3None);
-        document.head.appendChild(styleServiceTitleNone);
-        document.head.appendChild(styleServiceItemNone);
-        document.head.appendChild(styleFooterNone);
-        document.head.appendChild(styleFormBookingNone);
         let vm = this
         var scrollableElement = document.body; //document.getElementById('scrollableElement');
         scrollableElement.addEventListener('wheel', checkScrollDirection);
-
         function checkScrollDirection(event) {
             if (checkScrollDirectionIsUp(event)) {
                 window.onscroll = function(event) {
@@ -1018,34 +679,8 @@ export default {
             } else {
                 window.onscroll = function(event) {
                     console.log('down',document.documentElement.scrollTop)
-                    if(document.documentElement.scrollTop > 5150) {
-                        document.head.appendChild(styleFooter);
-                    } else if(document.documentElement.scrollTop > 4400) {
-                        document.head.appendChild(styleImgGallery1);
-                        document.head.appendChild(styleImgGallery2);
-                        document.head.appendChild(styleImgGallery3);
-                        document.head.appendChild(styleImgGallery4);
-                        document.head.appendChild(styleImgGallery5);
-                        document.head.appendChild(styleImgGallery6);
-                    } else if(document.documentElement.scrollTop > 3800) {
-                        document.head.appendChild(styleFormBooking);
-                    } else if(document.documentElement.scrollTop > 2950) {
-                        document.head.appendChild(styleServiceItem);
-                    } else if(document.documentElement.scrollTop > 2700) {
-                        document.head.appendChild(styleServiceTitle);
-                    } else if(document.documentElement.scrollTop > 2100) {
-                        document.head.appendChild(styleButton3);
-                    } else if(document.documentElement.scrollTop > 1900) {
-                        document.head.appendChild(stylePostImg3);
-                    } else if(document.documentElement.scrollTop > 1600) {
-                        document.head.appendChild(styleButton2);
-                    } else if(document.documentElement.scrollTop > 1400) {
-                        document.head.appendChild(stylePostImg2);
-                    } else if(document.documentElement.scrollTop > 1100) {
-                        document.head.appendChild(styleButton1);
-                    } else if(document.documentElement.scrollTop > 900) {
+                    if(document.documentElement.scrollTop > 900) {
                         vm.down = true
-                        document.head.appendChild(stylePostImg1);
                         document.head.appendChild(styleHeaderLogo);
                         document.head.appendChild(styleHeaderItem);
                         document.head.appendChild(styleHeaderBooking);
@@ -1060,13 +695,6 @@ export default {
                             document.head.appendChild(styleHeaderNone);
                             document.head.appendChild(styleItemContentDisplay);
                         }
-                        if(document.documentElement.scrollTop > 400) {
-                            document.head.appendChild(styleContentBottom);
-                        } else if(document.documentElement.scrollTop > 250) {
-                            document.head.appendChild(styleContentTitle);
-                        } else if(document.documentElement.scrollTop > 200) {
-                            document.head.appendChild(styleItemContentHide);
-                        }
                     }
                 }
             }
@@ -1077,28 +705,7 @@ export default {
                 return event.wheelDelta > 0;
             }
             return event.deltaY < 0;
-        }
-            // var header = document.getElementById("header");
-            // var logo = document.getElementById("logo");
-            // var headingItem = document.getElementById("headingItem");
-            // var booking = document.getElementById("booking");
-            // var textBooking = document.getElementById("textBooking");
-            // if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
-            //     header.style.justifyContent="flex-end";
-            //     logo.style.width = "45%"
-            //     logo.style.justifyContent="flex-start";
-            //     headingItem.style.width = "40%"
-            //     booking.style.width = "5%"
-            //     textBooking.style.display = "none"
-            // } else {
-            //     header.style.justifyContent="center";
-            //     logo.style.width = "20%"
-            //     logo.style.justifyContent="center";
-            //     headingItem.style.width = "60%"
-            //     booking.style.width = "20%"
-            //     textBooking.style.display = "inline"
-            // }
-            
+        }   
         if(this.$store.getters.booking) {
             this.toBooking()
         }
