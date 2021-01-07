@@ -547,8 +547,8 @@ export default {
             var stylePostImg1 = document.createElement('style');
             stylePostImg1.innerHTML = `
             .post-image1 {
-                    -webkit-animation: displayImg 1s linear forwards; /* Chrome, Safari, Opera */
-                    animation: displayImg 1s linear forwards;
+                    -webkit-animation: displayImg 1s cubic-bezier(0.21, 0.15, 0.96, 0.11) forwards; /* Chrome, Safari, Opera */
+                   // animation: displayImg 1s linear forwards;
             }
             `;
             var styleHeaderLogo = document.createElement('style');
@@ -725,6 +725,7 @@ export default {
         stylePostImg1None.innerHTML = `
         .post-image1 {
                 -webkit-animation: none; /* Chrome, Safari, Opera */
+                 opacity: 0!important;
                 animation: none;
         }
         `;
@@ -732,6 +733,7 @@ export default {
         stylePostImg2None.innerHTML = `
         .post-image2 {
                -webkit-animation: none; /* Chrome, Safari, Opera */
+                opacity: 0!important;
                 animation: none;
         }
         `;
@@ -739,6 +741,7 @@ export default {
         stylePostImg3None.innerHTML = `
         .post-image3 {
                 -webkit-animation: none; /* Chrome, Safari, Opera */
+                 opacity: 0!important;
                 animation: none;
         }
         `;
@@ -817,22 +820,22 @@ export default {
         var stylePostImg1 = document.createElement('style');
         stylePostImg1.innerHTML = `
         .post-image1 {
-                -webkit-animation: displayImg 1s linear forwards; /* Chrome, Safari, Opera */
-                animation: displayImg 1s linear forwards;
+                -webkit-animation: displayImg 0.7s cubic-bezier(0.29, 0.23, 0.88, 0.21) forwards; /* Chrome, Safari, Opera */
+               // animation: displayImg 1s linear forwards;
         }
         `;
         var stylePostImg2 = document.createElement('style');
         stylePostImg2.innerHTML = `
         .post-image2 {
-                -webkit-animation: displayImg 1s linear forwards; /* Chrome, Safari, Opera */
-                animation: displayImg 1s linear forwards;
+                -webkit-animation: displayImg 0.7s cubic-bezier(0.29, 0.23, 0.88, 0.21) forwards; /* Chrome, Safari, Opera */
+               // animation: displayImg 1s linear forwards;
         }
         `;
         var stylePostImg3 = document.createElement('style');
         stylePostImg3.innerHTML = `
         .post-image3 {
-                -webkit-animation: displayImg 1s linear forwards; /* Chrome, Safari, Opera */
-                animation: displayImg 1s linear forwards;
+              -webkit-animation: displayImg 0.7s cubic-bezier(0.29, 0.23, 0.88, 0.21) forwards; /* Chrome, Safari, Opera */
+              //  animation: displayImg 1s linear forwards;
         }
         `;
         var styleButton1 = document.createElement('style');
