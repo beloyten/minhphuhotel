@@ -49,12 +49,13 @@
             background-repeat: no-repeat;
             background-position: bottom right;
             background-size: 40em 40em;
-            min-height: 60em;
+            min-height: 800px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             .post-title {
-                padding-top: 5%;
+                opacity: 0;
+                padding-top: 10%;
+                height: 200px;
                 span {
                     font-size: 5.5em;
                     color: #ab6c2d;
@@ -62,8 +63,8 @@
                 }
             }
             .post-bread {
-                height: 18px;
-                padding-top: 5%;
+                height: 100px;
+                padding-top: 3%;
                 span {
                     font-size: 3em;
                     color: black;
@@ -72,7 +73,7 @@
             }
             .post-content-text {
                 min-height: 400px;
-                padding-top: 10%;
+                padding-top: 3%;
                 width: 100%;
                 textarea {
                     min-height: 400px;
@@ -158,5 +159,61 @@
     
     .el-carousel__item:nth-child(2n + 1) {
         background-color: #d3dce6;
+    }
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes displayPostTitle {
+    0% {
+        padding-top: 5%;
+    }
+    100% {
+        padding-top: 10%;
+    }
+}
+
+/* Standard syntax */
+@keyframes displayPostTitle {
+    0% { 
+        padding-top: 5%;
+    }
+    100% {
+        padding-top: 10%;
+    }
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes displayPostContent {
+    0% {
+        padding-top: 0;
+    }
+    100% {
+        padding-top: 3%;
+    }
+}
+
+/* Standard syntax */
+@keyframes displayPostContent {
+    0% { 
+        padding-top: 0;
+    }
+    100% {
+        padding-top: 3%;
+    }
+}
+[data-aos="post-title-animation"] {
+    opacity: 0 !important;
+    transition-property: transform, opacity;
+    &.aos-animate {
+        -webkit-animation: displayPostTitle 1s; /* Chrome, Safari, Opera */
+        animation: displayPostTitle 1s;
+        opacity: 1 !important;
+    }
+}
+[data-aos="post-content-animation"] {
+    opacity: 0 !important;
+    transition-property: transform, opacity;
+    &.aos-animate {
+        -webkit-animation: displayPostContent 1s; /* Chrome, Safari, Opera */
+        animation: displayPostContent 1s;
+        opacity: 1 !important;
     }
 }

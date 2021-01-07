@@ -14,13 +14,13 @@
             </el-carousel> 
             <div class="content">
                 <div class="post-content">
-                    <div class="post-title">
+                    <div class="post-title" data-aos="post-title-animation">
                         <span>{{post && post.room && post.room.name ? post.room.name : ''}}</span>
                     </div>
-                    <div class="post-bread">
+                    <div class="post-bread" data-aos="post-content-animation">
                         <span>{{post && post.room && post.room.brief ? post.room.brief : ''}}</span>
                     </div>
-                    <div class="post-content-text">
+                    <div class="post-content-text" data-aos="post-content-animation">
                         <textarea v-model="post.room.description" disabled> 
                         </textarea>
                     </div>

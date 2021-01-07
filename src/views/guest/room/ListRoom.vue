@@ -15,13 +15,13 @@
             </el-carousel>
             <div class="content">
                 <div class="post-content">
-                    <div class="post-title">
+                    <div class="post-title" data-aos="post-title-animation">
                         <span>{{post.title}}</span>
                     </div>
-                    <div class="post-bread">
+                    <div class="post-bread" data-aos="post-content-animation">
                         <span>{{post.brief}}</span>
                     </div>
-                    <div class="post-content-text">
+                    <div class="post-content-text" data-aos="post-content-animation">
                         <textarea v-model="post.description" disabled> 
                         </textarea>
                     </div>
