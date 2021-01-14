@@ -1,5 +1,5 @@
 <template>
-<div class="landing-page">
+<div class="landing-page" :class='{loading: loading}'>
     <div class="heading-landing-page" id="header">
         <div class="logo" id="logo" @click="scrollToTop()">
             <img src="images/logo.jpg" alt="">
@@ -579,7 +579,6 @@ export default {
         }
     },
     mounted() {
-        document.documentElement.scrollTop = 0
         var styleHeaderLogoNone = document.createElement('style');
         styleHeaderLogoNone.innerHTML = `
         .logo {
@@ -712,7 +711,8 @@ export default {
         this.$store.dispatch('setBooking', false)
     },
     async created() {
+        this.loading = true;
         await this.fetch()
-    }
+    },
 }
 </script>

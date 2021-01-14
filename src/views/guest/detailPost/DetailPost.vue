@@ -1,5 +1,5 @@
 <template>
-    <div class="detail-post">
+    <div class="detail-post" :class='{loading: loading}'>
         <Header/>
         <HeaderMobile/>
         <div class="detail-post-content">
@@ -45,14 +45,15 @@ export default {
     data() {
         return {
             listImage: [],
-            post: {}
+            post: {},
+            loading: false
         }
     },
     mounted() {
         
     },
     async created() {
-        console.log(this.$route)
+        this.loading = true
         if(this.$route.query.id) {
             await this.$store.dispatch('getOnePost', this.$route.query.id).then(rs => {
                 if(rs.status === 'success') {
@@ -63,6 +64,9 @@ export default {
         } else {
             this.$router.push("/")
         }
-    }
+        await setTimeout(() => {
+            this.loading = false
+        }, 300)
+    },
 }
 </script>

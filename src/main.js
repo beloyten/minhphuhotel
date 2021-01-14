@@ -95,7 +95,7 @@ new Vue({
       delay: 0,
       duration: 400,
       easing: 'ease',
-      once: false
+      once: true
     })
   },
   router,

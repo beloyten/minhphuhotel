@@ -1,5 +1,5 @@
 <template>
-    <div class="contact-page">
+    <div class="contact-page" :class='{loading: loading}'>
         <Header/>
         <HeaderMobile/>
         <div class="contact-detail">
@@ -35,7 +35,8 @@ export default {
     components: {
         Header,
         Footer,
-        HeaderMobile
+        HeaderMobile,
+        loading: false
     },
     data() {
         return {}

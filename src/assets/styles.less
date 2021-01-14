@@ -1572,6 +1572,9 @@ textarea {
 .heading-mobile {
   display: none;
 }
+.red_background {
+  background-color: red !important;
+}
 @media screen and (max-width:640px) {
   .heading-landing-page {
     display: none;
@@ -1620,17 +1623,25 @@ textarea {
         }
     }
     .menu {
+      max-width: 100%;
         .el-dialog {
+            max-width: 100%;
             background-color: black;
+            opacity: 0.7;
             .menu-mobile {
                 display: flex;
                 flex-direction: column;
                 a {
                     font-size: 25px;
-                    margin-top: 40px;
-                    height: 60px;
+                    height: 80px;
+                    padding-top: 20px;
                     font-weight: 300;
                     color: white;
+                    width: 100%;
+                    &:hover, &:active {
+                      color: #efce16;
+                      cursor: pointer;
+                    }
                 }
             }
         }
@@ -1639,7 +1650,7 @@ textarea {
   .landing-page {
     margin-top: 0;
     .el-carousel__container {
-        height: 750px;
+        height: 700px;
         img {
             width: 100%;
             height: 750px;
@@ -1655,12 +1666,12 @@ textarea {
         text-align: center;
     }
     .content {
-        height: 400px;
+        min-height: 550px;
         align-items: flex-start;
         .content-title {
             font-size: 21px;
             padding-top: 2.5%;
-            height: 30px;
+            height: 45px;
             padding-left: 5%;
             font-weight: bold;
         }
@@ -1672,7 +1683,7 @@ textarea {
             padding-left: 5%;
         }
         .content-short {
-            padding-top: 20px;
+            padding-top: 10px;
             width: 95%;
             text-align: left;
             padding-left: 5%;
@@ -1697,7 +1708,7 @@ textarea {
                 height: fit-content !important;
                 .service-item {
                     width: 100% !important;
-                    height: 45px !important;
+                    height: 60px !important;
                 }
             }
         }
@@ -1719,15 +1730,19 @@ textarea {
                         text-align: center;
                     }
                     .title-post {
-                        font-size: 25px !important;
+                        font-size: 20px !important;
                         margin-top: 30px !important;
                         width: 100%;
+                        line-height: 30px !important;
                         text-align: center;
                     }
                     .post-content-short {
                         width: 90% !important;
                         margin-top: 60px !important;
                         min-height: 120px;
+                        p {
+                          font-size: 11px;
+                        }
                     }
                 }
                 .post-image1, .post-image2, .post-image3 {
@@ -1752,7 +1767,7 @@ textarea {
     .event-carousel {
         height: 750px !important;
         .el-carousel__container {
-            height: 750px !important;
+            height: 700px !important;
         }
         .event {
             height: 750px !important;
@@ -1764,7 +1779,9 @@ textarea {
             .event-text {
                 font-size: 24px;
                 font-weight: bold;
+                width: 80%;
                 bottom: 45%;
+                text-align: center;
             }
             a {
                 bottom: 40%;
@@ -1797,6 +1814,7 @@ textarea {
     .gallery {
         .gallery-title {
             margin-left: 5%;
+            font-size: 30px;
         }
         .gallery-short-content {
             margin-left: 5%;
@@ -1829,7 +1847,7 @@ textarea {
     }
     .footer-logo  {
         width: 100%;
-        padding-left: 30%;
+        padding-left: 33%;
         margin-bottom: 5%;
         img {
             height: auto;
@@ -1841,7 +1859,7 @@ textarea {
         margin-left: 20%;
     }
     .footer-content {
-        height: 500px;
+        height: 450px;
         width: 100%;
         text-align: center;
         margin-left: 0!important;
@@ -1853,29 +1871,31 @@ textarea {
         }
         h3, a {
             margin-top: 40px !important;
-            font-size: 20px !important;
+            font-size: 18px !important;
         }
         .icon-contact {
-            .icon-fb {
-                margin-left: 0;
-                img {
-                    height: 180px;
-                }
-            }
-            .icon-youtube {
-                margin-top: 27px;
-                margin-left: 0;
-                img {
-                    height: 145px;
-                }
-            }
-            .icon-instagram {
-                margin-top: 41px;
-                margin-left: 0;
-                img {
-                    height: 120px;
-                }
-            }
+          display: flex;
+          justify-content: center;
+          .icon-fb {
+              margin-left: 0;
+              img {
+                  height: 125px;
+              }
+          }
+          .icon-youtube {
+              margin-top: 17px;
+              margin-left: 0;
+              img {
+                  height: 106px;
+              }
+          }
+          .icon-instagram {
+              margin-top: 28px;
+              margin-left: 0;
+              img {
+                  height: 86px;
+              }
+          }
         }
         .back-to-top {
             margin-top: 50px;
@@ -1893,8 +1913,9 @@ textarea {
     .detail-post-content {
       margin-top: 0;
       min-height: fit-content !important;
+      justify-content: flex-start !important;  
       .el-carousel__container {
-        height: 750px !important;
+        height: 700px !important;
         width: 100%;
         .item {
           height: 750px !important;
@@ -1911,9 +1932,10 @@ textarea {
           width: 90%;
           justify-content: flex-start !important;
           align-items: center;
+          min-height: 700px;
           .post-title {
             padding-top: 10%;
-            font-size: 7px;
+            font-size: 6px;
             width: 100%;
             height: fit-content;
           }
@@ -1940,18 +1962,62 @@ textarea {
       }
       .post-img-vertical {
         display: block;
-        margin-top: 100px;
-        height: 950px;
-        .el-carousel__item {
-          width: 100%;
-        }
-        .item {
-          .item__content {
-            top: 34em !important;
-            width: 60% !important;
+        .room-list {
+          display: flex;
+          flex-direction: column;
+          img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+          }
+          .room-content {
+            background-color: #ab6c2d;
+            height: 400px;
+            padding-left: 5%;
+            padding-right: 5%;
+            padding-top: 10%;
+            .status-room {
+              display: flex;
+              justify-content: space-between;
+              span {
+                font-size: 17px;
+              }
+              p {
+                font-size:13px;
+                color: white;
+                background-color: green;
+                padding: 5px;
+              }
+            }
+            .room-title {
+              display: flex;
+              justify-content: space-between;
+              font-size: 20px;
+              margin-top: 7%;
+              min-height: 40px;
+              p {
+                font-size: 13px;
+                border: 1px solid white;
+                height: 30px;
+                padding: 5px;
+                margin-top: -7px;
+              }
+            }
+            .short-description {
+              min-height: 200px;
+              display: flex;
+              align-items: center;
+            }
+            a {
+              border: 1px solid white;
+              padding: 8px;
+            }
           }
         }
       }
+    }
+    .room-post {
+      min-height: 3260px !important;
     }
   }
   .contact-page {
@@ -1984,6 +2050,29 @@ textarea {
           width: 90%;
         }
       }
+    }
+  }
+}
+@media screen and (max-width:320px) {
+  .contact-page {
+    .contact-detail {
+      .contact-content {
+        .contact-title {
+          p {
+            font-size: 30px;
+          }
+        }
+      }
+    }
+  }
+  .landing-page {
+    .content {
+      min-height: 650px;
+    }
+  }
+  .footer-hotel {
+    .footer-logo  {
+      padding-left: 40%;
     }
   }
 }

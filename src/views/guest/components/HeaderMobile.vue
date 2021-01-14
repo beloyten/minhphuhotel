@@ -14,9 +14,9 @@
         </div>
         <el-dialog :visible.sync="openDialogMenu" :fullscreen="true" class="menu">
             <div class="menu-mobile">
-                <router-link to="/">Trang chủ</router-link>
-                <router-link to="/list-room">Danh sách phòng</router-link>
-                <router-link to="/contact">Liên hệ</router-link>
+                <router-link to="/" @click.native="openDialogMenu = false">Trang chủ</router-link>
+                <router-link to="/list-room" @click.native="openDialogMenu = false">Danh sách phòng</router-link>
+                <router-link to="/contact" @click.native="openDialogMenu = false">Liên hệ</router-link>
             </div>
         </el-dialog>
     </div>

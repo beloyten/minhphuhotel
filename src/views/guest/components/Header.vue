@@ -29,11 +29,7 @@ export default {
             this.$store.dispatch('setBooking', true)
         }
     },
-    created () {
-        document.documentElement.scrollTop = 0
-    },
     mounted() {
-        document.documentElement.scrollTop = 0
         var styleHeaderLogoNone = document.createElement('style');
         styleHeaderLogoNone.innerHTML = `
         .logo {
