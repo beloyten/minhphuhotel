@@ -35,7 +35,7 @@
                 <div class="line line-small"></div>
                 <h3>{{contact.address}}</h3>
                 <div class="back-to-top" @click="scrollToTop()">
-                    <img src="images/icons/back-to-top.png" alt="">
+                    <img src="images/icons/back-top.png" alt="">
                 </div>
             </div>
         </div>
