@@ -130,7 +130,8 @@
                 </div>
             </el-carousel-item>
         </el-carousel>
-        <div class="form-booking" data-aos="form-booking-animation" id="formBooking" :class='{loading: loading}'>
+        <div class="form-booking" data-aos="form-booking-animation" 
+            data-aos-offset="-10" id="formBooking" :class='{loading: loading}'>
             <div class="form-booking-detail">
                 <div class="booking-field">
                     <div class="field">
@@ -524,7 +525,12 @@ export default {
             document.head.appendChild(styleHeaderBookingLabel);
             document.head.appendChild(styleHeader);
             document.head.appendChild(styleItemContentHide);
-            window.scrollTo(left, top-450)
+            window.scroll({
+                top: top - 450,
+                left: left,
+                behavior: 'smooth'
+            })
+            this.$store.dispatch('setBooking', false)
         },
         scrollToTop() {
             var styleHeaderLogoNone = document.createElement('style');
@@ -566,7 +572,11 @@ export default {
                     opacity: 1!important;
             }
             `;
-            window.scrollTo(0,0)
+            window.scroll({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            })
             if(document.documentElement.scrollTop !== 0 && !this.down) {
                 document.head.appendChild(styleHeaderLogoNone);
                 document.head.appendChild(styleHeaderItemNone);
@@ -657,6 +667,11 @@ export default {
                 opacity: 1!important;
         }
         `;
+        document.head.appendChild(styleHeaderLogoNone);
+        document.head.appendChild(styleHeaderItemNone);
+        document.head.appendChild(styleHeaderBookingNone);
+        document.head.appendChild(styleHeaderBookingLabelNone);
+        document.head.appendChild(styleHeaderNone);
         let vm = this
         var scrollableElement = document.body; //document.getElementById('scrollableElement');
         scrollableElement.addEventListener('wheel', checkScrollDirection);
@@ -666,13 +681,22 @@ export default {
                     console.log('up',document.documentElement.scrollTop)
                     if(document.documentElement.scrollTop <= 200) {
                         document.head.appendChild(styleItemContentDisplay);
-                    }
-                    if(document.documentElement.scrollTop <= 900) {
-                        document.head.appendChild(styleHeaderLogoNone);
-                        document.head.appendChild(styleHeaderItemNone);
-                        document.head.appendChild(styleHeaderBookingNone);
-                        document.head.appendChild(styleHeaderBookingLabelNone);
-                        document.head.appendChild(styleHeaderNone);
+                    } else if(document.documentElement.scrollTop <= 900) {
+                        if(vm.down) {
+                            document.head.appendChild(styleHeaderLogoNone);
+                            document.head.appendChild(styleHeaderItemNone);
+                            document.head.appendChild(styleHeaderBookingNone);
+                            document.head.appendChild(styleHeaderBookingLabelNone);
+                            document.head.appendChild(styleHeaderNone);
+                            vm.down = false
+                        }
+                    } else {
+                        vm.down = true
+                        document.head.appendChild(styleHeaderLogo);
+                        document.head.appendChild(styleHeaderItem);
+                        document.head.appendChild(styleHeaderBooking);
+                        document.head.appendChild(styleHeaderBookingLabel);
+                        document.head.appendChild(styleHeader);
                     }
                 }
             } else {
@@ -693,6 +717,10 @@ export default {
                             document.head.appendChild(styleHeaderBookingLabelNone);
                             document.head.appendChild(styleHeaderNone);
                             document.head.appendChild(styleItemContentDisplay);
+                            vm.down = false
+                        }
+                        if(document.documentElement.scrollTop > 200) {
+                            document.head.appendChild(styleItemContentHide);
                         }
                     }
                 }
@@ -706,9 +734,9 @@ export default {
             return event.deltaY < 0;
         }   
         if(this.$store.getters.booking) {
+            console.log('chinh no day')
             this.toBooking()
         }
-        this.$store.dispatch('setBooking', false)
     },
     async created() {
         this.loading = true;

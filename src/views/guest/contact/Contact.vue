@@ -35,11 +35,12 @@ export default {
     components: {
         Header,
         Footer,
-        HeaderMobile,
-        loading: false
+        HeaderMobile
     },
     data() {
-        return {}
+        return {
+            loading: false
+        }
     },
     computed: {
         contact() {

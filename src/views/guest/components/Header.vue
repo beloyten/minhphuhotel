@@ -17,19 +17,23 @@
 <script>
 export default {
     data() {
-        return {}
+        return {
+            down: false
+        }
     },
     computed: {},
     methods: {
         toHomepage() {
             this.$router.push("/")
         },
-        toBooking() {
-            this.$router.push("/")
-            this.$store.dispatch('setBooking', true)
+        async toBooking() {
+            document.documentElement.scrollTop = 0
+            await this.$store.dispatch('setBooking', true)
+            await this.$router.push("/")
         }
     },
     mounted() {
+        console.log(document.documentElement.scrollTop)
         var styleHeaderLogoNone = document.createElement('style');
         styleHeaderLogoNone.innerHTML = `
         .logo {
@@ -96,6 +100,11 @@ export default {
                 display: none !important;
         }
         `;
+        document.head.appendChild(styleHeaderLogoNone);
+        document.head.appendChild(styleHeaderItemNone);
+        document.head.appendChild(styleHeaderBookingNone);
+        document.head.appendChild(styleHeaderBookingLabelNone);
+        document.head.appendChild(styleHeaderNone);
         let vm = this
         var scrollableElement = document.body; //document.getElementById('scrollableElement');
         scrollableElement.addEventListener('wheel', checkScrollDirection);
@@ -104,11 +113,21 @@ export default {
                 window.onscroll = function(event) {
                     console.log('up',document.documentElement.scrollTop)
                     if(document.documentElement.scrollTop <= 900) {
-                        document.head.appendChild(styleHeaderLogoNone);
-                        document.head.appendChild(styleHeaderItemNone);
-                        document.head.appendChild(styleHeaderBookingNone);
-                        document.head.appendChild(styleHeaderBookingLabelNone);
-                        document.head.appendChild(styleHeaderNone);
+                        if(vm.down) {
+                            document.head.appendChild(styleHeaderLogoNone);
+                            document.head.appendChild(styleHeaderItemNone);
+                            document.head.appendChild(styleHeaderBookingNone);
+                            document.head.appendChild(styleHeaderBookingLabelNone);
+                            document.head.appendChild(styleHeaderNone);
+                            vm.down = false
+                        }
+                    } else {
+                        vm.down = true
+                        document.head.appendChild(styleHeaderLogo);
+                        document.head.appendChild(styleHeaderItem);
+                        document.head.appendChild(styleHeaderBooking);
+                        document.head.appendChild(styleHeaderBookingLabel);
+                        document.head.appendChild(styleHeader);
                     }
                 }
             } else {
@@ -128,6 +147,7 @@ export default {
                             document.head.appendChild(styleHeaderBookingNone);
                             document.head.appendChild(styleHeaderBookingLabelNone);
                             document.head.appendChild(styleHeaderNone);
+                            vm.down = false
                         }
                     }
                 }
