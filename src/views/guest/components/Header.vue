@@ -4,9 +4,9 @@
             <img src="images/logo.jpg" alt="">
         </div>
         <div class="heading-item" id="headingItem">
-            <router-link to="/">Trang chủ</router-link>
-            <router-link to="/list-room">Danh sách phòng</router-link>
-            <router-link to="/contact">Liên hệ</router-link>
+            <router-link to="/" :class="{active_item: activeLink('Trang chủ')}">Trang chủ</router-link>
+            <router-link to="/list-room" :class="{active_item: activeLink('Danh sách phòng')}">Danh sách phòng</router-link>
+            <router-link to="/contact" :class="{active_item: activeLink('Liên hệ')}">Liên hệ</router-link>
         </div>
         <div class="booking" id="bookingHeader" @click="toBooking()">
             <img src="images/icons/booking.svg" alt="">
@@ -30,6 +30,9 @@ export default {
             document.documentElement.scrollTop = 0
             await this.$store.dispatch('setBooking', true)
             await this.$router.push("/")
+        },
+        activeLink(string) {
+            return this.$route.name === string
         }
     },
     mounted() {
