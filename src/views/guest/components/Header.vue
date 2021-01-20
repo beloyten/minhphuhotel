@@ -35,134 +35,134 @@ export default {
             return this.$route.name === string
         }
     },
-    mounted() {
-        console.log(document.documentElement.scrollTop)
-        var styleHeaderLogoNone = document.createElement('style');
-        styleHeaderLogoNone.innerHTML = `
-        .logo {
-                -webkit-animation: changeHeaderLogoReverse 0.2s linear forwards; /* Chrome, Safari, Opera */
-                animation: changeHeaderLogoReverse 0.2s linear forwards;
-        }
-        `;
-        var styleHeaderItemNone = document.createElement('style');
-        styleHeaderItemNone.innerHTML = `
-        .heading-item {
-                -webkit-animation: changeHeaderItemReverse 0.2s linear forwards; /* Chrome, Safari, Opera */
-                animation: changeHeaderItemReverse 0.2s linear forwards;
-        }
-        `;
-        var styleHeaderBookingNone = document.createElement('style');
-        styleHeaderBookingNone.innerHTML = `
-        .booking {
-                -webkit-animation: changeHeaderBookingReverse 0.2s linear forwards; /* Chrome, Safari, Opera */
-                animation: changeHeaderBookingReverse 0.2s linear forwards;
-        }
-        `;
-        var styleHeaderBookingLabelNone = document.createElement('style');
-        styleHeaderBookingLabelNone.innerHTML = `
-        #textBooking {
-                display: inline!important;
-        }
-        `;
-        var styleHeaderNone = document.createElement('style');
-        styleHeaderNone.innerHTML = `
-        .heading-landing-page {
-                justify-content: none;
-        }
-        `;
-        var styleHeaderLogo = document.createElement('style');
-        styleHeaderLogo.innerHTML = `
-        .logo {
-                -webkit-animation: changeHeaderLogo 0.2s linear forwards; /* Chrome, Safari, Opera */
-                animation: changeHeaderLogo 0.2s linear forwards;
-        }
-        `;
-        var styleHeader = document.createElement('style');
-        styleHeader.innerHTML = `
-        .heading-landing-page {
-                justify-content: flex-end;
-        }
-        `;
-        var styleHeaderItem = document.createElement('style');
-        styleHeaderItem.innerHTML = `
-        .heading-item {
-                -webkit-animation: changeHeaderItem 0.2s linear forwards; /* Chrome, Safari, Opera */
-                animation: changeHeaderItem 0.2s linear forwards;
-        }
-        `;
-        var styleHeaderBooking = document.createElement('style');
-        styleHeaderBooking.innerHTML = `
-        .booking {
-                -webkit-animation: changeHeaderBooking 0.2s linear forwards; /* Chrome, Safari, Opera */
-                animation: changeHeaderBooking 0.2s linear forwards;
-        }
-        `;
-        var styleHeaderBookingLabel = document.createElement('style');
-        styleHeaderBookingLabel.innerHTML = `
-        #textBooking {
-                display: none !important;
-        }
-        `;
-        document.head.appendChild(styleHeaderLogoNone);
-        document.head.appendChild(styleHeaderItemNone);
-        document.head.appendChild(styleHeaderBookingNone);
-        document.head.appendChild(styleHeaderBookingLabelNone);
-        document.head.appendChild(styleHeaderNone);
-        let vm = this
-        var scrollableElement = document.body; //document.getElementById('scrollableElement');
-        scrollableElement.addEventListener('wheel', checkScrollDirection);
-        function checkScrollDirection(event) {
-            if (checkScrollDirectionIsUp(event)) {
-                window.onscroll = function(event) {
-                    console.log('up',document.documentElement.scrollTop)
-                    if(document.documentElement.scrollTop <= 900) {
-                        if(vm.down) {
-                            document.head.appendChild(styleHeaderLogoNone);
-                            document.head.appendChild(styleHeaderItemNone);
-                            document.head.appendChild(styleHeaderBookingNone);
-                            document.head.appendChild(styleHeaderBookingLabelNone);
-                            document.head.appendChild(styleHeaderNone);
-                            vm.down = false
-                        }
-                    } else {
-                        vm.down = true
-                        document.head.appendChild(styleHeaderLogo);
-                        document.head.appendChild(styleHeaderItem);
-                        document.head.appendChild(styleHeaderBooking);
-                        document.head.appendChild(styleHeaderBookingLabel);
-                        document.head.appendChild(styleHeader);
-                    }
-                }
-            } else {
-                window.onscroll = function(event) {
-                    console.log('down',document.documentElement.scrollTop)
-                    if(document.documentElement.scrollTop > 900) {
-                        vm.down = true
-                        document.head.appendChild(styleHeaderLogo);
-                        document.head.appendChild(styleHeaderItem);
-                        document.head.appendChild(styleHeaderBooking);
-                        document.head.appendChild(styleHeaderBookingLabel);
-                        document.head.appendChild(styleHeader);
-                    } else {
-                        if(vm.down) {
-                            document.head.appendChild(styleHeaderLogoNone);
-                            document.head.appendChild(styleHeaderItemNone);
-                            document.head.appendChild(styleHeaderBookingNone);
-                            document.head.appendChild(styleHeaderBookingLabelNone);
-                            document.head.appendChild(styleHeaderNone);
-                            vm.down = false
-                        }
-                    }
-                }
-            }
-        }
+    // mounted() {
+    //     console.log(document.documentElement.scrollTop)
+    //     var styleHeaderLogoNone = document.createElement('style');
+    //     styleHeaderLogoNone.innerHTML = `
+    //     .logo {
+    //             -webkit-animation: changeHeaderLogoReverse 0.2s linear forwards; /* Chrome, Safari, Opera */
+    //             animation: changeHeaderLogoReverse 0.2s linear forwards;
+    //     }
+    //     `;
+    //     var styleHeaderItemNone = document.createElement('style');
+    //     styleHeaderItemNone.innerHTML = `
+    //     .heading-item {
+    //             -webkit-animation: changeHeaderItemReverse 0.2s linear forwards; /* Chrome, Safari, Opera */
+    //             animation: changeHeaderItemReverse 0.2s linear forwards;
+    //     }
+    //     `;
+    //     var styleHeaderBookingNone = document.createElement('style');
+    //     styleHeaderBookingNone.innerHTML = `
+    //     .booking {
+    //             -webkit-animation: changeHeaderBookingReverse 0.2s linear forwards; /* Chrome, Safari, Opera */
+    //             animation: changeHeaderBookingReverse 0.2s linear forwards;
+    //     }
+    //     `;
+    //     var styleHeaderBookingLabelNone = document.createElement('style');
+    //     styleHeaderBookingLabelNone.innerHTML = `
+    //     #textBooking {
+    //             display: inline!important;
+    //     }
+    //     `;
+    //     var styleHeaderNone = document.createElement('style');
+    //     styleHeaderNone.innerHTML = `
+    //     .heading-landing-page {
+    //             justify-content: none;
+    //     }
+    //     `;
+    //     var styleHeaderLogo = document.createElement('style');
+    //     styleHeaderLogo.innerHTML = `
+    //     .logo {
+    //             -webkit-animation: changeHeaderLogo 0.2s linear forwards; /* Chrome, Safari, Opera */
+    //             animation: changeHeaderLogo 0.2s linear forwards;
+    //     }
+    //     `;
+    //     var styleHeader = document.createElement('style');
+    //     styleHeader.innerHTML = `
+    //     .heading-landing-page {
+    //             justify-content: flex-end;
+    //     }
+    //     `;
+    //     var styleHeaderItem = document.createElement('style');
+    //     styleHeaderItem.innerHTML = `
+    //     .heading-item {
+    //             -webkit-animation: changeHeaderItem 0.2s linear forwards; /* Chrome, Safari, Opera */
+    //             animation: changeHeaderItem 0.2s linear forwards;
+    //     }
+    //     `;
+    //     var styleHeaderBooking = document.createElement('style');
+    //     styleHeaderBooking.innerHTML = `
+    //     .booking {
+    //             -webkit-animation: changeHeaderBooking 0.2s linear forwards; /* Chrome, Safari, Opera */
+    //             animation: changeHeaderBooking 0.2s linear forwards;
+    //     }
+    //     `;
+    //     var styleHeaderBookingLabel = document.createElement('style');
+    //     styleHeaderBookingLabel.innerHTML = `
+    //     #textBooking {
+    //             display: none !important;
+    //     }
+    //     `;
+    //     document.head.appendChild(styleHeaderLogoNone);
+    //     document.head.appendChild(styleHeaderItemNone);
+    //     document.head.appendChild(styleHeaderBookingNone);
+    //     document.head.appendChild(styleHeaderBookingLabelNone);
+    //     document.head.appendChild(styleHeaderNone);
+    //     let vm = this
+    //     var scrollableElement = document.body; //document.getElementById('scrollableElement');
+    //     scrollableElement.addEventListener('wheel', checkScrollDirection);
+    //     function checkScrollDirection(event) {
+    //         if (checkScrollDirectionIsUp(event)) {
+    //             window.onscroll = function(event) {
+    //                 console.log('up',document.documentElement.scrollTop)
+    //                 if(document.documentElement.scrollTop <= 900) {
+    //                     if(vm.down) {
+    //                         document.head.appendChild(styleHeaderLogoNone);
+    //                         document.head.appendChild(styleHeaderItemNone);
+    //                         document.head.appendChild(styleHeaderBookingNone);
+    //                         document.head.appendChild(styleHeaderBookingLabelNone);
+    //                         document.head.appendChild(styleHeaderNone);
+    //                         vm.down = false
+    //                     }
+    //                 } else {
+    //                     vm.down = true
+    //                     document.head.appendChild(styleHeaderLogo);
+    //                     document.head.appendChild(styleHeaderItem);
+    //                     document.head.appendChild(styleHeaderBooking);
+    //                     document.head.appendChild(styleHeaderBookingLabel);
+    //                     document.head.appendChild(styleHeader);
+    //                 }
+    //             }
+    //         } else {
+    //             window.onscroll = function(event) {
+    //                 console.log('down',document.documentElement.scrollTop)
+    //                 if(document.documentElement.scrollTop > 900) {
+    //                     vm.down = true
+    //                     document.head.appendChild(styleHeaderLogo);
+    //                     document.head.appendChild(styleHeaderItem);
+    //                     document.head.appendChild(styleHeaderBooking);
+    //                     document.head.appendChild(styleHeaderBookingLabel);
+    //                     document.head.appendChild(styleHeader);
+    //                 } else {
+    //                     if(vm.down) {
+    //                         document.head.appendChild(styleHeaderLogoNone);
+    //                         document.head.appendChild(styleHeaderItemNone);
+    //                         document.head.appendChild(styleHeaderBookingNone);
+    //                         document.head.appendChild(styleHeaderBookingLabelNone);
+    //                         document.head.appendChild(styleHeaderNone);
+    //                         vm.down = false
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
 
-        function checkScrollDirectionIsUp(event) {
-            if (event.wheelDelta) {
-                return event.wheelDelta > 0;
-            }
-            return event.deltaY < 0;
-        }
-    }
+    //     function checkScrollDirectionIsUp(event) {
+    //         if (event.wheelDelta) {
+    //             return event.wheelDelta > 0;
+    //         }
+    //         return event.deltaY < 0;
+    //     }
+    // }
 }
 </script>

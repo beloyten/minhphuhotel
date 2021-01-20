@@ -464,9 +464,6 @@ export default {
         toDetail() {
             this.$router.push("/post-detail")
         },
-        activeLink(string) {
-            return this.$route.name === string
-        },
         toListRoom() {
             this.$router.push("/list-room")
         },
@@ -589,6 +586,9 @@ export default {
                 document.head.appendChild(styleItemContentDisplay);
                 this.down = false;
             }
+        },
+        activeLink(string) {
+            return this.$route.name === string
         }
     },
     mounted() {
