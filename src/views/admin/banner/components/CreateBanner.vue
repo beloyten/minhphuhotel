@@ -152,6 +152,7 @@ export default {
     async created() {
         if(this.edit) {
             let imgResponse = []
+            this.loading = true
             await this.$store.dispatch('getOneBanner', this.banner.id).then(rs => {
                 if(rs.status === 'success') {
                     this.bannerDetail = rs.data
@@ -174,7 +175,9 @@ export default {
                 return obj
             })
             this.imgList = listImage
-            console.log('response',listImage)
+            await setTimeout(() => {
+                this.loading = false
+            }, 50)
         }
     }
 }

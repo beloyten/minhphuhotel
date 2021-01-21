@@ -233,6 +233,7 @@ export default {
     },
     async created() {
         if(this.edit) {
+            this.loading = true
             let imgResponse = []
             await this.$store.dispatch('getOneRoom', this.room.id).then(rs => {
                 if(rs.status === 'success') {
@@ -255,8 +256,10 @@ export default {
                 }
                 return obj
             })
-            console.log(listImage)
             this.imgList = listImage
+            await setTimeout(() => {
+                this.loading = false
+            }, 50)
         }
     }
 }

@@ -10,18 +10,20 @@
                 </div>
             </div>
             <div class="list-gallery" v-if="listAllPhotoGallery.length > 0">
-                <div class="img-gallery-admin" v-for="item in getNumberRow" :key="item">
-                    <div class="img-gallery">
-                        <img :src="listAllPhotoGallery[item*3-3] && listAllPhotoGallery[item*3-3].img ? listAllPhotoGallery[item*3-3].img : ''" alt="" :class="{display_none: !listAllPhotoGallery[item*3-3]}" @click="viewImage(item*3-3)"/>
-                        <img v-if="listAllPhotoGallery[item*3-3]" class="img-logo" src="images/icons/delete.png" alt="" @click.prevent="handleDelete(listAllPhotoGallery[item*3-3])"/>
-                    </div>
-                    <div class="img-gallery">
-                        <img :src="listAllPhotoGallery[item*3-2] && listAllPhotoGallery[item*3-2].img ? listAllPhotoGallery[item*3-2].img : ''" alt="" :class="{display_none: !listAllPhotoGallery[item*3-2]}" @click="viewImage(item*3-2)"/>
-                        <img v-if="listAllPhotoGallery[item*3-2]" class="img-logo" src="images/icons/delete.png" alt="" @click.prevent="handleDelete(listAllPhotoGallery[item*3-2])"/>
-                    </div>
-                    <div class="img-gallery">
-                        <img :src="listAllPhotoGallery[item*3-1] && listAllPhotoGallery[item*3-1].img ? listAllPhotoGallery[item*3-1].img : ''" alt="" :class="{display_none: !listAllPhotoGallery[item*3-1]}" @click="viewImage(item*3-1)"/>
-                        <img v-if="listAllPhotoGallery[item*3-1]" class="img-logo" src="images/icons/delete.png" alt="" @click.prevent="handleDelete(listAllPhotoGallery[item*3-1])"/>
+                <div class="img-display" v-for="item in getNumberRow" :key="item">
+                    <div class="img-gallery-admin">
+                        <div class="img-gallery">
+                            <img :src="listAllPhotoGallery[item*3-3] && listAllPhotoGallery[item*3-3].img ? listAllPhotoGallery[item*3-3].img : ''" alt="" :class="{display_none: !listAllPhotoGallery[item*3-3]}" @click="viewImage(item*3-3)"/>
+                            <img v-if="listAllPhotoGallery[item*3-3]" class="img-logo" src="images/icons/delete.png" alt="" @click.prevent="handleDelete(listAllPhotoGallery[item*3-3])"/>
+                        </div>
+                        <div class="img-gallery">
+                            <img :src="listAllPhotoGallery[item*3-2] && listAllPhotoGallery[item*3-2].img ? listAllPhotoGallery[item*3-2].img : ''" alt="" :class="{display_none: !listAllPhotoGallery[item*3-2]}" @click="viewImage(item*3-2)"/>
+                            <img v-if="listAllPhotoGallery[item*3-2]" class="img-logo" src="images/icons/delete.png" alt="" @click.prevent="handleDelete(listAllPhotoGallery[item*3-2])"/>
+                        </div>
+                        <div class="img-gallery">
+                            <img :src="listAllPhotoGallery[item*3-1] && listAllPhotoGallery[item*3-1].img ? listAllPhotoGallery[item*3-1].img : ''" alt="" :class="{display_none: !listAllPhotoGallery[item*3-1]}" @click="viewImage(item*3-1)"/>
+                            <img v-if="listAllPhotoGallery[item*3-1]" class="img-logo" src="images/icons/delete.png" alt="" @click.prevent="handleDelete(listAllPhotoGallery[item*3-1])"/>
+                        </div>
                     </div>
                 </div>
             </div>

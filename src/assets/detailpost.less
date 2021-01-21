@@ -56,13 +56,13 @@
             display: flex;
             flex-direction: column;
             .post-title {
-                opacity: 0;
                 padding-top: 10%;
-                height: 200px;
+                height: 270px;
                 span {
                     font-size: 5.5em;
                     color: #ab6c2d;
                     font-family: Glacial;
+                    line-height: 80px;
                 }
             }
             .post-bread {
@@ -80,6 +80,7 @@
                 width: 100%;
                 textarea {
                     min-height: 400px;
+                    max-height: 1000px;
                     font-size: 1.5em;
                     color: black;
                     line-height: 2;
@@ -203,20 +204,16 @@
     }
 }
 [data-aos="post-title-animation"] {
-    opacity: 0 !important;
     transition-property: transform, opacity;
     &.aos-animate {
         -webkit-animation: displayPostTitle 1s; /* Chrome, Safari, Opera */
         animation: displayPostTitle 1s;
-        opacity: 1 !important;
     }
 }
 [data-aos="post-content-animation"] {
-    opacity: 0 !important;
     transition-property: transform, opacity;
     &.aos-animate {
         -webkit-animation: displayPostContent 1s; /* Chrome, Safari, Opera */
         animation: displayPostContent 1s;
-        opacity: 1 !important;
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <el-dialog title="Xem trước Sự kiện" :visible="openDialogPreview" @close="close()" :fullscreen="true">
-        <div class="detail-post">
+        <div class="detail-post" :class='{loading: loading}'>
             <div class="detail-post-content">
             <el-carousel :autoplay="false" height="60em" indicator-position="none" :loop="false" :interval='0'>
                 <el-carousel-item v-for="(item, index) in post.list" :key="index">
@@ -21,7 +21,7 @@
                         <span>{{post && post.post && post.post.brief ? post.post.brief : ''}}</span>
                     </div>
                     <div class="post-content-text" data-aos="post-content-animation">
-                        <textarea v-model="post.post.description" disabled> 
+                        <textarea id="textContent" v-model="post.post.description" disabled> 
                         </textarea>
                     </div>
                 </div>
@@ -42,7 +42,8 @@ export default {
                     shortDescription: '', 
                     description: ''
                 }
-            }
+            },
+            loading: false
         }
     },
     props: {
@@ -53,16 +54,23 @@ export default {
         close() {
             this.$emit('update:openDialogPreview', false)
         },
+        auto_grow(element) {
+            element.style.height = "400px";
+            element.style.height = (element.scrollHeight)+"px";
+        }
     },
     async created() {
         if(this.id) {
+            this.loading = true
             await this.$store.dispatch('getOnePost', this.id).then(rs => {
                 if(rs.status === 'success') {
                     this.post = rs.data
                 }
             })
+            await setTimeout(() => {
+                this.loading = false
+            }, 50)
         }
-        console.log(this.post)
     }
 }
 </script>

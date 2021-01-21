@@ -94,8 +94,8 @@
                                 </div>
                             </el-form-item>
                                 <div class="img-loaded">        
-                                    <img id="imgLoaded" alt="">
-                                    <p id="textWaiting">Image here</p>
+                                    <img id="imgLoaded" v-if="contact.addressImg" alt="" :src="contact.addressImg ? contact.addressImg : ''">
+                                    <p id="textWaiting" v-else>Image here</p>
                                 </div>
                         </el-form>
                         <span slot="footer" class="dialog-footer">

@@ -1,6 +1,6 @@
 <template>
     <el-dialog title="Xem trước Banner" :visible="openDialogPreview" @close="close()" :fullscreen="true">
-        <div class="banner-preview">
+        <div class="banner-preview" :class='{loading: loading}'>
             <el-carousel indicator-position="outside" height="800px" class="banner">
                 <el-carousel-item>
                     <div class="item">
@@ -23,7 +23,8 @@ export default {
                 title: '',
                 brief: '',
                 image: ''
-            }
+            },
+            loading: false
         }
     },
     props: {
@@ -37,11 +38,15 @@ export default {
     },
     async created() {
         if(this.id) {
+            this.loading = true
             await this.$store.dispatch('getOneBanner', this.id).then(rs => {
                 if(rs.status === 'success') {
                     this.post = rs.data
                 }
             })
+            await setTimeout(() => {
+                this.loading = false
+            }, 50)
         }
         console.log(this.post)
     }

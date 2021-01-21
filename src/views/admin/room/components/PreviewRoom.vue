@@ -1,6 +1,6 @@
 <template>
     <el-dialog title="Xem trước phòng" :visible="openDialogPreview" @close="close()" :fullscreen="true">
-        <div class="detail-post">
+        <div class="detail-post" :class='{loading: loading}'>
             <div class="detail-post-content">
             <el-carousel :autoplay="false" height="60em" indicator-position="none" :loop="false" :interval='0'>
                 <el-carousel-item v-for="(item, index) in post.list" :key="index">
@@ -42,7 +42,8 @@ export default {
                     shortDescription: '', 
                     description: ''
                 }
-            }
+            },
+            loading: false
         }
     },
     props: {
@@ -56,11 +57,15 @@ export default {
     },
     async created() {
         if(this.id) {
+            this.loading = true
             await this.$store.dispatch('getOneRoom', this.id).then(rs => {
                 if(rs.status === 'success') {
                     this.post = rs.data
                 }
             })
+            await setTimeout(() => {
+                this.loading = false
+            }, 50)
         }
         console.log(this.post)
     }

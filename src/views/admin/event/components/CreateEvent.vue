@@ -13,13 +13,13 @@
                     ></vue-upload-multiple-image>
                 </el-form-item>
                 <el-form-item label="Tiêu đề" :label-width="formLabelWidth">
-                    <el-input v-model="eventDetail.title" autocomplete="off" :class="{error_input : errorForm.title}"></el-input>
+                    <el-input maxlength="40" show-word-limit v-model="eventDetail.title" autocomplete="off" :class="{error_input : errorForm.title}"></el-input>
                 </el-form-item>
                 <el-form-item label="Tóm tắt" :label-width="formLabelWidth">
-                    <el-input v-model="eventDetail.brief" autocomplete="off" :class="{error_input : errorForm.brief}"></el-input>
+                    <el-input maxlength="80" show-word-limit v-model="eventDetail.brief" autocomplete="off" :class="{error_input : errorForm.brief}"></el-input>
                 </el-form-item>
                 <el-form-item label="Mô tả ngắn" :label-width="formLabelWidth">
-                    <el-input v-model="eventDetail.shortDescription" autocomplete="off" :class="{error_input : errorForm.shortDescription}"></el-input>
+                    <el-input maxlength="100" show-word-limit v-model="eventDetail.shortDescription" autocomplete="off" :class="{error_input : errorForm.shortDescription}"></el-input>
                 </el-form-item>
                 <el-form-item label="Nội dung" :label-width="formLabelWidth">
                     <textarea id="message" v-model="eventDetail.description" :class="{error_textarea: errorForm.description}"></textarea>
@@ -176,6 +176,7 @@ export default {
     },
     async created() {
         if(this.edit) {
+            this.loading = true
             let imgResponse = []
             await this.$store.dispatch('getOnePost', this.event.id).then(rs => {
                 if(rs.status === 'success') {
@@ -199,7 +200,9 @@ export default {
                 return obj
             })
             this.imgList = listImage
-            console.log('response',listImage)
+            await setTimeout(() => {
+                this.loading = false
+            }, 50)
         }
     }
 }

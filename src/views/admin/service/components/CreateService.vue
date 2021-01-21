@@ -13,7 +13,7 @@
                     ></vue-upload-multiple-image>
                 </el-form-item>
                 <el-form-item label="Tên dịch vụ" :label-width="formLabelWidth">
-                    <el-input v-model="serviceDetail.name" autocomplete="off" :class="{error_input : errorForm.name}"></el-input>
+                    <el-input maxlength="20" v-model="serviceDetail.name" autocomplete="off" :class="{error_input : errorForm.name}"></el-input>
                 </el-form-item>
                 <el-form-item label="Tiêu đề" :label-width="formLabelWidth">
                     <el-input v-model="serviceDetail.title" autocomplete="off" :class="{error_input : errorForm.title}"></el-input>
@@ -185,6 +185,7 @@ export default {
     },
     async created() {
         if(this.edit) {
+            this.loading = true
             let imgResponse = []
             await this.$store.dispatch('getOnePost', this.service.id).then(rs => {
                 if(rs.status === 'success') {
@@ -208,7 +209,9 @@ export default {
                 return obj
             })
             this.imgList = listImage
-            console.log('response',listImage)
+            await setTimeout(() => {
+                this.loading = false
+            }, 50)
         }
     }
 }

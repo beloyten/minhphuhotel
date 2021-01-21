@@ -18,7 +18,7 @@
                     <div class="post-title" data-aos="post-title-animation">
                         <span>{{post.title}}</span>
                     </div>
-                    <div class="post-bread" data-aos="post-content-animation">
+                    <div class="post-bread" data-aos="post-content-animation" data-aos-offset="-10">
                         <span>{{post.brief}}</span>
                     </div>
                     <div class="post-content-text" data-aos="post-content-animation">
