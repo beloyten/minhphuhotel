@@ -13,13 +13,13 @@
                     ></vue-upload-multiple-image>
                 </el-form-item>
                 <el-form-item label="Tên phòng" :label-width="formLabelWidth">
-                    <el-input v-model="roomDetail.name" autocomplete="off" :class="{error_input : errorForm.name}"></el-input>
+                    <el-input maxlength="40" show-word-limit v-model="roomDetail.name" autocomplete="off" :class="{error_input : errorForm.name}"></el-input>
                 </el-form-item>
                 <el-form-item label="Tóm tắt" :label-width="formLabelWidth">
-                    <el-input v-model="roomDetail.brief" autocomplete="off" :class="{error_input : errorForm.brief}"></el-input>
+                    <el-input maxlength="80" show-word-limit v-model="roomDetail.brief" autocomplete="off" :class="{error_input : errorForm.brief}"></el-input>
                 </el-form-item>
                 <el-form-item label="Mô tả ngắn" :label-width="formLabelWidth">
-                    <el-input v-model="roomDetail.shortDescription" autocomplete="off" :class="{error_input : errorForm.shortDescription}"></el-input>
+                    <el-input maxlength="120" show-word-limit v-model="roomDetail.shortDescription" autocomplete="off" :class="{error_input : errorForm.shortDescription}"></el-input>
                 </el-form-item>
                 <el-form-item label="Giá phòng" :label-width="formLabelWidth" class="input-money">
                     <el-input v-model="roomDetail.price" autocomplete="off" :class="{error_input : errorForm.price}"></el-input>                    

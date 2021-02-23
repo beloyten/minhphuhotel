@@ -13,16 +13,16 @@
                     ></vue-upload-multiple-image>
                 </el-form-item>
                 <el-form-item label="Tên dịch vụ" :label-width="formLabelWidth">
-                    <el-input maxlength="20" v-model="serviceDetail.name" autocomplete="off" :class="{error_input : errorForm.name}"></el-input>
+                    <el-input maxlength="20" show-word-limit v-model="serviceDetail.name" autocomplete="off" :class="{error_input : errorForm.name}"></el-input>
                 </el-form-item>
                 <el-form-item label="Tiêu đề" :label-width="formLabelWidth">
-                    <el-input v-model="serviceDetail.title" autocomplete="off" :class="{error_input : errorForm.title}"></el-input>
+                    <el-input maxlength="40" show-word-limit v-model="serviceDetail.title" autocomplete="off" :class="{error_input : errorForm.title}"></el-input>
                 </el-form-item>
                 <el-form-item label="Tóm tắt" :label-width="formLabelWidth">
-                    <el-input v-model="serviceDetail.brief" autocomplete="off" :class="{error_input : errorForm.brief}"></el-input>
+                    <el-input maxlength="80" show-word-limit v-model="serviceDetail.brief" autocomplete="off" :class="{error_input : errorForm.brief}"></el-input>
                 </el-form-item>
                 <el-form-item label="Mô tả ngắn" :label-width="formLabelWidth">
-                    <el-input v-model="serviceDetail.shortDescription" autocomplete="off" :class="{error_input : errorForm.shortDescription}"></el-input>
+                    <el-input maxlength="120" show-word-limit v-model="serviceDetail.shortDescription" autocomplete="off" :class="{error_input : errorForm.shortDescription}"></el-input>
                 </el-form-item>
                 <el-form-item label="Nội dung" :label-width="formLabelWidth">
                     <textarea id="message" v-model="serviceDetail.description" :class="{error_textarea: errorForm.description}"></textarea>

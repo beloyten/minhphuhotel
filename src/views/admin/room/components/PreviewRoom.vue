@@ -21,8 +21,7 @@
                         <span>{{post && post.room && post.room.brief ? post.room.brief : ''}}</span>
                     </div>
                     <div class="post-content-text" data-aos="post-content-animation">
-                        <textarea v-model="post.room.description" disabled> 
-                        </textarea>
+                        <pre> {{post.room.description}} </pre>
                     </div>
                 </div>
             </div>

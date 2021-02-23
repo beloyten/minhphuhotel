@@ -21,8 +21,7 @@
                         <span>{{post && post.post && post.post.brief ? post.post.brief : ''}}</span>
                     </div>
                     <div class="post-content-text" data-aos="post-content-animation">
-                        <textarea id="textContent" v-model="post.post.description" disabled> 
-                        </textarea>
+                        <pre> {{post.post.description}} </pre>
                     </div>
                 </div>
             </div>
@@ -53,10 +52,6 @@ export default {
     methods: {
         close() {
             this.$emit('update:openDialogPreview', false)
-        },
-        auto_grow(element) {
-            element.style.height = "400px";
-            element.style.height = (element.scrollHeight)+"px";
         }
     },
     async created() {

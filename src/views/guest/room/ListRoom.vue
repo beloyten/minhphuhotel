@@ -22,8 +22,7 @@
                         <span>{{post.brief}}</span>
                     </div>
                     <div class="post-content-text" data-aos="post-content-animation">
-                        <textarea v-model="post.description" disabled> 
-                        </textarea>
+                        <pre> {{post.description}} </pre>
                     </div>
                 </div>
             </div>
@@ -33,7 +32,7 @@
                         <div class="item">
                             <div class="item__content">
                                 <div class="room-title">{{item.room.name}}</div>
-                                <div class="room-status">{{item.room.status}}</div>
+                                <div class="room-status" :class="{red_background: item.room.status && item.room.status === 'Hết phòng'}">{{item.room.status}}</div>
                                 <div class="room-price">{{formatCash(item.room.price+"")+' VNĐ'}}</div>
                                 <router-link :to="'/room-detail?id='+item.room.id">Xem thêm</router-link>
                             </div>

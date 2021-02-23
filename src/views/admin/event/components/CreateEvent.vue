@@ -19,7 +19,7 @@
                     <el-input maxlength="80" show-word-limit v-model="eventDetail.brief" autocomplete="off" :class="{error_input : errorForm.brief}"></el-input>
                 </el-form-item>
                 <el-form-item label="Mô tả ngắn" :label-width="formLabelWidth">
-                    <el-input maxlength="100" show-word-limit v-model="eventDetail.shortDescription" autocomplete="off" :class="{error_input : errorForm.shortDescription}"></el-input>
+                    <el-input maxlength="120" show-word-limit v-model="eventDetail.shortDescription" autocomplete="off" :class="{error_input : errorForm.shortDescription}"></el-input>
                 </el-form-item>
                 <el-form-item label="Nội dung" :label-width="formLabelWidth">
                     <textarea id="message" v-model="eventDetail.description" :class="{error_textarea: errorForm.description}"></textarea>

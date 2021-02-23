@@ -14,10 +14,10 @@
                     ></vue-upload-multiple-image>
                 </el-form-item>
                 <el-form-item label="Tiêu đề" :label-width="formLabelWidth">
-                    <el-input v-model="bannerDetail.title" autocomplete="off" :class="{error_input : errorForm.title}"></el-input>
+                    <el-input maxlength="40" show-word-limit v-model="bannerDetail.title" autocomplete="off" :class="{error_input : errorForm.title}"></el-input>
                 </el-form-item>
                 <el-form-item label="Tóm tắt" :label-width="formLabelWidth">
-                    <el-input v-model="bannerDetail.brief" autocomplete="off" :class="{error_input : errorForm.brief}"></el-input>
+                    <el-input maxlength="80" show-word-limit v-model="bannerDetail.brief" autocomplete="off" :class="{error_input : errorForm.brief}"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">

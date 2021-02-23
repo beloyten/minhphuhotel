@@ -22,8 +22,7 @@
                         <span>{{post.brief}}</span>
                     </div>
                     <div class="post-content-text" data-aos="post-content-animation">
-                        <textarea v-model="post.description" disabled> 
-                        </textarea>
+                        <pre> {{post.description}} </pre>
                     </div>
                 </div>
             </div>

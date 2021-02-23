@@ -52,10 +52,10 @@
             </div>
             <div class="content-space">__________________________________________________________________________________</div>
             <div class="content-space-short">____________________________________</div>
-            <div class="content-short" id="contentShort"
+            <pre class="content-short" id="contentShort"
                 data-aos="content-short-animation">
                 {{preface.description}}
-            </div>
+            </pre>
         </div>
         <div class="post">
             <div class="post-content">

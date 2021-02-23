@@ -21,8 +21,7 @@
                         <span>{{post && post.post && post.post.brief ? post.post.brief : ''}}</span>
                     </div>
                     <div class="post-content-text" data-aos="post-content-animation">
-                        <textarea v-model="post.post.description" disabled> 
-                        </textarea>
+                        <pre> {{post.post.description}} </pre>
                     </div>
                 </div>
             </div>
@@ -66,6 +65,7 @@ export default {
             await setTimeout(() => {
                 this.loading = false
             }, 50)
+            console.log(this.post)
         }
     }
 }
